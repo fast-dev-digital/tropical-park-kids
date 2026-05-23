@@ -9,7 +9,8 @@
       "Bash(npm run *)",
       "Bash(npx eslint *)",
       "Bash(tail -20 \"C:\\\\\\\\Users\\\\\\\\ACER_N~1\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\C--Users-ACER-NITRO-Desktop-Projetos-tropical-park-kids\\\\\\\\4445d77a-2433-4443-9538-e34abd55d1dd\\\\\\\\tasks\\\\\\\\bvnwp6wof.output\")",
-      "Bash(mkdir -p .claude 2>&1; ls .claude 2>&1)"
+      "Bash(mkdir -p .claude 2>&1; ls .claude 2>&1)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
