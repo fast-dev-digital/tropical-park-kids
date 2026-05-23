@@ -1,6 +1,18 @@
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { Container } from '../ui/Container'
 
+// TODO: substituir pelos perfis reais do cliente antes do launch.
+const SOCIAL = {
+  instagram: 'https://instagram.com/tropicalparkkids',
+  facebook: 'https://facebook.com/tropicalparkkids',
+}
+
+// TODO: confirmar e-mail e WhatsApp oficiais antes do launch.
+const CONTACT = {
+  whatsappHref: 'https://wa.me/5517999999999',
+  email: 'contato@tropicalparkkids.com.br',
+}
+
 const InstagramIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -20,10 +32,12 @@ const navColumns = [
     title: 'Navegação',
     links: [
       { href: '#hero', label: 'Início' },
+      { href: '#attractions', label: 'Atrações Exclusivas' },
+      { href: '#differentials', label: 'Diferenciais' },
       { href: '#structure', label: 'Estrutura' },
-      { href: '#events', label: 'Tipos de Evento' },
       { href: '#menus', label: 'Cardápios' },
-      { href: '#location', label: 'Localização' },
+      { href: '#faq', label: 'Dúvidas' },
+      { href: '#location', label: 'Visitar' },
     ],
   },
   {
@@ -58,23 +72,24 @@ export function Footer() {
               </span>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Chácara exclusiva para eventos inesquecíveis em Catanduva e região.
+              Chácara exclusiva em Catanduva — para quem se importa com a
+              memória, não com o desconto.
             </p>
             <div className="flex gap-3 mt-5">
               <a
-                href="https://instagram.com"
+                href={SOCIAL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
+                aria-label="Instagram da Tropical Park Kids"
                 className="p-2 rounded-full bg-white/10 hover:bg-brand-gold hover:text-ink transition"
               >
                 <InstagramIcon size={18} />
               </a>
               <a
-                href="https://facebook.com"
+                href={SOCIAL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook"
+                aria-label="Facebook da Tropical Park Kids"
                 className="p-2 rounded-full bg-white/10 hover:bg-brand-gold hover:text-ink transition"
               >
                 <FacebookIcon size={18} />
@@ -113,14 +128,14 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0 text-brand-gold" />
-                <a href="https://wa.me/5517999999999" className="hover:text-brand-gold">
+                <a href={CONTACT.whatsappHref} className="hover:text-brand-gold">
                   Concierge Digital 24h
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={16} className="shrink-0 text-brand-gold" />
-                <a href="mailto:contato@tropicalparkkids.com" className="hover:text-brand-gold">
-                  contato@tropicalparkkids.com
+                <a href={`mailto:${CONTACT.email}`} className="hover:text-brand-gold">
+                  {CONTACT.email}
                 </a>
               </li>
             </ul>

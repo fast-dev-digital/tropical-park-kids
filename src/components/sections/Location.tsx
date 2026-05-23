@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Calendar, MessageCircle } from 'lucide-react'
 import { Container } from '../ui/Container'
@@ -11,7 +12,34 @@ const highlights = [
   { icon: Clock, label: 'Atendimento 24h via WhatsApp', desc: 'Concierge Digital sempre disponível' },
 ]
 
+function useInViewOnce<T extends Element>(rootMargin = '200px') {
+  const ref = useRef<T | null>(null)
+  const [seen, setSeen] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || seen) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSeen(true)
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [rootMargin, seen])
+
+  return { ref, seen }
+}
+
 export function Location() {
+  const { ref, seen } = useInViewOnce<HTMLDivElement>()
+
   return (
     <section id="location" className="section-padding bg-brand-royal text-white">
       <Container>
@@ -24,20 +52,30 @@ export function Location() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <motion.div
+            ref={ref}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 min-h-[360px]"
+            className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 min-h-[360px] bg-brand-royal-dark"
           >
-            <iframe
-              title="Localização da Tropical Park Kids em Catanduva"
-              src="https://www.google.com/maps?q=Catanduva,+SP&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full min-h-[360px] border-0"
-              allowFullScreen
-            />
+            {seen ? (
+              <iframe
+                title="Localização da Tropical Park Kids em Catanduva"
+                src="https://www.google.com/maps?q=Catanduva,+SP&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full min-h-[360px] border-0"
+                allowFullScreen
+              />
+            ) : (
+              <div
+                className="absolute inset-0 flex items-center justify-center text-white/40 text-sm"
+                aria-hidden="true"
+              >
+                <MapPin size={32} />
+              </div>
+            )}
           </motion.div>
 
           <motion.div

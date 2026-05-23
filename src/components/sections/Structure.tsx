@@ -20,8 +20,8 @@ export function Structure() {
       <Container>
         <SectionTitle
           eyebrow="A Estrutura"
-          title="Cada detalhe pensado para encantar"
-          subtitle="Salão coberto, área verde generosa, brinquedos modernos de grande porte e banheiros institucionais de alto padrão — tudo para transformar seu evento em uma experiência inesquecível."
+          title="Um cenário onde cada detalhe importa"
+          subtitle="Salão coberto, gramado, brinquedos de grande porte e banheiros de alto padrão. Não é um galpão adaptado — é uma chácara projetada para receber bem do começo ao fim."
         />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[180px] md:auto-rows-[220px]">

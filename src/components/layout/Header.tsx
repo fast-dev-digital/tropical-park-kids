@@ -6,10 +6,12 @@ import { useScrollPosition } from '../../hooks/useScrollPosition'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 const navLinks = [
+  { href: '#attractions', label: 'Atrações' },
+  { href: '#differentials', label: 'Diferenciais' },
   { href: '#structure', label: 'Estrutura' },
-  { href: '#events', label: 'Eventos' },
   { href: '#menus', label: 'Cardápios' },
-  { href: '#location', label: 'Localização' },
+  { href: '#faq', label: 'Dúvidas' },
+  { href: '#location', label: 'Visitar' },
 ]
 
 export function Header() {

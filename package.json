@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/check-no-price-leak.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:price": "node scripts/check-no-price-leak.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.39.0",

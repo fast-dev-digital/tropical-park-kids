@@ -51,7 +51,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-[0.2em] uppercase mb-6"
         >
-          Catanduva & Região
+          Catanduva · Chácara Exclusiva
         </motion.span>
 
         <motion.h1
@@ -60,9 +60,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="font-premium text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mx-auto drop-shadow-lg"
         >
-          Sua Chácara Exclusiva para{' '}
-          <span className="text-brand-gold">Eventos Inesquecíveis</span> em
-          Catanduva.
+          A festa inesquecível acontece em uma{' '}
+          <span className="text-brand-gold">chácara</span>, não em um salão.
         </motion.h1>
 
         <motion.p
@@ -71,8 +70,9 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="mt-6 text-base md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
         >
-          Infraestrutura completa, brinquedos modernos e 5 cardápios exclusivos
-          para Casamentos, 15 Anos, Festas Infantis e Eventos Corporativos.
+          Estacionamento privativo, quadra dedicada à recreação, atrações
+          exclusivas e cozinha por fartura — para famílias e noivos que se
+          importam com a memória, não com o desconto.
         </motion.p>
 
         <motion.div
@@ -83,29 +83,29 @@ export function Hero() {
         >
           <Button
             as="a"
-            href="#structure"
+            href={buildWhatsAppUrl('hero')}
+            target="_blank"
+            rel="noopener noreferrer"
             variant="primary"
             size="lg"
             pulse
           >
-            Conhecer Estrutura
-            <ArrowDown size={20} />
+            <MessageCircle size={20} />
+            Agendar visita guiada
           </Button>
           <Button
             as="a"
-            href={buildWhatsAppUrl('hero')}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#attractions"
             variant="outline"
             size="lg"
           >
-            <MessageCircle size={20} />
-            Falar no WhatsApp
+            Ver a experiência completa
+            <ArrowDown size={20} />
           </Button>
         </motion.div>
 
         <motion.a
-          href="#structure"
+          href="#attractions"
           aria-label="Rolar para a próxima seção"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

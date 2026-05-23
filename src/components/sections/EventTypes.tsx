@@ -15,9 +15,9 @@ export function EventTypes() {
     <section id="events" className="section-padding bg-slate-50">
       <Container>
         <SectionTitle
-          eyebrow="Tipos de Eventos"
-          title="Versatilidade para celebrar o que importa"
-          subtitle="Estrutura preparada para receber desde a brincadeira infantil até a sofisticação de uma cerimônia ao ar livre."
+          eyebrow="Tipos de evento"
+          title="Para cada celebração, a mesma exigência"
+          subtitle="A chácara recebe da brincadeira infantil à cerimônia adulta — com a equipe ajustando o tom sem mudar o padrão."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

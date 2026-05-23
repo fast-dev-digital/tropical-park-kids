@@ -1,21 +1,33 @@
+// TODO: substituir o número de WhatsApp pelo do cliente Ricardo antes do launch.
 export const WHATSAPP_NUMBER = '5517999999999'
 
 export type SectionContext =
   | 'hero'
+  | 'attractions'
+  | 'differentials'
   | 'structure'
   | 'events'
   | 'menus'
+  | 'trust'
+  | 'faq'
   | 'location'
   | 'header'
 
 const messages: Record<SectionContext, string> = {
-  hero: 'Olá! Vim pelo site da Tropical Park Kids e gostaria de conhecer a estrutura da chácara.',
+  hero: 'Olá! Vim pelo site da Tropical Park Kids e gostaria de conhecer a experiência da chácara.',
+  attractions:
+    'Olá! Vi a Centopeia e os bichinhos do shopping no site — quero levar essa experiência para o meu evento.',
+  differentials:
+    'Olá! Quero entender melhor o estacionamento privativo e a estrutura aberta da chácara.',
   structure:
     'Olá! Vi as fotos da chácara no site e gostaria de agendar uma visita presencial.',
   events:
     'Olá! Tenho interesse em realizar um evento na Tropical Park Kids. Pode me passar mais detalhes?',
   menus:
-    'Olá! Gostaria de receber o detalhamento dos cardápios disponíveis para minha data.',
+    'Olá! Gostaria de receber o detalhamento dos cardápios disponíveis para a minha data.',
+  trust:
+    'Olá! Quero conversar sobre a disponibilidade de agenda e como funciona a reserva.',
+  faq: 'Olá! Tenho perguntas específicas antes de fechar e gostaria de falar com o Concierge.',
   location:
     'Olá! Gostaria de informações sobre como chegar e disponibilidade de agenda da chácara.',
   header:

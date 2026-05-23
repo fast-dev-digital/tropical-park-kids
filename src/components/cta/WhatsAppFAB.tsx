@@ -6,17 +6,25 @@ import { useActiveSection } from '../../hooks/useActiveSection'
 
 const sectionIds: SectionContext[] = [
   'hero',
+  'attractions',
+  'differentials',
   'structure',
   'events',
   'menus',
+  'trust',
+  'faq',
   'location',
 ]
 
 const labelMap: Record<SectionContext, string> = {
   hero: 'Tire suas dúvidas com nosso Concierge',
+  attractions: 'Quer essa experiência no seu evento? Fale com o Concierge',
+  differentials: 'Conheça pessoalmente. Vamos agendar?',
   structure: 'Quer ver pessoalmente? Agende uma visita',
   events: 'Que tipo de evento você está planejando?',
   menus: 'Quer o cardápio completo? Fale com o Concierge',
+  trust: 'Confira a disponibilidade da sua data',
+  faq: 'Restou alguma dúvida? Estamos no WhatsApp',
   location: 'Vamos marcar sua visita?',
   header: 'Fale com o Concierge Digital',
 }

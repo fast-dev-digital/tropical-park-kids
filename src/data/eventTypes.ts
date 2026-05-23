@@ -14,7 +14,7 @@ export const eventTypes: EventType[] = [
     id: 'casamento',
     title: 'Casamentos',
     description:
-      'Cerimônia ao ar livre, recepção sob coberta e serviço de buffet refinado para a noite mais especial dos seus sonhos.',
+      'Cerimônia ao ar livre sob o céu, recepção sob coberta e o tempo certo entre cada momento. Para quem prefere a chácara a um salão de festas.',
     icon: Heart,
     accent: 'royal',
   },
@@ -22,7 +22,7 @@ export const eventTypes: EventType[] = [
     id: 'infantil',
     title: 'Festa Infantil',
     description:
-      'Brinquedos modernos de grande porte, monitores treinados e cardápio kids para uma experiência inesquecível.',
+      'Atrações exclusivas, monitores dedicados e espaço para a criança correr de verdade. O tipo de festa que a turma da escola comenta por meses.',
     icon: PartyPopper,
     accent: 'coral',
   },
@@ -30,7 +30,7 @@ export const eventTypes: EventType[] = [
     id: 'adulto',
     title: '15 Anos & Adulto',
     description:
-      'Ambiente elegante para debutantes, aniversários e celebrações com pista de dança e estrutura completa.',
+      'Ambiente elegante para debutantes e celebrações sofisticadas. Pista, iluminação cênica e estrutura para a noite render até o final.',
     icon: Cake,
     accent: 'gold',
   },
@@ -38,7 +38,7 @@ export const eventTypes: EventType[] = [
     id: 'corporativo',
     title: 'Corporativo & Formaturas',
     description:
-      'Confraternizações, formaturas e seminários com infraestrutura discreta e atendimento profissional.',
+      'Confraternizações, formaturas e encontros corporativos com discrição, pontualidade e atendimento profissional do início ao último convidado.',
     icon: Briefcase,
     accent: 'green',
   },

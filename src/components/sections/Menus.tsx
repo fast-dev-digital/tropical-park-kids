@@ -11,9 +11,9 @@ export function Menus() {
     <section id="menus" className="section-padding bg-white">
       <Container>
         <SectionTitle
-          eyebrow="Nossos Cardápios"
-          title="Nossas Opções Gastronômicas"
-          subtitle="Cinco cardápios autorais, pensados para diferentes momentos e estilos de evento. Cada opção pode ser personalizada para a sua data e seu número de convidados."
+          eyebrow="Cardápios autorais"
+          title="Cinco caminhos, uma cozinha que serve por fartura"
+          subtitle="Pontos de partida — não jaulas. Cada cardápio é ajustado à proposta do seu evento, ao perfil dos convidados e a restrições alimentares específicas."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,8 +52,9 @@ export function Menus() {
           <div className="inline-flex items-start gap-3 text-ink-muted bg-brand-gold/10 border border-brand-gold/30 rounded-2xl px-6 py-4 text-sm md:text-base">
             <Sparkles size={20} className="text-brand-gold-dark shrink-0 mt-0.5" />
             <p className="italic text-left">
-              Solicite o orçamento completo ao nosso Concierge Digital para
-              opções baseadas na sua data e tamanho do evento.
+              Consulte nosso Concierge Digital para obter o orçamento
+              personalizado com base na data do seu evento e no número de
+              convidados.
             </p>
           </div>
           <div className="mt-8">
