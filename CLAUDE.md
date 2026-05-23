@@ -40,15 +40,20 @@ As cores vivas da logo devem ser injetadas estritamente em propriedades de hover
 
 
 
-### 1.3. Tipografia
+### 1.3. Tipografia (Direção Editorial-Botânica)
 
-* **Display/Títulos:** `Montserrat` (Sans-Serif, pesos 700/800) para forte impacto visual e legibilidade moderna.
+A tipografia é protagonista, não decoração. A direção comprometida é uma matéria editorial premium de hotelaria boutique — onde o serif variável puxa o olho, a numeração mono organiza o ritmo, e o sans-serif sustenta o corpo sem competir.
+
+* **Display & Serif Accent:** `Fraunces` (variable serif, Google Fonts) — usar com `font-variation-settings` ajustando `opsz` (9–144) e `SOFT` (0–100). Padrão: `opsz: 144, SOFT: 30` em títulos; `opsz: 144, SOFT: 70` em itálicos enfáticos. Substitui Montserrat E Poiret One — o eixo SOFT do Fraunces já cobre o range tipográfico de impacto + elegância sem duas famílias.
 
 
-* **Premium Accent (Apenas H1 do Hero):** `Poiret One` (Serif/Art Deco elegante) aplicado exclusivamente no título principal da chácara para chancelar o posicionamento de alto padrão.
+* **Body & UI:** `DM Sans` (Google Fonts) em pesos 400–500. Quente, neutra, não-Inter — escolhida pra evitar o clichê AI-SaaS.
 
 
-* **Body/UI:** `Inter` (Sans-Serif, pesos 400/600) para descrições e interface.
+* **Numeração editorial & kickers:** `JetBrains Mono` (pesos 400/500) com `font-feature-settings: 'tnum'`. Usada em numerações de seção ("01 — Atrações"), kickers de caixa alta e detalhes técnicos (capítulos de footer, plates de galeria).
+
+
+* **Proibição:** Não reintroduzir Inter, Montserrat, Roboto, Poppins, Open Sans, Lato ou qualquer fonte recorrente em landing pages SaaS. A direção é editorial, não corporativa.
 
 
 
@@ -195,3 +200,43 @@ Mudanças nesta ordem exigem atualização do `useActiveSection` consumido pelo 
 2. Toda nova animação Framer Motion passa por `usePrefersReducedMotion`.
 3. Toda nova seção registra `id` correspondente em `SectionContext` (`src/lib/whatsapp.ts`) e em `sectionIds` (`src/components/cta/WhatsAppFAB.tsx`).
 4. Toda nova imagem usa `loading="lazy" decoding="async"`. Iframes externos (Maps) são carregados sob demanda via `IntersectionObserver`.
+
+---
+
+## 7. DIREÇÃO VISUAL (EDITORIAL-BOTÂNICA)
+
+A landing **não** é uma página de SaaS premium. É uma matéria editorial sobre uma chácara — referências mentais: Aman Resorts, Babylonstoren, Singita, Kinfolk, Cereal Magazine.
+
+### 7.1. O que evitar (cara de IA)
+
+* Cards com `rounded-2xl` / `rounded-3xl`, gradientes coloridos suaves e shadows genéricas
+* Ícones Lucide dentro de quadrados tintados (`bg-brand-x/10 text-brand-x`)
+* Botões pill-shaped com `animate-pulse-soft`
+* Eyebrow pills de cor sólida com texto branco
+* Paleta azul royal de fundo institucional
+* Section titles centrados em "Eyebrow / Título / Subtítulo" padrão SaaS
+* Mais de uma cor de destaque competindo na mesma tela
+
+### 7.2. O que praticar
+
+* **Hairlines** (`border-t border-ink/15`) em vez de cards. Listas numeradas em vez de grids de cards.
+* **Numeração editorial** em mono (`01`, `02`, `03`) em todas as seções e CTAs principais.
+* **EditorialMark** (`src/components/ui/EditorialMark.tsx`) como cabeçalho padrão de seção — número + kicker + título serifa com itálico expressivo.
+* **Paleta:** `parchment` (`#F5EFE3`) e `parchment-deep` como fundos dominantes; `forest` (`#1F3A2B`) como tinta institucional; `ember` (`#B47A2E`) como acento único e raro; `brand-gold` (`#FBB017`) só em momentos genuinamente celebrativos.
+* **Tipografia gestual:** Fraunces com itálico variável (eixo SOFT 70) para palavras-chave dentro dos títulos serifa — não negrito, não maiúscula.
+* **Animações refinadas:** entrada `fade-up` com `cubic-bezier(0.2,0.65,0.3,1)`, duração 0.7–0.9s. Sem pulse, sem bounce, sem hover dramático.
+* **Componentes assimétricos:** grids 12-col com offsets, citações editoriais em itálico ocupando metade da largura, áreas de foto com aspect-ratio variado.
+
+### 7.3. Hierarquia de cores
+
+| Token | Hex | Uso |
+|-------|-----|-----|
+| `parchment` | `#F5EFE3` | Fundo dominante |
+| `parchment-deep` | `#EBE2CE` | Fundo secundário, alternado |
+| `forest` | `#1F3A2B` | Tinta institucional, fundos contrastantes, botões sólidos |
+| `forest-deep` | `#142519` | Hover do forest |
+| `ink` | `#1A1F1A` | Texto corpo |
+| `ink-soft` | `#2F3A30` | Parágrafos largos |
+| `ink-muted` | `#5B665D` | Captions, kickers, mono |
+| `ember` | `#B47A2E` | Acento único e raro — numeração de destaque, badge |
+| `brand-green` / `brand-gold` / `brand-royal` | spec original | **Reservado**. Só usar se a spec original §1.1 exigir explicitamente. |

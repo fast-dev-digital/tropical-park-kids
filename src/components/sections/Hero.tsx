@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, MessageCircle } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
@@ -16,7 +15,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
+      className="relative min-h-[100svh] w-full overflow-hidden flex items-end"
       aria-label="Apresentação da Tropical Park Kids"
     >
       <div className="absolute inset-0 z-0">
@@ -42,79 +41,142 @@ export function Hero() {
           </video>
         )}
         <div className="absolute inset-0 bg-hero-overlay" />
+        <div className="absolute inset-0 bg-grain opacity-20 mix-blend-overlay pointer-events-none" />
       </div>
 
-      <Container className="relative z-10 text-center text-white py-32">
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-[0.2em] uppercase mb-6"
-        >
-          Catanduva · Chácara Exclusiva
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-premium text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mx-auto drop-shadow-lg"
-        >
-          A festa inesquecível acontece em uma{' '}
-          <span className="text-brand-gold">chácara</span>, não em um salão.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-6 text-base md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
-        >
-          Estacionamento privativo, quadra dedicada à recreação, atrações
-          exclusivas e cozinha por fartura — para famílias e noivos que se
-          importam com a memória, não com o desconto.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Button
-            as="a"
-            href={buildWhatsAppUrl('hero')}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="primary"
-            size="lg"
-            pulse
+      {/* Marca editorial no topo */}
+      <div className="absolute top-0 left-0 right-0 z-10 pt-32 md:pt-40">
+        <Container>
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: -8 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center gap-4 text-parchment/80"
           >
-            <MessageCircle size={20} />
-            Agendar visita guiada
-          </Button>
-          <Button
-            as="a"
-            href="#attractions"
-            variant="outline"
-            size="lg"
-          >
-            Ver a experiência completa
-            <ArrowDown size={20} />
-          </Button>
-        </motion.div>
+            <span
+              className="font-mono text-number uppercase"
+              style={{ fontFeatureSettings: '"tnum"' }}
+            >
+              Est. Catanduva
+            </span>
+            <span className="h-px w-12 bg-parchment/40" aria-hidden="true" />
+            <span className="kicker">
+              Chácara de eventos
+            </span>
+          </motion.div>
+        </Container>
+      </div>
 
-        <motion.a
-          href="#attractions"
-          aria-label="Rolar para a próxima seção"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white animate-bounce-gentle"
-        >
-          <ArrowDown size={28} />
-        </motion.a>
+      <Container className="relative z-10 pb-16 md:pb-24">
+        <div className="max-w-4xl">
+          <motion.h1
+            initial={reduced ? false : { opacity: 0, y: 24 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="font-display font-light text-parchment leading-[0.96] tracking-[-0.022em]"
+            style={{
+              fontSize: 'clamp(2.75rem, 7.5vw, 6.5rem)',
+              fontVariationSettings: '"opsz" 144, "SOFT" 30',
+            }}
+          >
+            A festa que ninguém esquece{' '}
+            <em
+              className="not-italic text-parchment"
+              style={{ fontStyle: 'italic', fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
+            >
+              acontece
+            </em>{' '}
+            em uma{' '}
+            <span className="text-ember" style={{ fontStyle: 'italic' }}>
+              chácara
+            </span>
+            <span className="text-parchment">.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55 }}
+            className="mt-8 max-w-prose text-lg md:text-xl text-parchment/85 leading-relaxed"
+          >
+            Não é um salão. Não é um galpão. É a única chácara da região de
+            Catanduva com estacionamento privativo dentro da propriedade,
+            quadra dedicada à recreação, atrações exclusivas e cozinha por
+            fartura — para famílias e noivos que se importam com a memória,
+            não com o desconto.
+          </motion.p>
+
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.75 }}
+            className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
+          >
+            <Button
+              as="a"
+              href={buildWhatsAppUrl('hero')}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="solid"
+              size="lg"
+              className="bg-parchment text-forest hover:bg-parchment-deep border-parchment hover:border-parchment-deep"
+            >
+              <span>Agendar visita guiada</span>
+              <ArrowMark />
+            </Button>
+            <a
+              href="#attractions"
+              className="inline-flex items-center gap-3 text-parchment/90 hover:text-parchment text-sm uppercase tracking-[0.22em] pb-1 border-b border-parchment/40 hover:border-parchment transition-colors"
+            >
+              <span>Ver a experiência</span>
+              <ArrowDownMark />
+            </a>
+          </motion.div>
+        </div>
       </Container>
+
+      {/* Rodapé editorial do hero — pista de scroll discreta */}
+      <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-10 hidden sm:flex items-center gap-3 text-parchment/60">
+        <span
+          className="font-mono text-[10px] uppercase tracking-[0.3em]"
+          style={{ fontFeatureSettings: '"tnum"' }}
+        >
+          Role para conhecer
+        </span>
+        <span className="h-12 w-px bg-parchment/40" aria-hidden="true" />
+      </div>
     </section>
+  )
+}
+
+function ArrowMark() {
+  return (
+    <svg
+      width="20"
+      height="10"
+      viewBox="0 0 20 10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      aria-hidden="true"
+    >
+      <path d="M0 5 H18 M14 1 L18 5 L14 9" />
+    </svg>
+  )
+}
+
+function ArrowDownMark() {
+  return (
+    <svg
+      width="10"
+      height="14"
+      viewBox="0 0 10 14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      aria-hidden="true"
+    >
+      <path d="M5 0 V12 M1 8 L5 12 L9 8" />
+    </svg>
   )
 }

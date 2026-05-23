@@ -1,77 +1,136 @@
 import { motion } from 'framer-motion'
-import { UtensilsCrossed, Sparkles, MessageCircle } from 'lucide-react'
 import { Container } from '../ui/Container'
-import { SectionTitle } from '../ui/SectionTitle'
+import { EditorialMark } from '../ui/EditorialMark'
 import { Button } from '../ui/Button'
 import { menus } from '../../data/menus'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 export function Menus() {
-  return (
-    <section id="menus" className="section-padding bg-white">
-      <Container>
-        <SectionTitle
-          eyebrow="Cardápios autorais"
-          title="Cinco caminhos, uma cozinha que serve por fartura"
-          subtitle="Pontos de partida — não jaulas. Cada cardápio é ajustado à proposta do seu evento, ao perfil dos convidados e a restrições alimentares específicas."
-        />
+  const reduced = usePrefersReducedMotion()
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {menus.map((menu, i) => (
-            <motion.article
-              key={menu.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-              className="group bg-gradient-to-br from-white to-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-brand-gold hover:shadow-2xl transition-all duration-300"
+  return (
+    <section id="menus" className="section-padding bg-parchment-deep relative">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <EditorialMark
+            number="05"
+            kicker="Cozinha autoral"
+            className="lg:col-span-7"
+            title={
+              <>
+                Cinco caminhos.{' '}
+                <em
+                  className="italic"
+                  style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
+                >
+                  Uma cozinha
+                </em>{' '}
+                que serve por fartura.
+              </>
+            }
+            lede="Pontos de partida — não jaulas. Cada cardápio é ajustado à proposta do evento, ao perfil dos convidados e a restrições alimentares específicas."
+          />
+
+          <aside className="lg:col-span-4 lg:col-start-9 lg:pt-4">
+            <p
+              className="text-ink-soft italic font-display text-lg leading-relaxed"
+              style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
             >
-              <div className="flex items-center gap-2 text-brand-green text-xs font-semibold tracking-[0.18em] uppercase">
-                <UtensilsCrossed size={14} />
-                {menu.tagline}
-              </div>
-              <h3 className="mt-3 font-display font-bold text-2xl text-brand-royal leading-tight">
-                {menu.name}
-              </h3>
-              <p className="mt-3 text-ink-muted text-sm leading-relaxed">
-                {menu.description}
-              </p>
-              <ul className="mt-5 space-y-2">
-                {menu.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-sm text-ink">
-                    <Sparkles size={14} className="text-brand-gold shrink-0 mt-1" />
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.article>
-          ))}
+              "Consulte nosso Concierge Digital para obter o orçamento
+              personalizado com base na data do seu evento e número de
+              convidados."
+            </p>
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
+              — Política da casa
+            </p>
+          </aside>
         </div>
 
-        <div className="mt-12 max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-start gap-3 text-ink-muted bg-brand-gold/10 border border-brand-gold/30 rounded-2xl px-6 py-4 text-sm md:text-base">
-            <Sparkles size={20} className="text-brand-gold-dark shrink-0 mt-0.5" />
-            <p className="italic text-left">
-              Consulte nosso Concierge Digital para obter o orçamento
-              personalizado com base na data do seu evento e no número de
-              convidados.
-            </p>
-          </div>
-          <div className="mt-8">
-            <Button
-              as="a"
-              href={buildWhatsAppUrl('menus')}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-            >
-              <MessageCircle size={20} />
-              Falar com o Concierge Digital
-            </Button>
-          </div>
+        <ol className="mt-20 md:mt-28">
+          {menus.map((menu, i) => {
+            const num = String(i + 1).padStart(2, '0')
+            return (
+              <motion.li
+                key={menu.id}
+                initial={reduced ? false : { opacity: 0, y: 18 }}
+                whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.7, delay: (i % 5) * 0.06 }}
+                className="grid grid-cols-12 gap-6 md:gap-10 items-baseline border-t border-ink/15 py-10 md:py-14 last:border-b last:border-ink/15"
+              >
+                <span
+                  className="col-span-2 md:col-span-1 font-mono text-number uppercase text-ember self-start pt-3"
+                  style={{ fontFeatureSettings: '"tnum"' }}
+                >
+                  {num}
+                </span>
+
+                <div className="col-span-10 md:col-span-5 lg:col-span-4">
+                  <p className="kicker text-ink-muted">{menu.tagline}</p>
+                  <h3
+                    className="mt-3 font-display font-light text-forest text-3xl md:text-4xl leading-[1.05] tracking-[-0.018em]"
+                    style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
+                  >
+                    {menu.name}
+                  </h3>
+                </div>
+
+                <p className="col-span-12 md:col-span-6 lg:col-span-5 text-ink-soft text-base md:text-lg leading-relaxed">
+                  {menu.description}
+                </p>
+
+                <ul className="col-span-12 lg:col-span-2 flex flex-col gap-1.5 text-ink-soft text-[13px] md:text-sm">
+                  {menu.highlights.map((h) => (
+                    <li
+                      key={h}
+                      className="flex items-baseline gap-2 italic font-display leading-snug"
+                      style={{ fontVariationSettings: '"opsz" 14, "SOFT" 70' }}
+                    >
+                      <span aria-hidden="true">—</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.li>
+            )
+          })}
+        </ol>
+
+        <div className="mt-16 md:mt-20 pt-10 border-t border-ink/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted max-w-md">
+            Cardápio personalizável · Consultar disponibilidade da data antes
+            de fechar
+          </p>
+          <Button
+            as="a"
+            href={buildWhatsAppUrl('menus')}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="solid"
+            size="md"
+          >
+            <span>Falar com o concierge</span>
+            <ArrowMark />
+          </Button>
         </div>
       </Container>
     </section>
+  )
+}
+
+function ArrowMark() {
+  return (
+    <svg
+      width="18"
+      height="9"
+      viewBox="0 0 18 9"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      aria-hidden="true"
+    >
+      <path d="M0 4.5 H16 M12 0.5 L16 4.5 L12 8.5" />
+    </svg>
   )
 }

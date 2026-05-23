@@ -6,19 +6,23 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Variável da fonte Fraunces — ajusta o eixo SOFT para um serif mais quente. */
+    font-variation-settings: 'opsz' 14, 'SOFT' 50;
   }
 
   body {
-    @apply bg-white font-body text-ink antialiased;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    @apply bg-parchment font-body text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv02';
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-brand-royal;
+    @apply font-display text-forest;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    letter-spacing: -0.015em;
   }
 
   ::selection {
-    @apply bg-brand-gold/30 text-ink;
+    @apply bg-forest text-parchment;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -33,10 +37,54 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-24 md:py-36;
   }
 
+  .hairline {
+    @apply h-px w-full bg-ink/15;
+  }
+
+  .hairline-strong {
+    @apply h-px w-full bg-forest/30;
+  }
+
+  /* Capitular: drop cap editorial no primeiro parágrafo. */
+  .drop-cap::first-letter {
+    @apply font-display text-forest float-left mr-3 leading-[0.85];
+    font-size: 4.6em;
+    font-style: italic;
+    font-weight: 500;
+    padding-top: 0.08em;
+  }
+
+  /* Numeração editorial — JetBrains Mono com tabular. */
+  .num-editorial {
+    @apply font-mono text-number uppercase text-ink-muted;
+    font-feature-settings: 'tnum';
+  }
+
+  /* Kicker em caixa alta com tracking editorial. */
+  .kicker {
+    @apply font-mono text-kicker uppercase text-ink-muted;
+    font-feature-settings: 'tnum';
+  }
+
+  /* Botão editorial — link com seta. */
+  .editorial-link {
+    @apply inline-flex items-center gap-2 font-body font-medium text-forest border-b border-forest/40 hover:border-forest pb-0.5 transition-colors;
+  }
+
+  /* Grão sutil para fundos com textura. */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--tw-bg-image, none);
+    @apply bg-grain opacity-[0.18] pointer-events-none mix-blend-multiply;
+  }
+
+  /* Glass institucional refinado. */
   .glass {
-    @apply bg-white/80 backdrop-blur-md border-b border-slate-200/60;
+    @apply bg-parchment/85 backdrop-blur-md border-b border-ink/10;
   }
 }
