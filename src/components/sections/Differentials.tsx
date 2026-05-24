@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
+import { MediaFrame } from '../ui/MediaFrame'
 import { differentials } from '../../data/differentials'
+import { differentialMedia } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 export function Differentials() {
@@ -68,6 +70,25 @@ export function Differentials() {
             )
           })}
         </ol>
+
+        <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+          {differentialMedia.map((asset, i) => (
+            <motion.div
+              key={asset.id}
+              initial={reduced ? false : { opacity: 0, y: 18 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: i * 0.08 }}
+            >
+              <MediaFrame
+                asset={asset}
+                autoPlay={asset.type === 'video'}
+                className="aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]"
+                captionClassName="text-parchment"
+              />
+            </motion.div>
+          ))}
+        </div>
 
         <div className="mt-20 md:mt-28 grid grid-cols-12 gap-6 md:gap-10 items-center">
           <p

@@ -1,5 +1,6 @@
 import { Train, Sparkles } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { mediaAssets, type MediaAsset } from './media'
 
 export type Attraction = {
   id: string
@@ -8,14 +9,13 @@ export type Attraction = {
   tagline: string
   description: string
   highlights: string[]
-  image: string
-  imageAlt: string
+  media: MediaAsset
+  supportMedia: MediaAsset[]
+  visualNote: string
   icon: LucideIcon
   accent: 'gold' | 'coral'
 }
 
-// TODO: ASSET REAL DO CLIENTE — substituir as imagens abaixo por fotos
-// reais do trenzinho e dos bichinhos motorizados na chácara.
 export const attractions: Attraction[] = [
   {
     id: 'trenzinho-centopeia',
@@ -29,9 +29,9 @@ export const attractions: Attraction[] = [
       'Iluminação LED nos vagões',
       'Operação por equipe treinada',
     ],
-    image:
-      'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1400&q=75',
-    imageAlt: 'Festa iluminada com luzes douradas e decoração festiva',
+    media: mediaAssets.centopeiaSalaoStar,
+    supportMedia: [mediaAssets.centopeiaChacara, mediaAssets.centopeiaQuadraNoite],
+    visualNote: 'Registro real da Centopeia em movimento',
     icon: Train,
     accent: 'gold',
   },
@@ -47,9 +47,9 @@ export const attractions: Attraction[] = [
       'Monitor exclusivo por turno',
       'Operação contínua durante o evento',
     ],
-    image:
-      'https://images.unsplash.com/photo-1464047736614-af63643285bf?auto=format&fit=crop&w=1400&q=75',
-    imageAlt: 'Crianças brincando em festa colorida com balões e personagens',
+    media: mediaAssets.carrinhosSalaoVideo,
+    supportMedia: [mediaAssets.salaoBrinquedaoStar, mediaAssets.carrinhosPista],
+    visualNote: 'Contexto real de atrações motorizadas no salão',
     icon: Sparkles,
     accent: 'coral',
   },

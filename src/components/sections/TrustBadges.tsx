@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
+import { MediaFrame } from '../ui/MediaFrame'
 import { trustBadges } from '../../data/trustBadges'
+import { mediaAssets } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 function useCountUp(target: number, active: boolean, duration = 1600) {
@@ -10,10 +12,7 @@ function useCountUp(target: number, active: boolean, duration = 1600) {
 
   useEffect(() => {
     if (!active) return
-    if (reduced) {
-      setValue(target)
-      return
-    }
+    if (reduced) return
     const start = performance.now()
     let raf = 0
     const tick = (now: number) => {
@@ -27,7 +26,7 @@ function useCountUp(target: number, active: boolean, duration = 1600) {
     return () => cancelAnimationFrame(raf)
   }, [active, target, duration, reduced])
 
-  return value
+  return reduced && active ? target : value
 }
 
 function BadgeStat({
@@ -81,6 +80,7 @@ function BadgeStat({
 export function TrustBadges() {
   const [active, setActive] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
+  const reduced = usePrefersReducedMotion()
 
   useEffect(() => {
     const el = ref.current
@@ -108,8 +108,8 @@ export function TrustBadges() {
     >
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reduced ? false : { opacity: 0, y: 18 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-20"
@@ -144,6 +144,11 @@ export function TrustBadges() {
               Quatro indicadores que descrevem como a chácara opera no
               dia-a-dia — antes, durante e depois do seu evento.
             </p>
+            <MediaFrame
+              asset={mediaAssets.quadraEntardecerStar}
+              autoPlay={!reduced}
+              className="mt-8 aspect-[4/5]"
+            />
           </aside>
         </motion.div>
 

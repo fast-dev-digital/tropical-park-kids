@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
 import { Button } from '../ui/Button'
+import { MediaFrame } from '../ui/MediaFrame'
+import { mediaAssets } from '../../data/media'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
@@ -141,6 +143,19 @@ export function Location() {
                 </motion.li>
               ))}
             </ol>
+
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 16 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <MediaFrame
+                asset={mediaAssets.entradaSalao}
+                showCaption={false}
+                className="mt-8 aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5]"
+              />
+            </motion.div>
 
             <div className="mt-10">
               <Button

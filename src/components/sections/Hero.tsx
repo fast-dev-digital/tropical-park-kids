@@ -3,11 +3,7 @@ import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
-
-const POSTER =
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=70'
-const VIDEO_MP4 =
-  'https://cdn.coverr.co/videos/coverr-wedding-decoration-7156/1080p.mp4'
+import { heroMedia } from '../../data/media'
 
 export function Hero() {
   const reduced = usePrefersReducedMotion()
@@ -20,12 +16,15 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         {reduced ? (
-          <img
-            src={POSTER}
-            alt=""
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-          />
+          <picture className="block h-full w-full">
+            <source srcSet={heroMedia.poster} media="(min-width: 768px)" />
+            <img
+              src={heroMedia.poster}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover"
+            />
+          </picture>
         ) : (
           <video
             className="h-full w-full object-cover"
@@ -34,10 +33,13 @@ export function Hero() {
             loop
             playsInline
             preload="metadata"
-            poster={POSTER}
+            poster={heroMedia.lqip}
             aria-hidden="true"
           >
-            <source src={VIDEO_MP4} type="video/mp4" />
+            <source src={heroMedia.mobileWebm} type="video/webm" media="(max-width: 767px)" />
+            <source src={heroMedia.desktopWebm} type="video/webm" media="(min-width: 768px)" />
+            <source src={heroMedia.mobileMp4} type="video/mp4" media="(max-width: 767px)" />
+            <source src={heroMedia.desktopMp4} type="video/mp4" media="(min-width: 768px)" />
           </video>
         )}
         <div className="absolute inset-0 bg-hero-overlay" />
@@ -119,7 +121,7 @@ export function Hero() {
               rel="noopener noreferrer"
               variant="solid"
               size="lg"
-              className="bg-parchment text-forest hover:bg-parchment-deep border-parchment hover:border-parchment-deep"
+              className="!border-parchment !bg-parchment !text-forest hover:!border-parchment-deep hover:!bg-parchment-deep"
             >
               <span>Agendar visita guiada</span>
               <ArrowMark />

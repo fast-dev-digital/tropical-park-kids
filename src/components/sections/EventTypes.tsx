@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
+import { MediaFrame } from '../ui/MediaFrame'
 import { eventTypes } from '../../data/eventTypes'
+import { eventTypeMedia } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 export function EventTypes() {
@@ -33,6 +35,7 @@ export function EventTypes() {
             const num = String(i + 1).padStart(2, '0')
             const isFirstRow = i < 2
             const isFirstCol = i % 2 === 0
+            const media = eventTypeMedia[evt.id as keyof typeof eventTypeMedia]
             return (
               <motion.li
                 key={evt.id}
@@ -73,6 +76,14 @@ export function EventTypes() {
                 <p className="mt-5 text-ink-soft text-lg leading-relaxed max-w-prose">
                   {evt.description}
                 </p>
+                {media && (
+                  <MediaFrame
+                    asset={media}
+                    priority={media.priority === 'star'}
+                    showCaption={false}
+                    className="mt-10 aspect-[4/5] md:aspect-[16/10]"
+                  />
+                )}
               </motion.li>
             )
           })}

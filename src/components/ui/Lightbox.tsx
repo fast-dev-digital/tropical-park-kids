@@ -1,15 +1,16 @@
 import { useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import type { MediaAsset } from '../../data/media'
 
 type Props = {
-  images: { src: string; alt: string }[]
+  items: MediaAsset[]
   index: number
   onClose: () => void
   onPrev: () => void
   onNext: () => void
 }
 
-export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
+export function Lightbox({ items, index, onClose, onPrev, onNext }: Props) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -25,7 +26,7 @@ export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
     }
   }, [onClose, onPrev, onNext])
 
-  const current = images[index]
+  const current = items[index]
   if (!current) return null
 
   return (
@@ -63,12 +64,30 @@ export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
         <ChevronRight size={28} />
       </button>
 
-      <img
-        src={current.src}
-        alt={current.alt}
-        className="max-h-[88vh] max-w-[92vw] object-contain rounded-lg shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      />
+      <div className="max-h-[88vh] max-w-[92vw]" onClick={(e) => e.stopPropagation()}>
+        {current.type === 'video' ? (
+          <video
+            key={current.id}
+            src={current.src}
+            poster={current.poster}
+            controls
+            autoPlay
+            playsInline
+            preload="metadata"
+            className="max-h-[82vh] max-w-[92vw] object-contain shadow-2xl"
+            aria-label={current.alt}
+          />
+        ) : (
+          <img
+            src={current.src}
+            alt={current.alt}
+            className="max-h-[82vh] max-w-[92vw] object-contain shadow-2xl"
+          />
+        )}
+        <p className="mt-4 max-w-[82vw] text-center font-display italic text-base text-white/85">
+          {current.caption}
+        </p>
+      </div>
     </div>
   )
 }

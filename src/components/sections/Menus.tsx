@@ -2,7 +2,9 @@ import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
 import { Button } from '../ui/Button'
+import { MediaFrame } from '../ui/MediaFrame'
 import { menus } from '../../data/menus'
+import { menuMedia } from '../../data/media'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
@@ -45,6 +47,25 @@ export function Menus() {
               — Política da casa
             </p>
           </aside>
+        </div>
+
+        <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+          {menuMedia.map((asset, i) => (
+            <motion.div
+              key={asset.id}
+              initial={reduced ? false : { opacity: 0, y: 18 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: i * 0.08 }}
+              className={i === 0 ? 'md:col-span-5' : i === 1 ? 'md:col-span-3' : 'md:col-span-4'}
+            >
+              <MediaFrame
+                asset={asset}
+                autoPlay={asset.type === 'video'}
+                className="aspect-[4/5] md:aspect-[5/6]"
+              />
+            </motion.div>
+          ))}
         </div>
 
         <ol className="mt-20 md:mt-28">

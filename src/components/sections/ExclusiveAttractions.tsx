@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
 import { Button } from '../ui/Button'
+import { MediaFrame } from '../ui/MediaFrame'
 import { attractions } from '../../data/attractions'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
@@ -46,25 +47,23 @@ export function ExclusiveAttractions() {
                 <div
                   className={`lg:col-span-7 ${reverse ? 'lg:order-2' : ''}`}
                 >
-                  <figure className="relative overflow-hidden bg-forest/5">
-                    {/* TODO: ASSET REAL DO CLIENTE — foto/vídeo curto da atração */}
-                    <img
-                      src={a.image}
-                      alt={a.imageAlt}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full aspect-[4/5] md:aspect-[5/6] object-cover"
+                  <div className="grid grid-cols-6 gap-3 md:gap-4">
+                    <MediaFrame
+                      asset={a.media}
+                      autoPlay
+                      priority={i === 0}
+                      className="col-span-6 aspect-[4/5] md:aspect-[5/6]"
+                      captionClassName="md:bottom-6 md:left-6"
                     />
-                    <figcaption className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 text-parchment font-mono text-[10px] uppercase tracking-[0.22em] flex items-center gap-3">
-                      <span style={{ fontFeatureSettings: '"tnum"' }}>
-                        Plate {num}
-                      </span>
-                      <span className="h-px w-10 bg-parchment/60" aria-hidden="true" />
-                      <span className="italic font-display normal-case tracking-normal text-sm text-parchment/90">
-                        {a.tagline}
-                      </span>
-                    </figcaption>
-                  </figure>
+                    {a.supportMedia.map((asset) => (
+                      <MediaFrame
+                        key={asset.id}
+                        asset={asset}
+                        showCaption={false}
+                        className="col-span-3 aspect-[3/4] md:aspect-[4/3]"
+                      />
+                    ))}
+                  </div>
                 </div>
 
                 <div
@@ -83,6 +82,10 @@ export function ExclusiveAttractions() {
                     />
                     <span className="kicker text-ember">{a.badge}</span>
                   </div>
+
+                  <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
+                    Plate {num} — {a.visualNote}
+                  </p>
 
                   <h3
                     className="mt-6 font-display font-light text-forest text-4xl md:text-5xl leading-[1.02] tracking-[-0.018em]"
