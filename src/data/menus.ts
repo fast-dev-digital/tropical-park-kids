@@ -12,7 +12,7 @@ export const menus: Menu[] = [
     name: 'Coquetel Premium',
     tagline: 'Recepção sofisticada em formato volante',
     description:
-      'Estações gourmet, finger foods autorais e sobremesas em miniatura, servidos por equipe uniformizada em ritmo elegante de coquetel.',
+      'Estações gourmet, finger foods autorais e sobremesas em miniatura, servidos em ritmo elegante.',
     highlights: ['Estações temáticas', 'Finger foods autorais', 'Sobremesas signature'],
   },
   {
@@ -20,7 +20,7 @@ export const menus: Menu[] = [
     name: 'Jantar Franco-Americano',
     tagline: 'Serviço empratado com inspiração internacional',
     description:
-      'Entrada, prato principal empratado e mesa de sobremesas, com inspiração na cozinha clássica francesa e influência contemporânea americana.',
+      'Entrada, prato principal empratado e mesa de sobremesas — francesa clássica com sotaque contemporâneo.',
     highlights: ['Serviço empratado', 'Entrada e prato principal', 'Mesa de sobremesas'],
   },
   {
@@ -28,7 +28,7 @@ export const menus: Menu[] = [
     name: 'Churrasco Gourmet',
     tagline: 'Cortes nobres assados na hora',
     description:
-      'Cortes nobres preparados na churrasqueira por chef especializado, acompanhados de guarnições selecionadas e mesa de saladas.',
+      'Cortes nobres assados por chef especializado, com guarnições selecionadas e mesa de saladas.',
     highlights: ['Cortes nobres', 'Chef ao vivo', 'Guarnições gourmet'],
   },
   {
@@ -36,7 +36,7 @@ export const menus: Menu[] = [
     name: 'Menu Kids Festa',
     tagline: 'Cardápio infantil e mesa de doces',
     description:
-      'Salgadinhos clássicos de festa, mini hambúrgueres, batatas, mesa de doces finos e bem-casados pensados para o público infantil.',
+      'Salgadinhos clássicos, mini hambúrgueres, batatas, mesa de doces finos e bem-casados.',
     highlights: ['Salgados de festa', 'Estação de mini burgers', 'Mesa de doces finos'],
   },
   {
@@ -44,7 +44,7 @@ export const menus: Menu[] = [
     name: 'Menu Corporativo Executivo',
     tagline: 'Almoços e coffee breaks profissionais',
     description:
-      'Coffee breaks completos, estações de almoço executivo e brunchs para confraternizações, seminários e treinamentos corporativos.',
+      'Coffee breaks completos, almoço executivo e brunchs para confraternizações e treinamentos.',
     highlights: ['Coffee break completo', 'Almoço executivo', 'Atendimento discreto'],
   },
 ]
