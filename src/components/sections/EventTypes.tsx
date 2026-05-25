@@ -76,6 +76,16 @@ export function EventTypes() {
                 <p className="mt-5 text-ink-soft text-lg leading-relaxed max-w-prose">
                   {evt.description}
                 </p>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {evt.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted border-b border-ink/20 pb-1"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
                 {media && (
                   <MediaFrame
                     asset={media}

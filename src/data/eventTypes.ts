@@ -5,6 +5,7 @@ export type EventType = {
   id: string
   title: string
   description: string
+  tags: string[]
   icon: LucideIcon
   accent: 'green' | 'gold' | 'royal' | 'coral'
 }
@@ -14,7 +15,8 @@ export const eventTypes: EventType[] = [
     id: 'casamento',
     title: 'Casamentos',
     description:
-      'Cerimônia ao ar livre sob o céu, recepção sob coberta e o tempo certo entre cada momento. Para quem prefere a chácara a um salão de festas.',
+      'Cerimônia ao céu aberto, recepção sob coberta — para quem prefere chácara a salão.',
+    tags: ['Cerimônia ao ar livre', 'Recepção sob coberta', 'Buffet por fartura'],
     icon: Heart,
     accent: 'royal',
   },
@@ -22,7 +24,8 @@ export const eventTypes: EventType[] = [
     id: 'infantil',
     title: 'Festa Infantil',
     description:
-      'Atrações exclusivas, monitores dedicados e espaço para a criança correr de verdade. O tipo de festa que a turma da escola comenta por meses.',
+      'Atrações exclusivas, monitores dedicados e espaço para a criança correr de verdade.',
+    tags: ['Atrações exclusivas', 'Recreação dirigida', 'Estacionamento privativo'],
     icon: PartyPopper,
     accent: 'coral',
   },
@@ -30,7 +33,8 @@ export const eventTypes: EventType[] = [
     id: 'adulto',
     title: '15 Anos & Adulto',
     description:
-      'Ambiente elegante para debutantes e celebrações sofisticadas. Pista, iluminação cênica e estrutura para a noite render até o final.',
+      'Ambiente elegante, pista, iluminação cênica — para a noite render até o final.',
+    tags: ['Pista de dança', 'Iluminação cênica', 'Estrutura completa'],
     icon: Cake,
     accent: 'gold',
   },
@@ -38,7 +42,8 @@ export const eventTypes: EventType[] = [
     id: 'corporativo',
     title: 'Corporativo & Formaturas',
     description:
-      'Confraternizações, formaturas e encontros corporativos com discrição, pontualidade e atendimento profissional do início ao último convidado.',
+      'Confraternizações e formaturas com discrição, pontualidade e atendimento profissional.',
+    tags: ['Atendimento discreto', 'Logística pontual', 'Salão privativo'],
     icon: Briefcase,
     accent: 'green',
   },
