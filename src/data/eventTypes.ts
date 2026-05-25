@@ -1,5 +1,6 @@
 import { Heart, PartyPopper, Cake, Briefcase } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { mediaAssets, type MediaAsset } from './media'
 
 export type EventType = {
   id: string
@@ -8,6 +9,7 @@ export type EventType = {
   tags: string[]
   icon: LucideIcon
   accent: 'green' | 'gold' | 'royal' | 'coral'
+  supportMedia?: MediaAsset[]
 }
 
 export const eventTypes: EventType[] = [
@@ -19,6 +21,10 @@ export const eventTypes: EventType[] = [
     tags: ['Cerimônia ao ar livre', 'Recepção sob coberta', 'Buffet por fartura'],
     icon: Heart,
     accent: 'royal',
+    supportMedia: [
+      mediaAssets.entradaDecoradaVideo,
+      mediaAssets.salaoMesas02,
+    ],
   },
   {
     id: 'infantil',
@@ -28,6 +34,11 @@ export const eventTypes: EventType[] = [
     tags: ['Atrações exclusivas', 'Recreação dirigida', 'Estacionamento privativo'],
     icon: PartyPopper,
     accent: 'coral',
+    supportMedia: [
+      mediaAssets.decoracaoPatrulhaCaninaVideo,
+      mediaAssets.decoracaoTematicaVideo,
+      mediaAssets.decoracaoTematica,
+    ],
   },
   {
     id: 'adulto',
@@ -37,6 +48,11 @@ export const eventTypes: EventType[] = [
     tags: ['Pista de dança', 'Iluminação cênica', 'Estrutura completa'],
     icon: Cake,
     accent: 'gold',
+    supportMedia: [
+      mediaAssets.salaoConvidados,
+      mediaAssets.lembrancinhasDecoracaoVideo,
+      mediaAssets.decoracaoEntradaStar,
+    ],
   },
   {
     id: 'corporativo',
@@ -46,5 +62,8 @@ export const eventTypes: EventType[] = [
     tags: ['Atendimento discreto', 'Logística pontual', 'Salão privativo'],
     icon: Briefcase,
     accent: 'green',
+    supportMedia: [
+      mediaAssets.salaoAmbienteApoio,
+    ],
   },
 ]

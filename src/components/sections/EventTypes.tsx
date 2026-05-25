@@ -94,6 +94,20 @@ export function EventTypes() {
                     className="mt-10 aspect-[4/5] md:aspect-[16/10]"
                   />
                 )}
+                {evt.supportMedia && evt.supportMedia.length > 0 && (
+                  <div className="mt-3 flex gap-2 md:gap-3">
+                    {evt.supportMedia.map((asset) => (
+                      <div key={asset.id} className="flex-1 min-w-0">
+                        <MediaFrame
+                          asset={asset}
+                          autoPlay={asset.type === 'video'}
+                          showCaption={false}
+                          className="aspect-square"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </motion.li>
             )
           })}
