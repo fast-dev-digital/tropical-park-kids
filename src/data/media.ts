@@ -368,6 +368,46 @@ export const mediaAssets = {
     'support',
     'center',
   ),
+  menuCoquetelTabua: photo(
+    'menu-coquetel-tabua',
+    'menu-coquetel-tabua-frios.webp',
+    'Tábua premium com cubos de queijo, presunto, azeitonas verdes e pretas, castanhas e amêndoas',
+    'Tábua de antepasto',
+    'portrait',
+    ['menus', 'structure'],
+    'featured',
+    'center',
+  ),
+  menuJantarRigatoni: photo(
+    'menu-jantar-rigatoni',
+    'menu-jantar-rigatoni.webp',
+    'Rigatoni gratinado ao molho de carne em travessa de vidro',
+    'Massa empratada',
+    'portrait',
+    ['menus', 'structure'],
+    'featured',
+    'center',
+  ),
+  menuChurrascoSalada: photo(
+    'menu-churrasco-salada',
+    'menu-churrasco-salada.webp',
+    'Salada de pepino com sementes em recipiente de cristal',
+    'Salada de acompanhamento',
+    'portrait',
+    ['menus', 'structure'],
+    'featured',
+    'center',
+  ),
+  menuCorporativoSalada: photo(
+    'menu-corporativo-salada',
+    'menu-corporativo-salada-gourmet.webp',
+    'Salada gourmet com cogumelos, pimentões e ervas',
+    'Entrada autoral',
+    'portrait',
+    ['menus', 'structure'],
+    'featured',
+    'center',
+  ),
 } satisfies Record<string, MediaAsset>
 
 export const galleryMedia: MediaAsset[] = [
@@ -400,6 +440,10 @@ export const galleryMedia: MediaAsset[] = [
   mediaAssets.entradaDecoradaVideo,
   mediaAssets.lembrancinhasDecoracaoVideo,
   mediaAssets.salaoAmbienteApoio,
+  mediaAssets.menuCoquetelTabua,
+  mediaAssets.menuJantarRigatoni,
+  mediaAssets.menuChurrascoSalada,
+  mediaAssets.menuCorporativoSalada,
 ]
 
 export const galleryFilters: { id: GalleryFilter; label: string }[] = [

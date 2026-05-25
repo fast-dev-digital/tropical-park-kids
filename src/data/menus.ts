@@ -1,9 +1,12 @@
+import { mediaAssets, type MediaAsset } from './media'
+
 export type Menu = {
   id: string
   name: string
   tagline: string
   description: string
   highlights: string[]
+  media?: MediaAsset
 }
 
 export const menus: Menu[] = [
@@ -14,6 +17,7 @@ export const menus: Menu[] = [
     description:
       'Estações gourmet, finger foods autorais e sobremesas em miniatura, servidos em ritmo elegante.',
     highlights: ['Estações temáticas', 'Finger foods autorais', 'Sobremesas signature'],
+    media: mediaAssets.menuCoquetelTabua,
   },
   {
     id: 'jantar-franco-americano',
@@ -22,6 +26,7 @@ export const menus: Menu[] = [
     description:
       'Entrada, prato principal empratado e mesa de sobremesas — francesa clássica com sotaque contemporâneo.',
     highlights: ['Serviço empratado', 'Entrada e prato principal', 'Mesa de sobremesas'],
+    media: mediaAssets.menuJantarRigatoni,
   },
   {
     id: 'churrasco-gourmet',
@@ -30,6 +35,7 @@ export const menus: Menu[] = [
     description:
       'Cortes nobres assados por chef especializado, com guarnições selecionadas e mesa de saladas.',
     highlights: ['Cortes nobres', 'Chef ao vivo', 'Guarnições gourmet'],
+    media: mediaAssets.menuChurrascoSalada,
   },
   {
     id: 'menu-kids',
@@ -46,5 +52,6 @@ export const menus: Menu[] = [
     description:
       'Coffee breaks completos, almoço executivo e brunchs para confraternizações e treinamentos.',
     highlights: ['Coffee break completo', 'Almoço executivo', 'Atendimento discreto'],
+    media: mediaAssets.menuCorporativoSalada,
   },
 ]

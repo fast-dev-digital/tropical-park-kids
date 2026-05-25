@@ -78,41 +78,62 @@ export function Menus() {
                 whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.7, delay: (i % 5) * 0.06 }}
-                className="grid grid-cols-12 gap-6 md:gap-10 items-baseline border-t border-ink/15 py-10 md:py-14 last:border-b last:border-ink/15"
+                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start border-t border-ink/15 py-10 md:py-14 last:border-b last:border-ink/15"
               >
-                <span
-                  className="col-span-2 md:col-span-1 font-mono text-number uppercase text-ember self-start pt-3"
-                  style={{ fontFeatureSettings: '"tnum"' }}
-                >
-                  {num}
-                </span>
-
-                <div className="col-span-10 md:col-span-5 lg:col-span-4">
-                  <p className="kicker text-ink-muted">{menu.tagline}</p>
-                  <h3
-                    className="mt-3 font-display font-light text-forest text-3xl md:text-4xl leading-[1.05] tracking-[-0.018em]"
-                    style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
-                  >
-                    {menu.name}
-                  </h3>
-                </div>
-
-                <p className="col-span-12 md:col-span-6 lg:col-span-5 text-ink-soft text-base md:text-lg leading-relaxed">
-                  {menu.description}
-                </p>
-
-                <ul className="col-span-12 lg:col-span-2 flex flex-col gap-1.5 text-ink-soft text-[13px] md:text-sm">
-                  {menu.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="flex items-baseline gap-2 italic font-display leading-snug"
-                      style={{ fontVariationSettings: '"opsz" 14, "SOFT" 70' }}
+                {menu.media ? (
+                  <div className="md:col-span-4">
+                    <MediaFrame
+                      asset={menu.media}
+                      showCaption={false}
+                      className="aspect-[4/5] md:aspect-[3/4]"
+                    />
+                  </div>
+                ) : (
+                  <div className="hidden md:block md:col-span-4 border border-dashed border-ink/15 aspect-[3/4] flex items-center justify-center">
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint text-center px-4 self-center"
+                      style={{ fontFeatureSettings: '"tnum"' }}
                     >
-                      <span aria-hidden="true">—</span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                      Foto sob consulta
+                    </span>
+                  </div>
+                )}
+
+                <div className="md:col-span-8 grid grid-cols-12 gap-4 md:gap-6">
+                  <span
+                    className="col-span-2 md:col-span-1 font-mono text-number uppercase text-ember self-start pt-2"
+                    style={{ fontFeatureSettings: '"tnum"' }}
+                  >
+                    {num}
+                  </span>
+
+                  <div className="col-span-10 md:col-span-11">
+                    <p className="kicker text-ink-muted">{menu.tagline}</p>
+                    <h3
+                      className="mt-3 font-display font-light text-forest text-3xl md:text-4xl leading-[1.05] tracking-[-0.018em]"
+                      style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
+                    >
+                      {menu.name}
+                    </h3>
+
+                    <p className="mt-5 text-ink-soft text-base md:text-lg leading-relaxed max-w-prose">
+                      {menu.description}
+                    </p>
+
+                    <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-ink-soft text-[13px] md:text-sm">
+                      {menu.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-baseline gap-2 italic font-display leading-snug"
+                          style={{ fontVariationSettings: '"opsz" 14, "SOFT" 70' }}
+                        >
+                          <span aria-hidden="true">—</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </motion.li>
             )
           })}
