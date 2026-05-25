@@ -14,9 +14,11 @@ Deploy to a preview channel:
 firebase hosting:channel:deploy preview
 ```
 
-When the Firebase project URL is known, replace
-`https://SEU-DOMINIO-FIREBASE.web.app/` in `index.html`,
-`public/robots.txt`, and `public/sitemap.xml` before sharing the preview.
+Production URL:
+
+```text
+https://tropical-park-kids.web.app/
+```
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

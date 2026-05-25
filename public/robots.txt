@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://SEU-DOMINIO-FIREBASE.web.app/sitemap.xml
+Sitemap: https://tropical-park-kids.web.app/sitemap.xml
