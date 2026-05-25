@@ -172,7 +172,7 @@ export const mediaAssets = {
     'buffet-fartura',
     'buffet-fartura-01.webp',
     'Mesa de buffet com comida em destaque',
-    'Buffet por fartura',
+    'Buffet com fartura',
     'portrait',
     ['menus', 'differentials', 'structure'],
     'featured',

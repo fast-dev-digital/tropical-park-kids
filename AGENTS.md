@@ -81,7 +81,7 @@ A cópia e os componentes devem destacar os diferenciais competitivos únicos da
 
 
 
-* **Serviço por Fartura e Abundância:** Modelo de buffet focado em fartura contínua, diferenciando-se de concorrentes que economizam em insumos.
+* **Serviço com fartura e Abundância:** Modelo de buffet focado em fartura contínua, diferenciando-se de concorrentes que economizam em insumos.
 
 
 

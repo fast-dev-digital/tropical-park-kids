@@ -410,7 +410,7 @@ Add or update these tags in `<head>`:
 <title>Tropical Park Kids | Chácara para eventos em Catanduva</title>
 <meta
   name="description"
-  content="Chácara para festas infantis, casamentos e eventos em Catanduva, com Centopeia, quadra de recreação, estacionamento privativo e buffet por fartura."
+  content="Chácara para festas infantis, casamentos e eventos em Catanduva, com Centopeia, quadra de recreação, estacionamento privativo e buffet com fartura."
 />
 <meta name="theme-color" content="#1F3A2B" />
 <link rel="canonical" href="https://SEU-DOMINIO-FIREBASE.web.app/" />
@@ -419,7 +419,7 @@ Add or update these tags in `<head>`:
 <meta property="og:title" content="Tropical Park Kids | Chácara para eventos em Catanduva" />
 <meta
   property="og:description"
-  content="Uma chácara de eventos com atrações exclusivas, área aberta, quadra e buffet por fartura para festas memoráveis."
+  content="Uma chácara de eventos com atrações exclusivas, área aberta, quadra e buffet com fartura para festas memoráveis."
 />
 <meta property="og:image" content="https://SEU-DOMINIO-FIREBASE.web.app/og/tropical-park-og.webp" />
 <meta property="og:url" content="https://SEU-DOMINIO-FIREBASE.web.app/" />
@@ -445,7 +445,7 @@ Add this script in `index.html`:
   "@context": "https://schema.org",
   "@type": "EventVenue",
   "name": "Tropical Park Kids",
-  "description": "Chácara para festas infantis, casamentos e eventos em Catanduva, com atrações exclusivas, quadra de recreação, estacionamento privativo e buffet por fartura.",
+  "description": "Chácara para festas infantis, casamentos e eventos em Catanduva, com atrações exclusivas, quadra de recreação, estacionamento privativo e buffet com fartura.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Catanduva",

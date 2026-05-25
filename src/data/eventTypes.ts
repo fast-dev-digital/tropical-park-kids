@@ -18,7 +18,7 @@ export const eventTypes: EventType[] = [
     title: 'Casamentos',
     description:
       'Cerimônia ao céu aberto, recepção sob coberta — para quem prefere chácara a salão.',
-    tags: ['Cerimônia ao ar livre', 'Recepção sob coberta', 'Buffet por fartura'],
+    tags: ['Cerimônia ao ar livre', 'Recepção sob coberta', 'Buffet com fartura'],
     icon: Heart,
     accent: 'royal',
     supportMedia: [

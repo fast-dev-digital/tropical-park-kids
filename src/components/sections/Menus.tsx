@@ -28,7 +28,7 @@ export function Menus() {
                 >
                   Uma cozinha
                 </em>{' '}
-                que serve por fartura.
+                que serve com fartura.
               </>
             }
             lede="Pontos de partida — não jaulas. Cada cardápio é ajustado à proposta do evento, ao perfil dos convidados e a restrições alimentares específicas."

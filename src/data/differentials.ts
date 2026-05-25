@@ -41,7 +41,7 @@ export const differentials: Differential[] = [
   },
   {
     id: 'fartura',
-    title: 'Serviço por fartura, sem racionamento',
+    title: 'Serviço com fartura, sem racionamento',
     description:
       'A cozinha reabastece enquanto houver gente servindo — ninguém volta ao buffet e encontra travessa vazia.',
     icon: UtensilsCrossed,
