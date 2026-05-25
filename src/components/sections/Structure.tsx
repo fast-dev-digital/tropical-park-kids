@@ -4,26 +4,40 @@ import { ChevronLeft, ChevronRight, Maximize2, PlayCircle } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
 import { Lightbox } from '../ui/Lightbox'
-import { gallery } from '../../data/gallery'
+import { gallery, type GalleryItem } from '../../data/gallery'
+import { galleryFilters, type GalleryFilter } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
+const matchesFilter = (item: GalleryItem, filter: GalleryFilter) => {
+  if (filter === 'destaques') return item.priority === 'star' || item.priority === 'featured'
+  if (filter === 'centopeia') return item.id.includes('centopeia')
+  if (filter === 'chacara') return item.sectionTags.includes('differentials') || item.id.includes('entrada')
+  if (filter === 'buffet') return item.id.includes('buffet') || item.sectionTags.includes('menus')
+  if (filter === 'decoracao') return item.id.includes('decoracao') || item.id.includes('mesa')
+  if (filter === 'quadra') return item.id.includes('quadra')
+  return true
+}
+
 export function Structure() {
+  const [activeFilter, setActiveFilter] = useState<GalleryFilter>('destaques')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const reduced = usePrefersReducedMotion()
 
-  const selected = gallery[selectedIndex]
+  const filteredGallery = gallery.filter((item) => matchesFilter(item, activeFilter))
+  const selected = filteredGallery[selectedIndex] ?? filteredGallery[0] ?? gallery[0]
   const selectedNumber = String(selectedIndex + 1).padStart(2, '0')
-  const total = String(gallery.length).padStart(2, '0')
+  const total = String(filteredGallery.length).padStart(2, '0')
 
-  const showPrev = () => setSelectedIndex((i) => (i - 1 + gallery.length) % gallery.length)
-  const showNext = () => setSelectedIndex((i) => (i + 1) % gallery.length)
+  const showPrev = () =>
+    setSelectedIndex((i) => (i - 1 + filteredGallery.length) % filteredGallery.length)
+  const showNext = () => setSelectedIndex((i) => (i + 1) % filteredGallery.length)
   const open = (i: number) => setLightboxIndex(i)
   const close = () => setLightboxIndex(null)
   const prev = () =>
-    setLightboxIndex((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length))
+    setLightboxIndex((i) => (i === null ? null : (i - 1 + filteredGallery.length) % filteredGallery.length))
   const next = () =>
-    setLightboxIndex((i) => (i === null ? null : (i + 1) % gallery.length))
+    setLightboxIndex((i) => (i === null ? null : (i + 1) % filteredGallery.length))
 
   return (
     <section id="structure" className="section-padding bg-parchment-deep relative">
@@ -54,7 +68,7 @@ export function Structure() {
                 className="font-mono text-number uppercase"
                 style={{ fontFeatureSettings: '"tnum"' }}
               >
-                Plates 01—{String(gallery.length).padStart(2, '0')}
+                Plates 01—{total}
               </span>
               <span className="h-px flex-1 bg-ink/20" aria-hidden="true" />
             </div>
@@ -181,9 +195,29 @@ export function Structure() {
           </aside>
         </motion.div>
 
+        <div className="mt-12 flex gap-5 overflow-x-auto border-y border-ink/15 py-4">
+          {galleryFilters.map((filter) => (
+            <button
+              key={filter.id}
+              type="button"
+              onClick={() => {
+                setActiveFilter(filter.id)
+                setSelectedIndex(0)
+                setLightboxIndex(null)
+              }}
+              aria-pressed={activeFilter === filter.id}
+              className={`shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] transition-colors ${
+                activeFilter === filter.id ? 'text-forest' : 'text-ink-muted hover:text-forest'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-5 md:mt-6 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 overflow-x-auto">
           <div className="flex gap-3 pb-3 lg:grid lg:grid-cols-12 lg:gap-3 lg:pb-0">
-            {gallery.map((item, i) => {
+            {filteredGallery.map((item, i) => {
               const preview = item.type === 'video' ? item.poster! : item.src
               const selectedThumb = i === selectedIndex
               return (
@@ -219,7 +253,7 @@ export function Structure() {
 
       {lightboxIndex !== null && (
         <Lightbox
-          items={gallery}
+          items={filteredGallery}
           index={lightboxIndex}
           onClose={close}
           onPrev={prev}

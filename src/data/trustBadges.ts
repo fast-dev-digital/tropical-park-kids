@@ -1,42 +1,33 @@
 export type TrustBadge = {
   id: string
-  value: number
-  suffix?: string
-  prefix?: string
+  marker: string
   label: string
   caption: string
 }
 
-// TODO: NÚMEROS REAIS DO CLIENTE — confirmar com Ricardo antes do launch.
-// Os valores abaixo são placeholders conservadores e plausíveis para
-// uma chácara estabelecida em Catanduva.
 export const trustBadges: TrustBadge[] = [
   {
-    id: 'eventos',
-    value: 500,
-    suffix: '+',
-    label: 'Eventos realizados',
-    caption: 'Histórias inesquecíveis construídas',
+    id: 'estacionamento',
+    marker: 'Interno',
+    label: 'Estacionamento privativo',
+    caption: 'Chegada mais segura, dentro da própria chácara',
   },
   {
-    id: 'anos',
-    value: 8,
-    suffix: ' anos',
-    label: 'De chácara em operação',
-    caption: 'Equipe que conhece cada detalhe',
+    id: 'chacara',
+    marker: 'Aberta',
+    label: 'Chácara integrada à natureza',
+    caption: 'Um evento que respira fora do formato de galpão fechado',
   },
   {
-    id: 'area',
-    value: 12,
-    suffix: 'x18m',
+    id: 'quadra',
+    marker: '12x18',
     label: 'Quadra poliesportiva',
     caption: 'Recreação dirigida em área dedicada',
   },
   {
-    id: 'concierge',
-    value: 24,
-    suffix: 'h',
-    label: 'Concierge Digital',
-    caption: 'Resposta no WhatsApp todos os dias',
+    id: 'fartura',
+    marker: 'Fartura',
+    label: 'Cozinha em movimento',
+    caption: 'Buffet pensado para abundância durante a experiência',
   },
 ]

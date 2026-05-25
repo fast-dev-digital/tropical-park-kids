@@ -1,5 +1,23 @@
 # React + TypeScript + Vite
 
+## Firebase preview
+
+Build before deploying:
+
+```bash
+npm run build
+```
+
+Deploy to a preview channel:
+
+```bash
+firebase hosting:channel:deploy preview
+```
+
+When the Firebase project URL is known, replace
+`https://SEU-DOMINIO-FIREBASE.web.app/` in `index.html`,
+`public/robots.txt`, and `public/sitemap.xml` before sharing the preview.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

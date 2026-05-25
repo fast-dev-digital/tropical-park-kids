@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { useScrollPosition } from '../../hooks/useScrollPosition'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
+import { useActiveSection } from '../../hooks/useActiveSection'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { buildWhatsAppUrl, type SectionContext } from '../../lib/whatsapp'
 
 const navLinks = [
   { href: '#attractions', label: 'Atrações', num: '01' },
@@ -12,14 +15,30 @@ const navLinks = [
   { href: '#location', label: 'Visitar', num: '06' },
 ]
 
+const sectionIds: SectionContext[] = [
+  'hero',
+  'attractions',
+  'differentials',
+  'structure',
+  'events',
+  'menus',
+  'trust',
+  'proof',
+  'faq',
+  'location',
+]
+
 export function Header() {
   const scrolled = useScrollPosition(60)
   const [open, setOpen] = useState(false)
+  const active = useActiveSection(sectionIds, 'hero')
+  const reduced = usePrefersReducedMotion()
+  const solidHeader = scrolled || open
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled || open
+        solidHeader
           ? 'glass'
           : 'bg-transparent'
       }`}
@@ -40,7 +59,7 @@ export function Header() {
           />
           <span
             className={`hidden sm:flex flex-col leading-none transition-colors duration-500 ${
-              scrolled || open ? 'text-forest' : 'text-parchment'
+              solidHeader ? 'text-forest' : 'text-parchment'
             }`}
           >
             <span
@@ -51,7 +70,7 @@ export function Header() {
             </span>
             <span
               className={`font-mono text-[10px] uppercase tracking-[0.28em] mt-1.5 ${
-                scrolled || open ? 'text-ink-muted' : 'text-parchment/70'
+                solidHeader ? 'text-ink-muted' : 'text-parchment/70'
               }`}
             >
               Chácara · Catanduva
@@ -63,30 +82,49 @@ export function Header() {
           className="hidden lg:flex items-center gap-7"
           aria-label="Navegação principal"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`group inline-flex items-baseline gap-2 text-sm transition-colors ${
-                scrolled || open
-                  ? 'text-ink-soft hover:text-forest'
-                  : 'text-parchment/85 hover:text-parchment'
-              }`}
-            >
-              <span
-                className={`font-mono text-[10px] tracking-[0.18em] transition-opacity ${
-                  scrolled || open ? 'text-ink-muted' : 'text-parchment/55'
+          {navLinks.map((link) => {
+            const id = link.href.replace('#', '')
+            const isActive = id === active
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={`group inline-flex items-baseline gap-2 text-sm transition-colors ${
+                  isActive
+                    ? solidHeader
+                      ? 'text-forest'
+                      : 'text-parchment'
+                    : solidHeader
+                      ? 'text-ink-soft hover:text-forest'
+                      : 'text-parchment/85 hover:text-parchment'
                 }`}
-                style={{ fontFeatureSettings: '"tnum"' }}
               >
-                {link.num}
-              </span>
-              <span className="font-body relative">
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
-              </span>
-            </a>
-          ))}
+                <span
+                  className={`font-mono text-[10px] tracking-[0.18em] transition-colors ${
+                    isActive
+                      ? solidHeader
+                        ? 'text-ember'
+                        : 'text-parchment'
+                      : solidHeader
+                        ? 'text-ink-muted'
+                        : 'text-parchment/55'
+                  }`}
+                  style={{ fontFeatureSettings: '"tnum"' }}
+                >
+                  {link.num}
+                </span>
+                <span className="font-body relative">
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-current transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </span>
+              </a>
+            )
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -95,7 +133,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className={`hidden md:inline-flex items-center gap-2.5 text-[12px] uppercase tracking-[0.22em] pb-1 border-b transition-colors ${
-              scrolled || open
+              solidHeader
                 ? 'text-forest border-forest/50 hover:border-forest'
                 : 'text-parchment border-parchment/50 hover:border-parchment'
             }`}
@@ -110,7 +148,7 @@ export function Header() {
             aria-label={open ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={open}
             className={`lg:hidden inline-flex items-center justify-center h-10 w-10 transition-colors ${
-              scrolled || open ? 'text-forest' : 'text-parchment'
+              solidHeader ? 'text-forest' : 'text-parchment'
             }`}
           >
             {open ? (
@@ -126,43 +164,77 @@ export function Header() {
         </div>
       </Container>
 
-      {open && (
-        <div className="lg:hidden border-t border-ink/10 bg-parchment">
-          <Container className="py-6 flex flex-col gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={reduced ? false : { opacity: 0, y: -10, height: 0 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0, height: 'auto' }}
+            exit={reduced ? undefined : { opacity: 0, y: -8, height: 0 }}
+            transition={{ duration: 0.36, ease: [0.2, 0.65, 0.3, 1] }}
+            className="lg:hidden overflow-hidden border-t border-ink/10 bg-parchment"
+          >
+            <Container className="py-6 flex flex-col gap-1">
+              {navLinks.map((link, index) => {
+                const id = link.href.replace('#', '')
+                const isActive = id === active
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? 'page' : undefined}
+                    onClick={() => setOpen(false)}
+                    initial={reduced ? false : { opacity: 0, y: -6 }}
+                    animate={reduced ? undefined : { opacity: 1, y: 0 }}
+                    exit={reduced ? undefined : { opacity: 0, y: -4 }}
+                    transition={{
+                      duration: 0.28,
+                      delay: reduced ? 0 : index * 0.04,
+                      ease: [0.2, 0.65, 0.3, 1],
+                    }}
+                    className={`group flex items-baseline gap-4 py-3 border-b border-ink/8 transition ${
+                      isActive ? 'text-forest' : 'text-ink hover:text-forest'
+                    }`}
+                  >
+                    <span
+                      className={`font-mono text-[10px] tracking-[0.18em] ${
+                        isActive ? 'text-ember' : 'text-ink-muted'
+                      }`}
+                      style={{ fontFeatureSettings: '"tnum"' }}
+                    >
+                      {link.num}
+                    </span>
+                    <span
+                      className="font-display text-2xl font-light"
+                      style={{ fontVariationSettings: '"opsz" 48, "SOFT" 40' }}
+                    >
+                      {link.label}
+                    </span>
+                  </motion.a>
+                )
+              })}
+              <motion.a
+                href={buildWhatsAppUrl('header')}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={reduced ? false : { opacity: 0, y: -6 }}
+                animate={reduced ? undefined : { opacity: 1, y: 0 }}
+                exit={reduced ? undefined : { opacity: 0, y: -4 }}
+                transition={{
+                  duration: 0.28,
+                  delay: reduced ? 0 : navLinks.length * 0.04,
+                  ease: [0.2, 0.65, 0.3, 1],
+                }}
+                className="mt-6 inline-flex items-center justify-between bg-forest text-parchment px-6 py-4 text-[12px] uppercase tracking-[0.22em]"
                 onClick={() => setOpen(false)}
-                className="group flex items-baseline gap-4 py-3 border-b border-ink/8 text-ink hover:text-forest transition"
               >
-                <span
-                  className="font-mono text-[10px] tracking-[0.18em] text-ink-muted"
-                  style={{ fontFeatureSettings: '"tnum"' }}
-                >
-                  {link.num}
-                </span>
-                <span
-                  className="font-display text-2xl font-light"
-                  style={{ fontVariationSettings: '"opsz" 48, "SOFT" 40' }}
-                >
-                  {link.label}
-                </span>
-              </a>
-            ))}
-            <a
-              href={buildWhatsAppUrl('header')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-between bg-forest text-parchment px-6 py-4 text-[12px] uppercase tracking-[0.22em]"
-              onClick={() => setOpen(false)}
-            >
-              <span>Falar com o concierge</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </Container>
-        </div>
-      )}
+                <span>Falar com o concierge</span>
+                <span aria-hidden="true">→</span>
+              </motion.a>
+            </Container>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://SEU-DOMINIO-FIREBASE.web.app/sitemap.xml

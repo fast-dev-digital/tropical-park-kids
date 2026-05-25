@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle } from 'lucide-react'
 import { buildWhatsAppUrl, type SectionContext } from '../../lib/whatsapp'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
@@ -13,6 +12,7 @@ const sectionIds: SectionContext[] = [
   'events',
   'menus',
   'trust',
+  'proof',
   'faq',
   'location',
 ]
@@ -74,7 +74,7 @@ export function WhatsAppFAB() {
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           exit={reduced ? undefined : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6, ease: [0.2, 0.65, 0.3, 1] }}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 flex flex-col items-end gap-3"
+          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 flex flex-col items-end gap-3"
         >
           <AnimatePresence>
             {currentBubble && (
@@ -87,7 +87,7 @@ export function WhatsAppFAB() {
                 animate={reduced ? undefined : { opacity: 1, x: 0, scale: 1 }}
                 exit={reduced ? undefined : { opacity: 0, x: 12, scale: 0.92 }}
                 transition={{ duration: 0.4, ease: [0.2, 0.65, 0.3, 1] }}
-                className="relative max-w-[230px] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-[13px] leading-snug text-ink shadow-editorial ring-1 ring-ink/10 font-body"
+                className="relative max-w-[calc(100vw-5.5rem)] md:max-w-[230px] rounded-md rounded-br-sm bg-white px-4 py-2.5 text-[13px] leading-snug text-ink shadow-editorial ring-1 ring-ink/10 font-body"
               >
                 {currentBubble}
                 <span
@@ -107,7 +107,7 @@ export function WhatsAppFAB() {
             whileHover={reduced ? undefined : { scale: 1.06 }}
             whileTap={reduced ? undefined : { scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-editorial ring-1 ring-black/10 transition-colors hover:bg-[#1ebe5d]"
+            className="relative flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#25D366] shadow-editorial ring-1 ring-black/10 transition-colors hover:bg-[#1ebe5d]"
           >
             {!reduced && (
               <>
@@ -121,15 +121,25 @@ export function WhatsAppFAB() {
                 />
               </>
             )}
-            <MessageCircle
-              size={28}
-              strokeWidth={2.2}
-              className="relative text-white"
-              aria-hidden="true"
-            />
+            <WhatsAppIcon className="relative h-6 w-6 text-white md:h-7 md:w-7" />
           </motion.a>
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M16 3C9 3 4 8 4 15c0 2 1 5 2 7l-2 7 7-2c2 1 3 1 5 1 7 0 12-5 12-12S23 3 16 3Zm0 22c-2 0-3 0-5-1l-1-1-3 1 1-3-1-1c-1-2-1-3-1-5C6 10 10 6 16 6s10 4 10 10-4 9-10 9Z" />
+      <path d="M21 18c-1 0-2-1-2-1s-1 1-1 1c-2-1-4-3-5-5 0 0 1-1 1-2 0 0-1-2-2-2h-1c-1 0-2 1-2 2 0 4 5 10 10 11 1 0 2-1 2-2v-2Z" />
+    </svg>
   )
 }

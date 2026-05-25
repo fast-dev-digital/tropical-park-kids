@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { MediaFrame } from '../ui/MediaFrame'
@@ -6,39 +5,13 @@ import { trustBadges } from '../../data/trustBadges'
 import { mediaAssets } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
-function useCountUp(target: number, active: boolean, duration = 1600) {
-  const [value, setValue] = useState(0)
-  const reduced = usePrefersReducedMotion()
-
-  useEffect(() => {
-    if (!active) return
-    if (reduced) return
-    const start = performance.now()
-    let raf = 0
-    const tick = (now: number) => {
-      const elapsed = now - start
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setValue(Math.round(target * eased))
-      if (progress < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [active, target, duration, reduced])
-
-  return reduced && active ? target : value
-}
-
 function BadgeStat({
   badge,
-  active,
   index,
 }: {
   badge: (typeof trustBadges)[number]
-  active: boolean
   index: number
 }) {
-  const value = useCountUp(badge.value, active)
   const num = String(index + 1).padStart(2, '0')
   return (
     <div className="grid grid-cols-12 gap-4 items-baseline py-10 md:py-14 border-t border-forest/20 last:border-b last:border-forest/20">
@@ -50,18 +23,14 @@ function BadgeStat({
       </span>
       <div className="col-span-10 md:col-span-5 lg:col-span-4">
         <span
-          className="font-display font-light text-forest leading-[0.9] tracking-[-0.025em]"
+          className="font-display font-light text-forest leading-[0.92] tracking-[-0.018em]"
           style={{
-            fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+            fontSize: 'clamp(2.75rem, 6vw, 4.8rem)',
             fontVariationSettings: '"opsz" 144, "SOFT" 30',
             fontFeatureSettings: '"tnum"',
           }}
         >
-          {badge.prefix}
-          {value}
-          <span className="text-forest/70 text-[0.5em] align-baseline ml-1">
-            {badge.suffix}
-          </span>
+          {badge.marker}
         </span>
       </div>
       <p
@@ -78,32 +47,11 @@ function BadgeStat({
 }
 
 export function TrustBadges() {
-  const [active, setActive] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
   const reduced = usePrefersReducedMotion()
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(true)
-            observer.disconnect()
-          }
-        })
-      },
-      { threshold: 0.3 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <section
       id="trust"
-      ref={ref}
       className="section-padding bg-parchment relative"
     >
       <Container>
@@ -120,10 +68,10 @@ export function TrustBadges() {
                 className="font-mono text-number uppercase"
                 style={{ fontFeatureSettings: '"tnum"' }}
               >
-                06 — Em números
+                06 — Provas
               </span>
               <span className="h-px w-12 bg-ink/25" aria-hidden="true" />
-              <span className="kicker">Confiança comprovada</span>
+              <span className="kicker">Confiança visível</span>
             </div>
             <h2
               className="mt-7 font-display font-light text-forest text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.018em]"
@@ -141,8 +89,8 @@ export function TrustBadges() {
           </div>
           <aside className="lg:col-span-4 lg:col-start-9 lg:pt-4">
             <p className="text-ink-soft text-lg leading-relaxed">
-              Quatro indicadores que descrevem como a chácara opera no
-              dia-a-dia — antes, durante e depois do seu evento.
+              Quatro sinais concretos que a família percebe caminhando pelo
+              espaço — antes de decidir a data e o formato da celebração.
             </p>
             <MediaFrame
               asset={mediaAssets.quadraEntardecerStar}
@@ -154,7 +102,7 @@ export function TrustBadges() {
 
         <div>
           {trustBadges.map((b, i) => (
-            <BadgeStat key={b.id} badge={b} active={active} index={i} />
+            <BadgeStat key={b.id} badge={b} index={i} />
           ))}
         </div>
       </Container>

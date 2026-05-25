@@ -62,7 +62,7 @@ export function Location() {
     >
       <Container>
         <EditorialMark
-          number="08"
+          number="09"
           kicker="Visitar a chácara"
           title={
             <>

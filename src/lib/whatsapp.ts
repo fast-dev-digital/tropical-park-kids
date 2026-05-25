@@ -9,6 +9,7 @@ export type SectionContext =
   | 'events'
   | 'menus'
   | 'trust'
+  | 'proof'
   | 'faq'
   | 'location'
   | 'header'
@@ -27,6 +28,8 @@ const messages: Record<SectionContext, string> = {
     'Olá! Gostaria de receber o detalhamento dos cardápios disponíveis para a minha data.',
   trust:
     'Olá! Quero conversar sobre a disponibilidade de agenda e como funciona a reserva.',
+  proof:
+    'Olá! Gostaria de sentir melhor a estrutura da chácara em uma visita guiada.',
   faq: 'Olá! Tenho perguntas específicas antes de fechar e gostaria de falar com o Concierge.',
   location:
     'Olá! Gostaria de informações sobre como chegar e disponibilidade de agenda da chácara.',

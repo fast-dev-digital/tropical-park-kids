@@ -1,6 +1,7 @@
 export type MediaType = 'image' | 'video'
 export type MediaOrientation = 'portrait' | 'landscape' | 'square'
 export type MediaPriority = 'star' | 'featured' | 'support'
+export type GalleryFilter = 'destaques' | 'centopeia' | 'chacara' | 'buffet' | 'decoracao' | 'quadra'
 export type SectionTag =
   | 'hero'
   | 'attractions'
@@ -399,6 +400,15 @@ export const galleryMedia: MediaAsset[] = [
   mediaAssets.entradaDecoradaVideo,
   mediaAssets.lembrancinhasDecoracaoVideo,
   mediaAssets.salaoAmbienteApoio,
+]
+
+export const galleryFilters: { id: GalleryFilter; label: string }[] = [
+  { id: 'destaques', label: 'Destaques' },
+  { id: 'centopeia', label: 'Centopeia' },
+  { id: 'chacara', label: 'Chácara' },
+  { id: 'buffet', label: 'Buffet' },
+  { id: 'decoracao', label: 'Decoração' },
+  { id: 'quadra', label: 'Quadra' },
 ]
 
 export const eventTypeMedia = {
