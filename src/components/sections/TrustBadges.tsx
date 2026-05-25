@@ -105,6 +105,27 @@ export function TrustBadges() {
             <BadgeStat key={b.id} badge={b} index={i} />
           ))}
         </div>
+
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 18 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+          className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
+        >
+          <MediaFrame
+            asset={mediaAssets.quadraRecreacao}
+            autoPlay={!reduced}
+            showCaption={false}
+            className="aspect-video"
+          />
+          <MediaFrame
+            asset={mediaAssets.brinquedaoVideo}
+            autoPlay={!reduced}
+            showCaption={false}
+            className="aspect-video"
+          />
+        </motion.div>
       </Container>
     </section>
   )
