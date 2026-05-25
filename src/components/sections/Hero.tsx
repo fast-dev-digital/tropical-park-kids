@@ -43,6 +43,8 @@ export function Hero() {
           </video>
         )}
         <div className="absolute inset-0 bg-hero-overlay" />
+        {/* Reforço de contraste mobile — compensa vídeos mais claros em telas pequenas */}
+        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-deep/90 to-transparent md:hidden" />
         <div className="absolute inset-0 bg-grain opacity-20 mix-blend-overlay pointer-events-none" />
       </div>
 
@@ -53,18 +55,9 @@ export function Hero() {
             initial={reduced ? false : { opacity: 0, y: -8 }}
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-4 text-parchment/80"
+            className="flex items-center gap-4 text-parchment"
           >
-            <span
-              className="font-mono text-number uppercase"
-              style={{ fontFeatureSettings: '"tnum"' }}
-            >
-              Est. Catanduva
-            </span>
-            <span className="h-px w-12 bg-parchment/40" aria-hidden="true" />
-            <span className="kicker">
-              Chácara de eventos
-            </span>
+            <span className="kicker">Chácara de eventos</span>
           </motion.div>
         </Container>
       </div>
@@ -99,13 +92,13 @@ export function Hero() {
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.55 }}
-            className="mt-8 max-w-prose text-lg md:text-xl text-parchment/85 leading-relaxed"
+            className="mt-8 max-w-prose text-lg md:text-xl text-parchment leading-relaxed"
           >
             Não é um salão. Não é um galpão. É a única chácara da região de
             Catanduva com estacionamento privativo dentro da propriedade,
-            quadra dedicada à recreação, atrações exclusivas e cozinha por
-            fartura — para famílias e noivos que se importam com a memória,
-            não com o desconto.
+            quadra dedicada à recreação, atrações exclusivas e cozinha com
+            fartura — para que as pessoas que você ama guardem esse dia
+            para sempre.
           </motion.p>
 
           <motion.div

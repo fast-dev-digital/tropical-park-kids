@@ -25,10 +25,10 @@ export function ExclusiveAttractions() {
               >
                 vão contar
               </em>{' '}
-              na escola na segunda-feira.
+              para seus amiguinhos na escola.
             </>
           }
-          lede="Duas experiências mecânicas que só existem aqui na região de Catanduva. Não é decoração, não é cenário — é atração de verdade que para a festa e faz todo mundo embarcar."
+          lede="Duas experiências mecânicas que só existem aqui na região de Catanduva. Não é decoração, não é cenário — é atração de verdade faz todo mundo embarcar."
         />
 
         <div className="mt-20 md:mt-28 space-y-32 md:space-y-40">
