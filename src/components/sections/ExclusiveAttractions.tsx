@@ -60,7 +60,7 @@ export function ExclusiveAttractions() {
                         key={asset.id}
                         asset={asset}
                         showCaption={false}
-                        className="col-span-3 aspect-[3/4] md:aspect-[4/3]"
+                        className="col-span-2 aspect-square md:aspect-[4/5]"
                       />
                     ))}
                   </div>
@@ -110,19 +110,13 @@ export function ExclusiveAttractions() {
                     {a.description}
                   </p>
 
-                  <ul className="mt-8 space-y-3.5 border-t border-ink/15">
-                    {a.highlights.map((h, idx) => (
+                  <ul className="mt-8 flex flex-wrap gap-2">
+                    {a.highlights.map((h) => (
                       <li
                         key={h}
-                        className="flex items-baseline gap-4 pt-3.5 border-b border-ink/10 pb-3.5"
+                        className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink border border-ink/25 px-3 py-2"
                       >
-                        <span
-                          className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint min-w-[2ch]"
-                          style={{ fontFeatureSettings: '"tnum"' }}
-                        >
-                          {String(idx + 1).padStart(2, '0')}
-                        </span>
-                        <span className="font-body text-ink">{h}</span>
+                        {h}
                       </li>
                     ))}
                   </ul>
