@@ -14,15 +14,15 @@ export const differentials: Differential[] = [
     id: 'estacionamento',
     title: 'Estacionamento privativo dentro da chácara',
     description:
-      'O único buffet da região com estacionamento interno e seguro — sua família e seus convidados desembarcam dentro da propriedade, sem cruzar rua nem disputar vaga.',
+      'Único buffet da região com estacionamento dentro da propriedade. Os convidados descem na porta do salão, sem cruzar rua nem disputar vaga.',
     icon: ParkingSquare,
     accent: 'green',
   },
   {
     id: 'quadra',
-    title: 'Quadra poliesportiva 12x18m',
+    title: 'O maior campo de futebol da região — 12x18m',
     description:
-      'Área esportiva dedicada para recreação dirigida, dinâmicas e atividades em grupo — o tipo de espaço que galpão fechado nenhum oferece.',
+      'Um campo imenso, fora de série, que galpão fechado nenhum chega perto. Espaço grande de verdade para recreação dirigida, pelada entre convidados e dinâmicas em grupo no meio da festa.',
     icon: Trophy,
     accent: 'royal',
   },
@@ -30,7 +30,7 @@ export const differentials: Differential[] = [
     id: 'chacara-aberta',
     title: 'Chácara aberta, integrada à natureza',
     description:
-      'Fuja do formato galpão. Aqui o evento acontece entre área coberta, gramado, árvores e céu aberto — uma atmosfera que muda completamente a percepção dos convidados.',
+      'Aqui não é galpão. É chácara de verdade — área coberta, gramado, árvores grandes e céu aberto compondo o cenário. Os convidados percebem a diferença antes de sentar.',
     icon: TreePine,
     accent: 'gold',
   },
@@ -38,7 +38,7 @@ export const differentials: Differential[] = [
     id: 'fartura',
     title: 'Serviço por fartura, sem racionamento',
     description:
-      'Buffet operado no modelo de abundância contínua. Cozinha treinada para reabastecer estações enquanto houver convidado — não no relógio.',
+      'A cozinha reabastece as estações enquanto houver gente servindo — não no relógio. Ninguém volta para o buffet e encontra travessa vazia.',
     icon: UtensilsCrossed,
     accent: 'coral',
   },

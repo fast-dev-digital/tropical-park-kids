@@ -21,8 +21,8 @@ export const trustBadges: TrustBadge[] = [
   {
     id: 'quadra',
     marker: '12x18',
-    label: 'Quadra poliesportiva',
-    caption: 'Recreação dirigida em área dedicada',
+    label: 'Maior campo da região',
+    caption: 'Espaço de futebol imenso, fora de série',
   },
   {
     id: 'fartura',
