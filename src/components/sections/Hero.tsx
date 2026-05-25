@@ -94,12 +94,23 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.55 }}
             className="mt-8 max-w-prose text-lg md:text-xl text-parchment leading-relaxed"
           >
-            Não é um salão. Não é um galpão. É a única chácara da região de
-            Catanduva com estacionamento privativo dentro da propriedade,
-            quadra dedicada à recreação, atrações exclusivas e cozinha com
-            fartura — para que as pessoas que você ama guardem esse dia
-            para sempre.
+            A única chácara da região de Catanduva pensada para que as pessoas
+            que você ama guardem esse dia para sempre.
           </motion.p>
+
+          <motion.ul
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.65 }}
+            className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.22em] text-parchment/90"
+            style={{ fontFeatureSettings: '"tnum"' }}
+          >
+            <li>Estacionamento privativo</li>
+            <li aria-hidden="true" className="text-parchment/40">·</li>
+            <li>Campo 12×18</li>
+            <li aria-hidden="true" className="text-parchment/40">·</li>
+            <li>Atrações exclusivas</li>
+          </motion.ul>
 
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 16 }}
