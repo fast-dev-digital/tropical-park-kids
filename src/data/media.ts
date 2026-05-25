@@ -69,12 +69,12 @@ const video = (
 })
 
 export const heroMedia = {
-  mobileMp4: '/gallery/optimized/hero-centopeia-mobile.mp4',
-  mobileWebm: '/gallery/optimized/hero-centopeia-mobile.webm',
-  desktopMp4: '/gallery/optimized/hero-centopeia-desktop.mp4',
-  desktopWebm: '/gallery/optimized/hero-centopeia-desktop.webm',
-  poster: '/gallery/posters/hero-centopeia-poster.webp',
-  lqip: '/gallery/posters/hero-centopeia-lqip.webp',
+  mobileMp4: '/gallery/optimized/hero-chacara-entardecer-mobile.mp4',
+  mobileWebm: '/gallery/optimized/hero-chacara-entardecer-mobile.webm',
+  desktopMp4: '/gallery/optimized/hero-chacara-entardecer-desktop.mp4',
+  desktopWebm: '/gallery/optimized/hero-chacara-entardecer-desktop.webm',
+  poster: '/gallery/posters/hero-chacara-entardecer-poster.webp',
+  lqip: '/gallery/posters/hero-chacara-entardecer-lqip.webp',
 }
 
 export const mediaAssets = {
