@@ -3,7 +3,6 @@ import { Container } from '../ui/Container'
 import { EditorialMark } from '../ui/EditorialMark'
 import { MediaFrame } from '../ui/MediaFrame'
 import { differentials } from '../../data/differentials'
-import { differentialMedia } from '../../data/media'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 export function Differentials() {
@@ -58,39 +57,30 @@ export function Differentials() {
                   {num}
                 </span>
                 <h3
-                  className="col-span-10 md:col-span-6 font-display font-light text-parchment text-3xl md:text-[2.5rem] leading-[1.05] tracking-[-0.018em]"
+                  className="col-span-10 md:col-span-5 font-display font-light text-parchment text-3xl md:text-[2.5rem] leading-[1.05] tracking-[-0.018em]"
                   style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
                 >
                   {d.title}
                 </h3>
-                <p className="col-span-12 md:col-span-5 text-parchment/80 leading-relaxed text-base md:text-[17px]">
+                <p className="col-span-12 md:col-span-4 text-parchment/80 leading-relaxed text-base md:text-[17px]">
                   {d.description}
                 </p>
+                {d.media && (
+                  <div className="col-span-12 md:col-span-2 self-center">
+                    <MediaFrame
+                      asset={d.media}
+                      autoPlay={d.media.type === 'video'}
+                      showCaption={false}
+                      className="aspect-[16/9] md:aspect-square"
+                    />
+                  </div>
+                )}
               </motion.li>
             )
           })}
         </ol>
 
-        <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-          {differentialMedia.map((asset, i) => (
-            <motion.div
-              key={asset.id}
-              initial={reduced ? false : { opacity: 0, y: 18 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: i * 0.08 }}
-            >
-              <MediaFrame
-                asset={asset}
-                autoPlay={asset.type === 'video'}
-                className="aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]"
-                captionClassName="text-parchment"
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-20 md:mt-28 grid grid-cols-12 gap-6 md:gap-10 items-center">
+        <div className="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10 items-center">
           <p
             className="col-span-12 md:col-span-7 font-display italic text-parchment text-2xl md:text-3xl leading-snug"
             style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}

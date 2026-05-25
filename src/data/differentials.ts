@@ -1,5 +1,6 @@
 import { ParkingSquare, Trophy, TreePine, UtensilsCrossed } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { mediaAssets, type MediaAsset } from './media'
 
 export type Differential = {
   id: string
@@ -7,6 +8,7 @@ export type Differential = {
   description: string
   icon: LucideIcon
   accent: 'green' | 'gold' | 'royal' | 'coral'
+  media?: MediaAsset
 }
 
 export const differentials: Differential[] = [
@@ -14,32 +16,36 @@ export const differentials: Differential[] = [
     id: 'estacionamento',
     title: 'Estacionamento privativo dentro da chácara',
     description:
-      'Único buffet da região com estacionamento dentro da propriedade. Os convidados descem na porta do salão, sem cruzar rua nem disputar vaga.',
+      'Único buffet da região com estacionamento dentro da propriedade — os convidados descem na porta do salão.',
     icon: ParkingSquare,
     accent: 'green',
+    media: mediaAssets.entradaSalao,
   },
   {
     id: 'quadra',
     title: 'O maior campo de futebol da região — 12x18m',
     description:
-      'Um campo imenso, fora de série, que galpão fechado nenhum chega perto. Espaço grande de verdade para recreação dirigida, pelada entre convidados e dinâmicas em grupo no meio da festa.',
+      'Campo imenso, fora de série, que galpão fechado nenhum chega perto — recreação, pelada e dinâmicas em grupo.',
     icon: Trophy,
     accent: 'royal',
+    media: mediaAssets.quadraEntardecerStar,
   },
   {
     id: 'chacara-aberta',
     title: 'Chácara aberta, integrada à natureza',
     description:
-      'Aqui não é galpão. É chácara de verdade — área coberta, gramado, árvores grandes e céu aberto compondo o cenário. Os convidados percebem a diferença antes de sentar.',
+      'Não é galpão. Área coberta, gramado, árvores grandes e céu aberto — os convidados percebem antes de sentar.',
     icon: TreePine,
     accent: 'gold',
+    media: mediaAssets.centopeiaChacara,
   },
   {
     id: 'fartura',
     title: 'Serviço por fartura, sem racionamento',
     description:
-      'A cozinha reabastece as estações enquanto houver gente servindo — não no relógio. Ninguém volta para o buffet e encontra travessa vazia.',
+      'A cozinha reabastece enquanto houver gente servindo — ninguém volta ao buffet e encontra travessa vazia.',
     icon: UtensilsCrossed,
     accent: 'coral',
+    media: mediaAssets.buffetFartura,
   },
 ]
