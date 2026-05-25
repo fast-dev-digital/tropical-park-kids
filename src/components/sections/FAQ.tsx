@@ -101,9 +101,29 @@ export function FAQ() {
                     >
                       <div className="grid grid-cols-12 gap-4 pb-8 md:pb-10">
                         <div className="col-span-2 md:col-span-1" aria-hidden="true" />
-                        <p className="col-span-10 md:col-span-10 text-ink-soft text-base md:text-lg leading-relaxed max-w-prose">
-                          {item.answer}
-                        </p>
+                        <div className="col-span-10 md:col-span-10 max-w-prose">
+                          <p className="text-ink-soft text-base md:text-lg leading-relaxed">
+                            {item.answer}
+                          </p>
+                          {item.bullets && item.bullets.length > 0 && (
+                            <ul className="mt-4 space-y-2">
+                              {item.bullets.map((b) => (
+                                <li
+                                  key={b}
+                                  className="flex items-baseline gap-3 text-ink-soft text-base md:text-[17px] leading-snug"
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="font-mono text-ink-faint text-[11px] mt-1"
+                                  >
+                                    —
+                                  </span>
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </motion.div>
                   )}

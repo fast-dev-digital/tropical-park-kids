@@ -2,6 +2,7 @@ export type FAQItem = {
   id: string
   question: string
   answer: string
+  bullets?: string[]
 }
 
 export const faq: FAQItem[] = [
@@ -9,36 +10,67 @@ export const faq: FAQItem[] = [
     id: 'data-fechada',
     question: 'Vocês trabalham com agenda exclusiva no dia do evento?',
     answer:
-      'Sim. A chácara é reservada inteira para um único evento por data. Você não divide estrutura, equipe nem estacionamento com nenhuma outra festa — toda a operação é dedicada à sua celebração.',
+      'Sim. Um único evento por data, sem divisão de estrutura.',
+    bullets: [
+      'Chácara inteira reservada para a sua celebração',
+      'Equipe dedicada do início ao fim',
+      'Estacionamento exclusivo do evento',
+    ],
   },
   {
     id: 'visita',
     question: 'Posso visitar a chácara antes de decidir?',
     answer:
-      'Recomendamos. Agendamos visitas guiadas com hora marcada, sem compromisso, para você sentir a atmosfera, conhecer a equipe e validar se a proposta combina com o evento que você imagina.',
+      'Recomendamos — agendamos visitas guiadas sem compromisso.',
+    bullets: [
+      'Sentir a atmosfera do espaço',
+      'Conhecer a equipe pessoalmente',
+      'Validar a proposta para o evento que você imagina',
+    ],
   },
   {
     id: 'cardapio',
     question: 'O cardápio pode ser personalizado para o meu evento?',
     answer:
-      'Sim. Nossos cinco cardápios são pontos de partida, não jaulas. Adaptamos seleção de pratos, restrições alimentares, mesas temáticas e estações especiais conforme o perfil dos seus convidados.',
+      'Sim. Os cinco cardápios são ponto de partida, não jaula.',
+    bullets: [
+      'Seleção de pratos ajustada ao perfil dos convidados',
+      'Restrições alimentares atendidas',
+      'Mesas temáticas e estações especiais',
+    ],
   },
   {
     id: 'adulto',
     question: 'A chácara comporta cerimônia adulta (casamento, 15 anos, corporativo)?',
     answer:
-      'Sim. O espaço foi pensado em duas camadas: ambiente sofisticado para cerimônia e recepção adulta, e infraestrutura completa de festa infantil quando a ocasião pede. Você escolhe o tom; nós montamos o cenário.',
+      'Sim. O espaço opera em duas camadas — você escolhe o tom.',
+    bullets: [
+      'Cerimônia e recepção adulta sofisticadas',
+      'Infraestrutura completa para festa infantil',
+      'Cenário montado conforme a ocasião',
+    ],
   },
   {
     id: 'reserva',
     question: 'Como funciona a reserva da data?',
     answer:
-      'A reserva é confirmada por contrato após o aceite da proposta personalizada. Fale com o Concierge Digital pelo WhatsApp para checar a disponibilidade da sua data e receber o orçamento detalhado.',
+      'Confirmada por contrato após o aceite da proposta personalizada.',
+    bullets: [
+      'Checar disponibilidade da data pelo WhatsApp',
+      'Receber orçamento detalhado',
+      'Confirmar a reserva por contrato',
+    ],
   },
   {
     id: 'incluso',
     question: 'O que está incluído na proposta?',
     answer:
-      'Estrutura completa da chácara (área coberta, gramado, quadra, estacionamento privativo), equipe de cozinha e salão, montagem, atrações exclusivas conforme pacote escolhido e suporte de produção. Os detalhes específicos do seu evento são alinhados pessoalmente.',
+      'Estrutura, equipe, montagem e atrações — alinhadas ao seu evento.',
+    bullets: [
+      'Área coberta, gramado, quadra e estacionamento privativo',
+      'Equipe de cozinha e salão',
+      'Montagem e suporte de produção',
+      'Atrações exclusivas conforme pacote escolhido',
+    ],
   },
 ]
