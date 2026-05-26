@@ -70,6 +70,7 @@ const video = (
 
 export const heroMedia = {
   src: '/gallery/photos/decoracao-tematica-star-01.webp',
+  mobileSrc: '/gallery/photos/hero-mobile.webp',
   alt: 'Mesa de evento montada com decoração cenográfica, balões e iluminação noturna',
 }
 

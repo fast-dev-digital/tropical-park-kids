@@ -15,13 +15,16 @@ export function Hero() {
       aria-label="Apresentação da Tropical Park Kids"
     >
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroMedia.src}
-          alt={heroMedia.alt}
-          fetchPriority="high"
-          decoding="async"
-          className="h-full w-full object-cover"
-        />
+        <picture className="block h-full w-full">
+          <source srcSet={heroMedia.mobileSrc} media="(max-width: 767px)" />
+          <img
+            src={heroMedia.src}
+            alt={heroMedia.alt}
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </picture>
         <div className="absolute inset-0 bg-hero-overlay" />
         {/* Reforço de contraste mobile — compensa fotos mais claras em telas pequenas */}
         <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-deep/90 to-transparent md:hidden" />
