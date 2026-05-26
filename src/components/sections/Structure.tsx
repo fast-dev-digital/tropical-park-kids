@@ -14,7 +14,7 @@ const matchesFilter = (item: GalleryItem, filter: GalleryFilter) => {
   if (filter === 'chacara') return item.sectionTags.includes('differentials') || item.id.includes('entrada')
   if (filter === 'buffet') return item.id.includes('buffet') || item.sectionTags.includes('menus')
   if (filter === 'decoracao') return item.id.includes('decoracao') || item.id.includes('mesa')
-  if (filter === 'quadra') return item.id.includes('quadra')
+  if (filter === 'quadra') return item.id.includes('quadra') || item.id.includes('futebol')
   return true
 }
 
@@ -49,7 +49,7 @@ export function Structure() {
             className="lg:col-span-7"
             title={
               <>
-                Não é um galpão adaptado.{' '}
+                Não é um salão de festa adaptado.{' '}
                 <em
                   className="italic"
                   style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}

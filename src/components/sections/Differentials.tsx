@@ -30,7 +30,7 @@ export function Differentials() {
                 className="italic"
                 style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
               >
-                nenhum galpão
+                nenhum salão de festa
               </em>{' '}
               do interior entrega.
             </>

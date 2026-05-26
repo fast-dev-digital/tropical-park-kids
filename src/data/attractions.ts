@@ -51,7 +51,7 @@ export const attractions: Attraction[] = [
       'Cavalinhos e mini-bugguinhos',
       'Monitor dedicado',
     ],
-    media: mediaAssets.carrinhosSalaoVideo,
+    media: mediaAssets.carrosselParqueVideo,
     supportMedia: [
       mediaAssets.salaoBrinquedaoStar,
       mediaAssets.carrinhosPista,

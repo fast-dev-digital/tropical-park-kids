@@ -16,7 +16,7 @@ export const trustBadges: TrustBadge[] = [
     id: 'chacara',
     marker: 'Aberta',
     label: 'Chácara integrada à natureza',
-    caption: 'Um evento que respira fora do formato de galpão fechado',
+    caption: 'Um evento que respira fora do formato de salão de festa fechado',
   },
   {
     id: 'quadra',

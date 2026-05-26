@@ -25,16 +25,16 @@ export const differentials: Differential[] = [
     id: 'quadra',
     title: 'O maior campo de futebol da região — 12x18m',
     description:
-      'Campo imenso, fora de série, que galpão fechado nenhum chega perto — recreação, pelada e dinâmicas em grupo.',
+      'Campo imenso, fora de série, que salão de festa fechado nenhum chega perto — recreação, pelada e dinâmicas em grupo.',
     icon: Trophy,
     accent: 'royal',
-    media: mediaAssets.quadraEntardecerStar,
+    media: mediaAssets.futebolCriancasSquare,
   },
   {
     id: 'chacara-aberta',
     title: 'Chácara aberta, integrada à natureza',
     description:
-      'Não é galpão. Área coberta, gramado, árvores grandes e céu aberto — os convidados percebem antes de sentar.',
+      'Não é só um salão de festa. Área coberta, gramado, árvores grandes e céu aberto — os convidados percebem antes de sentar.',
     icon: TreePine,
     accent: 'gold',
     media: mediaAssets.centopeiaChacara,

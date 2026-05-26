@@ -93,9 +93,9 @@ export function TrustBadges() {
               espaço — antes de decidir a data e o formato da celebração.
             </p>
             <MediaFrame
-              asset={mediaAssets.quadraEntardecerStar}
+              asset={mediaAssets.futebolCriancasVideo}
               autoPlay={!reduced}
-              className="mt-8 aspect-[4/5]"
+              className="mt-8 aspect-video"
             />
           </aside>
         </motion.div>
@@ -114,7 +114,7 @@ export function TrustBadges() {
           className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
         >
           <MediaFrame
-            asset={mediaAssets.quadraRecreacao}
+            asset={mediaAssets.futebolCriancasVideo}
             autoPlay={!reduced}
             showCaption={false}
             className="aspect-video"

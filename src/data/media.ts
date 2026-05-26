@@ -95,6 +95,26 @@ export const mediaAssets = {
     'star',
     'center',
   ),
+  futebolCriancasVideo: video(
+    'futebol-criancas-video',
+    'futebol-criancas-video-01',
+    'Crianças jogando futebol no campo da chácara durante a festa',
+    'Futebol no campo',
+    'landscape',
+    ['differentials', 'trust', 'structure'],
+    'star',
+    'center',
+  ),
+  futebolCriancasSquare: video(
+    'futebol-criancas-square',
+    'futebol-criancas-square-01',
+    'Crianças jogando futebol no campo da chácara durante a festa',
+    'Futebol no campo',
+    'square',
+    ['differentials'],
+    'star',
+    'center',
+  ),
   decoracaoTematicaStar: photo(
     'decoracao-tematica-star',
     'decoracao-tematica-star-01.webp',
@@ -325,6 +345,16 @@ export const mediaAssets = {
     'support',
     'center',
   ),
+  carrosselParqueVideo: video(
+    'carrossel-parque-video',
+    'carrossel-parque-video-01',
+    'Crianças brincando no carrossel mecânico dentro do salão',
+    'Carrossel em movimento',
+    'landscape',
+    ['attractions', 'structure'],
+    'featured',
+    'center',
+  ),
   brinquedaoVideo: video(
     'brinquedao-video',
     'brinquedao-video-01',
@@ -419,14 +449,13 @@ export const mediaAssets = {
 
 export const galleryMedia: MediaAsset[] = [
   mediaAssets.centopeiaSalaoStar,
-  mediaAssets.quadraEntardecerStar,
+  mediaAssets.futebolCriancasVideo,
   mediaAssets.decoracaoTematicaStar,
   mediaAssets.decoracaoEntradaStar,
   mediaAssets.mesaPostaStar,
   mediaAssets.salaoBrinquedaoStar,
   mediaAssets.centopeiaChacara,
   mediaAssets.centopeiaQuadraNoite,
-  mediaAssets.quadraRecreacao,
   mediaAssets.buffetFartura,
   mediaAssets.buffetServico,
   mediaAssets.mesaPostaVideo,
@@ -437,6 +466,7 @@ export const galleryMedia: MediaAsset[] = [
   mediaAssets.salaoInfantil,
   mediaAssets.salaoConvidados,
   mediaAssets.decoracaoTematica,
+  mediaAssets.carrosselParqueVideo,
   mediaAssets.carrinhosSalaoVideo,
   mediaAssets.carrinhosCriancas01,
   mediaAssets.carrinhosCriancas02,
@@ -477,7 +507,7 @@ export const menuMedia = [
 ]
 
 export const differentialMedia = [
-  mediaAssets.quadraRecreacao,
+  mediaAssets.futebolCriancasSquare,
   mediaAssets.buffetFartura,
   mediaAssets.centopeiaChacara,
 ]

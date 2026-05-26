@@ -52,7 +52,11 @@ export function ExclusiveAttractions() {
                       asset={a.media}
                       autoPlay
                       priority={i === 0}
-                      className="col-span-6 aspect-[4/5] md:aspect-[5/6]"
+                      className={`col-span-6 ${
+                        a.media.orientation === 'landscape'
+                          ? 'aspect-video'
+                          : 'aspect-[4/5] md:aspect-[5/6]'
+                      }`}
                       captionClassName="md:bottom-6 md:left-6"
                     />
                     {a.supportMedia.map((asset) => (
