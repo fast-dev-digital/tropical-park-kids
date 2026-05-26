@@ -65,7 +65,7 @@ export function Hero() {
               acontece
             </em>{' '}
             em uma{' '}
-            <span className="text-ember" style={{ fontStyle: 'italic' }}>
+            <span className="text-ember font-semibold" style={{ fontStyle: 'italic' }}>
               chácara
             </span>
             <span className="text-parchment">.</span>
