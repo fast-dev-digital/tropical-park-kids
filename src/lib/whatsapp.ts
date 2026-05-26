@@ -1,5 +1,4 @@
-// TODO: substituir o número de WhatsApp pelo do cliente Ricardo antes do launch.
-export const WHATSAPP_NUMBER = '5517999999999'
+export const WHATSAPP_NUMBER = '5517997756925'
 
 export type SectionContext =
   | 'hero'

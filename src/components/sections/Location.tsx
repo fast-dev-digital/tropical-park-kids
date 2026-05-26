@@ -11,8 +11,8 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 const highlights = [
   {
     num: '01',
-    label: 'Região rural — Catanduva, SP',
-    desc: 'Fácil acesso pela rodovia, estacionamento privativo dentro da propriedade.',
+    label: 'Estr. Vicinal José Frias Garcia, 150',
+    desc: 'Res. Paraíso, Catanduva — SP · CEP 15809-230. Acesso pela rodovia, estacionamento privativo dentro da propriedade.',
   },
   {
     num: '02',
@@ -21,7 +21,7 @@ const highlights = [
   },
   {
     num: '03',
-    label: 'Concierge no WhatsApp',
+    label: 'Concierge no WhatsApp · (17) 99775-6925',
     desc: 'Atendimento humano em horário comercial. Sem bots, sem fila de chat.',
   },
 ]
@@ -90,8 +90,8 @@ export function Location() {
           >
             {seen ? (
               <iframe
-                title="Localização da Tropical Park Kids em Catanduva"
-                src="https://www.google.com/maps?q=Catanduva,+SP&output=embed"
+                title="Localização da Tropical Park Kids — Estr. Vicinal José Frias Garcia, 150, Catanduva/SP"
+                src="https://www.google.com/maps?q=Estrada+Vicinal+Jose+Frias+Garcia+150+Residencial+Paraiso+Catanduva+SP+15809-230&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full border-0 filter saturate-[0.85]"

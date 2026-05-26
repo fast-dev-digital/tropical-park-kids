@@ -6,10 +6,10 @@ const SOCIAL = {
   facebook: 'https://facebook.com/tropicalparkkids',
 }
 
-// TODO: confirmar e-mail e WhatsApp oficiais antes do launch.
+// TODO: confirmar e-mail oficial antes do launch.
 const CONTACT = {
-  whatsappHref: 'https://wa.me/5517999999999',
-  whatsappLabel: '(17) 9 9999-9999',
+  whatsappHref: 'https://wa.me/5517997756925',
+  whatsappLabel: '(17) 99775-6925',
   email: 'contato@tropicalparkkids.com.br',
 }
 
@@ -84,7 +84,7 @@ export function Footer() {
                   Endereço
                 </span>
                 <span className="font-body text-base">
-                  Região rural — Catanduva, SP
+                  Estr. Vicinal José Frias Garcia, 150 — Catanduva/SP
                 </span>
               </p>
             </div>
