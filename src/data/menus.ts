@@ -44,6 +44,7 @@ export const menus: Menu[] = [
     description:
       'Salgadinhos clássicos, mini hambúrgueres, batatas, mesa de doces finos e bem-casados.',
     highlights: ['Salgados de festa', 'Estação de mini burgers', 'Mesa de doces finos'],
+    media: mediaAssets.menuKids,
   },
   {
     id: 'menu-corporativo',

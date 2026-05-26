@@ -15,35 +15,15 @@ export function Hero() {
       aria-label="Apresentação da Tropical Park Kids"
     >
       <div className="absolute inset-0 z-0">
-        {reduced ? (
-          <picture className="block h-full w-full">
-            <source srcSet={heroMedia.poster} media="(min-width: 768px)" />
-            <img
-              src={heroMedia.poster}
-              alt=""
-              aria-hidden="true"
-              className="h-full w-full object-cover"
-            />
-          </picture>
-        ) : (
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroMedia.lqip}
-            aria-hidden="true"
-          >
-            <source src={heroMedia.mobileWebm} type="video/webm" media="(max-width: 767px)" />
-            <source src={heroMedia.desktopWebm} type="video/webm" media="(min-width: 768px)" />
-            <source src={heroMedia.mobileMp4} type="video/mp4" media="(max-width: 767px)" />
-            <source src={heroMedia.desktopMp4} type="video/mp4" media="(min-width: 768px)" />
-          </video>
-        )}
+        <img
+          src={heroMedia.src}
+          alt={heroMedia.alt}
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-hero-overlay" />
-        {/* Reforço de contraste mobile — compensa vídeos mais claros em telas pequenas */}
+        {/* Reforço de contraste mobile — compensa fotos mais claras em telas pequenas */}
         <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-deep/90 to-transparent md:hidden" />
         <div className="absolute inset-0 bg-grain opacity-20 mix-blend-overlay pointer-events-none" />
       </div>

@@ -69,12 +69,8 @@ const video = (
 })
 
 export const heroMedia = {
-  mobileMp4: '/gallery/optimized/hero-chacara-entardecer-mobile.mp4',
-  mobileWebm: '/gallery/optimized/hero-chacara-entardecer-mobile.webm',
-  desktopMp4: '/gallery/optimized/hero-chacara-entardecer-desktop.mp4',
-  desktopWebm: '/gallery/optimized/hero-chacara-entardecer-desktop.webm',
-  poster: '/gallery/posters/hero-chacara-entardecer-poster.webp',
-  lqip: '/gallery/posters/hero-chacara-entardecer-lqip.webp',
+  src: '/gallery/photos/decoracao-tematica-star-01.webp',
+  alt: 'Mesa de evento montada com decoração cenográfica, balões e iluminação noturna',
 }
 
 export const mediaAssets = {
@@ -408,6 +404,16 @@ export const mediaAssets = {
     'featured',
     'center',
   ),
+  menuKids: photo(
+    'menu-kids',
+    'menu-kids.webp',
+    'Mesa de doces infantil com brigadeiros e raffaellos em arranjo rosa e lilás',
+    'Mesa de doces infantil',
+    'portrait',
+    ['menus', 'events', 'structure'],
+    'featured',
+    'center',
+  ),
 } satisfies Record<string, MediaAsset>
 
 export const galleryMedia: MediaAsset[] = [
@@ -444,6 +450,7 @@ export const galleryMedia: MediaAsset[] = [
   mediaAssets.menuJantarRigatoni,
   mediaAssets.menuChurrascoSalada,
   mediaAssets.menuCorporativoSalada,
+  mediaAssets.menuKids,
 ]
 
 export const galleryFilters: { id: GalleryFilter; label: string }[] = [
