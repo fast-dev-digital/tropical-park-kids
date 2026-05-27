@@ -20,7 +20,7 @@ export type SectionContext =
 // Mensagens em tom de descoberta — gatilho de curiosidade, não urgência.
 // Cada uma deve gerar uma pergunta que só o WhatsApp resolve.
 const messages: Record<SectionContext, string> = {
-  hero: 'Olá! Vim pelo site e quero conhecer o complexo.',
+  hero: 'Olá! Vim pelo site e quero conhecer o espaço!',
   entrada: 'Olá! Como funciona o acesso ao complexo e o estacionamento?',
   atracoes: 'Olá! Quero saber mais sobre a Centopeia e os bichinhos motorizados.',
   gastronomia: 'Olá! Quero conhecer as opções de gastronomia.',
@@ -31,7 +31,7 @@ const messages: Record<SectionContext, string> = {
   faq: 'Olá! Tenho algumas dúvidas sobre o complexo.',
   location: 'Olá! Quero agendar uma visita ao complexo.',
   final: 'Olá! Quero agendar uma visita para conhecer pessoalmente.',
-  header: 'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o complexo.',
+  header: 'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o espaço!',
 }
 
 export function buildWhatsAppUrl(section: SectionContext = 'header'): string {

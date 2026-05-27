@@ -47,9 +47,9 @@ export function Hero() {
               className="font-display font-bold text-cream leading-[1.02] tracking-[-0.01em]"
               style={{ fontSize: 'clamp(2.75rem, 7.5vw, 6.25rem)' }}
             >
-              Onde sua festa
+              Onde sua festa se torna um
               <br />
-              <span className="text-sun">acontece.</span>
+              <span className="text-sun">Sonho Inesquecível!</span>
             </motion.h1>
 
             <motion.p
