@@ -35,7 +35,7 @@ export const menus: Menu[] = [
     description:
       'Cortes nobres assados por chef especializado, com guarnições selecionadas e mesa de saladas.',
     highlights: ['Cortes nobres', 'Chef ao vivo', 'Guarnições gourmet'],
-    media: mediaAssets.menuChurrascoSalada,
+    media: mediaAssets.buffetFartura,
   },
   {
     id: 'menu-kids',
