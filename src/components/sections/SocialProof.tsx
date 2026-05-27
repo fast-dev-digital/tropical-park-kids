@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { testimonials, stats } from '../../data/socialProof'
+import { popIn, revealFrom } from '../../lib/motion'
 
 export function SocialProof() {
   const reduced = usePrefersReducedMotion()
@@ -20,7 +21,7 @@ export function SocialProof() {
       />
 
       <Container className="relative z-10">
-        <div className="max-w-2xl mb-12">
+        <motion.div className="max-w-2xl mb-12" {...revealFrom(reduced, 'left')}>
           <span className="inline-flex items-center gap-2 rounded-full bg-sun text-ink px-4 py-1.5 text-sm font-bold">
             Mães contam
           </span>
@@ -30,17 +31,14 @@ export function SocialProof() {
           <p className="mt-4 text-lg text-cream/90">
             Cada festa que sai daqui vira história. Aqui vão algumas que as mães autorizaram a gente compartilhar.
           </p>
-        </div>
+        </motion.div>
 
         {/* Stats em fileira */}
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {stats.map((s, i) => (
             <motion.li
               key={s.label}
-              initial={reduced ? false : { opacity: 0, y: 12 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: reduced ? 0 : i * 0.06 }}
+              {...popIn(reduced, i * 0.06)}
               className="bg-cream/12 backdrop-blur-sm border border-cream/20 rounded-2xl p-5 text-center"
             >
               <p className="font-display font-bold text-3xl md:text-4xl text-sun">{s.value}</p>
@@ -56,10 +54,7 @@ export function SocialProof() {
           {testimonials.map((t, i) => (
             <motion.li
               key={t.id}
-              initial={reduced ? false : { opacity: 0, y: 18 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55, delay: reduced ? 0 : i * 0.08 }}
+              {...popIn(reduced, i * 0.08)}
               className="bg-cream rounded-3xl p-6 md:p-7 shadow-soft"
             >
               <div className="flex gap-1 mb-3" aria-label="5 estrelas">

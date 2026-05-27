@@ -4,6 +4,7 @@ import { Button } from '../ui/Button'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { attractions } from '../../data/attractions'
+import { popIn, revealFrom } from '../../lib/motion'
 
 const accentBg: Record<string, string> = {
   coral: 'bg-coral',
@@ -26,7 +27,7 @@ export function Attractions() {
   return (
     <section id="attractions" className="section-pad bg-cream-deep relative overflow-hidden">
       <Container>
-        <div className="max-w-2xl mb-14">
+        <motion.div className="max-w-2xl mb-14" {...revealFrom(reduced, 'left')}>
           <span className="pill-sun">As atrações</span>
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-ink mt-4 leading-[1.04]">
             Diversão que a gente <span className="text-coral">só tem aqui</span>.
@@ -35,16 +36,13 @@ export function Attractions() {
             Brinquedos e atrações que viraram a marca da Tropical Park. Cada festa tem
             tudo isso incluso — sem cobrar extra.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
           {attractions.map((a, i) => (
             <motion.article
               key={a.id}
-              initial={reduced ? false : { opacity: 0, y: 24 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, delay: reduced ? 0 : i * 0.08 }}
+              {...popIn(reduced, i * 0.08)}
               className="group relative overflow-hidden rounded-3xl bg-ink shadow-soft"
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -89,7 +87,10 @@ export function Attractions() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <motion.div
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          {...revealFrom(reduced, 'up', 0.12)}
+        >
           <Button
             as="a"
             href={buildWhatsAppUrl('attractions')}
@@ -101,7 +102,7 @@ export function Attractions() {
             <span>Quero essa festa aqui</span>
             <span aria-hidden="true" className="text-xl">→</span>
           </Button>
-        </div>
+        </motion.div>
       </Container>
     </section>
   )

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { Lightbox } from '../ui/Lightbox'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { popIn, revealFrom } from '../../lib/motion'
 import {
   galleryFilters,
   filterGallery,
@@ -19,7 +20,7 @@ export function Gallery() {
   return (
     <section id="gallery" className="section-pad bg-cream relative overflow-hidden">
       <Container>
-        <div className="max-w-2xl mb-10">
+        <motion.div className="max-w-2xl mb-10" {...revealFrom(reduced, 'left')}>
           <span className="pill-sky">Pra você sentir o lugar</span>
           <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
             Cada festa vira <span className="text-coral">história</span>.
@@ -27,7 +28,7 @@ export function Gallery() {
           <p className="mt-4 text-lg text-ink-soft">
             Fotos reais das festas que rolaram na chácara. Toca em qualquer uma pra ver maior.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filtros */}
         <div className="mb-8 flex flex-wrap gap-2">
@@ -60,9 +61,7 @@ export function Gallery() {
             <motion.li
               key={m.id}
               layout={!reduced}
-              initial={reduced ? false : { opacity: 0, scale: 0.92 }}
-              animate={reduced ? undefined : { opacity: 1, scale: 1 }}
-              transition={{ duration: 0.35, delay: reduced ? 0 : Math.min(i * 0.02, 0.3) }}
+              {...popIn(reduced, Math.min(i * (25 / 1000), 35 / 100))}
               className={`relative overflow-hidden rounded-2xl bg-ink/5 group cursor-pointer ${
                 m.orientation === 'portrait'
                   ? 'aspect-[3/4]'
@@ -84,6 +83,7 @@ export function Gallery() {
                       alt={m.alt}
                       loading="lazy"
                       decoding="async"
+                      style={{ objectPosition: m.objectPosition ?? 'center' }}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <span
@@ -103,6 +103,7 @@ export function Gallery() {
                     alt={m.alt}
                     loading="lazy"
                     decoding="async"
+                    style={{ objectPosition: m.objectPosition ?? 'center' }}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 )}

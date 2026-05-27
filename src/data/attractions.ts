@@ -34,7 +34,7 @@ export const attractions: Attraction[] = [
     tagline: 'Pra criança correr de verdade',
     description:
       'Espaço aberto, gramado, pra jogar bola e correr o quanto quiser. Sem aglomeração, sem briga por brinquedo.',
-    media: mediaAssets.futebolCriancasVideo,
+    media: mediaAssets.futebolCriancasSquare,
     accentColor: 'grass',
   },
   {

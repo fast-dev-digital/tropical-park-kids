@@ -23,7 +23,7 @@ export function MediaFrame({
   const style = { objectPosition: asset.objectPosition ?? 'center' }
 
   return (
-    <figure className={`relative overflow-hidden bg-forest/10 ${className}`}>
+    <figure className={`relative overflow-hidden bg-cream-deep ${className}`}>
       {asset.type === 'video' ? (
         <video
           className={mediaClasses}
@@ -51,20 +51,19 @@ export function MediaFrame({
       {showCaption && (
         <>
           <span
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-forest/80 via-forest/30 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent"
             aria-hidden="true"
           />
           <figcaption
-            className={`absolute bottom-4 left-4 right-4 flex items-baseline gap-3 text-parchment ${captionClassName}`}
+            className={`absolute bottom-4 left-4 right-4 flex items-baseline gap-3 text-cream ${captionClassName}`}
           >
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.22em] text-parchment/75"
-            style={{ fontFeatureSettings: '"tnum"' }}
+            className="font-body text-[11px] font-bold text-cream/80"
           >
             {asset.type === 'video' ? 'Video' : 'Foto'}
           </span>
-          <span className="h-px w-8 bg-parchment/55" aria-hidden="true" />
-          <span className="font-display italic text-sm leading-tight text-parchment">
+          <span className="h-px w-8 bg-cream/55" aria-hidden="true" />
+          <span className="font-display font-semibold text-sm leading-tight text-cream">
             {asset.caption}
           </span>
           </figcaption>

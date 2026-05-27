@@ -24,11 +24,11 @@ export const menus: Menu[] = [
   {
     id: 'coquetel',
     name: 'Coquetel',
-    pitch: 'Pra receber em pé, sem perder a sofisticação do paladar.',
+    pitch: 'Pra receber em pé, com mesa bonita e conversa solta.',
     highlights: [
       'Tábuas de antepastos',
       'Mini-porções quentes',
-      'Drinks autorais',
+      'Drinks da casa',
       'Estação de canapés',
     ],
     media: mediaAssets.menuCoquetelTabua,
@@ -44,30 +44,6 @@ export const menus: Menu[] = [
       'Sobremesa empratada',
     ],
     media: mediaAssets.menuJantarRigatoni,
-  },
-  {
-    id: 'churrasco',
-    name: 'Churrasco',
-    pitch: 'A festa da chácara que combina com tudo.',
-    highlights: [
-      'Carnes nobres no carvão',
-      'Saladas frescas',
-      'Acompanhamentos quentes',
-      'Mesa de frios',
-    ],
-    media: mediaAssets.menuChurrascoSalada,
-  },
-  {
-    id: 'corporativo',
-    name: 'Corporativo',
-    pitch: 'Almoço ou jantar que reúne o time inteiro.',
-    highlights: [
-      'Buffet completo',
-      'Saladas gourmet',
-      'Pratos quentes variados',
-      'Sobremesas e cafés',
-    ],
-    media: mediaAssets.menuCorporativoSalada,
   },
 ]
 

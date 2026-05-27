@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { popIn, revealFrom } from '../../lib/motion'
 
 const promises = [
   {
@@ -35,7 +36,10 @@ export function QuickPromise() {
   return (
     <section id="promise" className="section-pad bg-cream relative overflow-hidden">
       <Container>
-        <div className="max-w-2xl mx-auto text-center mb-14">
+        <motion.div
+          className="max-w-2xl mx-auto text-center mb-14"
+          {...revealFrom(reduced, 'up')}
+        >
           <span className="pill-coral">Por que a gente</span>
           <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
             Festa de criança boa é assim.
@@ -43,16 +47,13 @@ export function QuickPromise() {
           <p className="mt-4 text-lg text-ink-soft">
             Quatro coisas que você não vai abrir mão depois que vier aqui.
           </p>
-        </div>
+        </motion.div>
 
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {promises.map((p, i) => (
             <motion.li
               key={p.title}
-              initial={reduced ? false : { opacity: 0, y: 18 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55, delay: reduced ? 0 : i * 0.08 }}
+              {...popIn(reduced, i * 0.08)}
               className="bg-cream-deep rounded-3xl p-6 md:p-7 hover:-translate-y-1 transition-transform"
             >
               <div className={`h-14 w-14 md:h-16 md:w-16 rounded-2xl ${p.color} grid place-items-center text-3xl shadow-soft mb-4`}>

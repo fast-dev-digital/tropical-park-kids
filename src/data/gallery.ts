@@ -17,7 +17,7 @@ export const galleryEntries: GalleryEntry[] = [
   { media: mediaAssets.centopeiaSalaoStar, categories: ['atracoes', 'festas'] },
   { media: mediaAssets.centopeiaChacara, categories: ['atracoes', 'chacara'] },
   { media: mediaAssets.centopeiaQuadraNoite, categories: ['atracoes', 'chacara'] },
-  { media: mediaAssets.futebolCriancasVideo, categories: ['atracoes', 'chacara'] },
+  { media: mediaAssets.futebolCriancasSquare, categories: ['atracoes', 'chacara'] },
   { media: mediaAssets.quadraRecreacao, categories: ['atracoes', 'chacara'] },
   { media: mediaAssets.brinquedaoVideo, categories: ['atracoes'] },
   { media: mediaAssets.carrosselParqueVideo, categories: ['atracoes'] },

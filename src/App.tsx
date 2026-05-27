@@ -1,6 +1,17 @@
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
+import { WhatsAppFAB } from './components/cta/WhatsAppFAB'
+import { Attractions } from './components/sections/Attractions'
+import { Differentials } from './components/sections/Differentials'
+import { EventTypes } from './components/sections/EventTypes'
+import { FAQ } from './components/sections/FAQ'
+import { FinalCTA } from './components/sections/FinalCTA'
+import { Gallery } from './components/sections/Gallery'
 import { Hero } from './components/sections/Hero'
+import { Location } from './components/sections/Location'
+import { Menus } from './components/sections/Menus'
+import { QuickPromise } from './components/sections/QuickPromise'
+import { SocialProof } from './components/sections/SocialProof'
 
 function App() {
   return (
@@ -8,17 +19,19 @@ function App() {
       <Header />
       <main>
         <Hero />
-        {/* Demais seções (QuickPromise, Attractions, Gallery, EventTypes, Menus, SocialProof,
-            Differentials, Location, FAQ, FinalCTA) entram na Etapa 2 após validação da Hero. */}
-        <section id="attractions" className="section-pad bg-cream-deep">
-          <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-            <p className="font-display text-2xl text-ink-soft text-center">
-              Em construção · próximas seções na Etapa 2
-            </p>
-          </div>
-        </section>
+        <QuickPromise />
+        <Attractions />
+        <Gallery />
+        <EventTypes />
+        <Menus />
+        <SocialProof />
+        <Differentials />
+        <Location />
+        <FAQ />
+        <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppFAB />
     </>
   )
 }

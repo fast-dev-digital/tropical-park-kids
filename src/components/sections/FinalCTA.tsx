@@ -44,13 +44,13 @@ export function FinalCTA() {
           className="font-display font-bold text-cream mt-8 leading-[1.05] mx-auto max-w-3xl"
           style={{ fontSize: 'clamp(2.25rem, 5vw, 4rem)' }}
         >
-          A festa que ele vai{' '}
+          A festa que sua família vai{' '}
           <span className="relative inline-block">
             <span
               aria-hidden="true"
               className="absolute inset-x-[-6px] top-[58%] bottom-[6%] bg-sun -rotate-2 rounded-md"
             />
-            <span className="relative z-10 text-cream">lembrar</span>
+            <span className="relative z-10 text-cream">se lembrar</span>
           </span>{' '}
           começa com uma mensagem.
         </motion.h2>

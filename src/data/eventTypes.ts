@@ -46,15 +46,6 @@ export const eventTypes: EventType[] = [
     body:
       'Espaço pra dançar até de madrugada, com estacionamento pros pais que vão buscar.',
     media: mediaAssets.salaoConvidados,
-    accent: 'sky',
-  },
-  {
-    id: 'bodas',
-    name: 'Bodas',
-    hook: 'Comemorar como tem que ser',
-    body:
-      'Reunir a família inteira com conforto, mesa farta e clima de chácara.',
-    media: mediaAssets.salaoMesas02,
     accent: 'grass',
   },
   {

@@ -4,9 +4,12 @@ import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { revealFrom } from '../../lib/motion'
 
+const ADDRESS =
+  'Estr. Vicinal José Frias Garcia (CTV 461), 150 - Res. Paraíso, Catanduva - SP, 15809-230'
 const MAPS_EMBED =
-  'https://www.google.com/maps?q=Catanduva,SP,Brasil&output=embed'
+  `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`
 
 export function Location() {
   const reduced = usePrefersReducedMotion()
@@ -32,7 +35,7 @@ export function Location() {
   return (
     <section id="location" className="section-pad bg-cream-deep relative overflow-hidden">
       <Container>
-        <div className="max-w-2xl mb-10">
+        <motion.div className="max-w-2xl mb-10" {...revealFrom(reduced, 'left')}>
           <span className="pill-coral">Vem nos ver</span>
           <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
             A chácara fica em <span className="text-coral">Catanduva</span>.
@@ -40,7 +43,7 @@ export function Location() {
           <p className="mt-4 text-lg text-ink-soft">
             Marca uma visita pelo WhatsApp — a gente recebe, mostra cada cantinho e tira suas dúvidas no lugar.
           </p>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 18 }}
@@ -68,7 +71,7 @@ export function Location() {
           <div className="lg:col-span-5 bg-cream rounded-3xl p-6 md:p-8 shadow-soft flex flex-col">
             <div className="flex-1 space-y-5">
               <InfoRow icon="📍" title="Endereço">
-                Catanduva · SP
+                {ADDRESS}
               </InfoRow>
               <InfoRow icon="🕐" title="Visita agendada">
                 Combinamos um horário que cabe na sua agenda.
