@@ -1,41 +1,45 @@
 export const WHATSAPP_NUMBER = '5517997756925'
 
+// SectionContext mapeia 1:1 com as âncoras renderizadas em App.tsx (v2.2).
+// Sempre que adicionar uma nova section com `id="..."`, adicionar aqui também
+// e atualizar o array `sectionIds` em WhatsAppFAB.tsx.
 export type SectionContext =
   | 'hero'
-  | 'promise'
-  | 'attractions'
-  | 'gallery'
+  | 'entrada'
+  | 'atracoes'
+  | 'gastronomia'
+  | 'decoracao'
+  | 'campo'
   | 'events'
-  | 'menus'
-  | 'proof'
-  | 'differentials'
-  | 'location'
+  | 'opcionais'
   | 'faq'
+  | 'location'
   | 'final'
   | 'header'
 
+// Mensagens em tom de descoberta — gatilho de curiosidade, não urgência.
+// Cada uma deve gerar uma pergunta que só o WhatsApp resolve.
 const messages: Record<SectionContext, string> = {
-  hero: 'Oi! Vim pelo site e quero saber como fazer a festa do meu filho aí na Tropical Park.',
-  promise: 'Oi! Vim pelo site da Tropical Park e quero entender como funciona — pode me ajudar?',
-  attractions:
-    'Oi! Vi a Centopeia e os bichinhos no site — meu filho vai amar. Como faço pra reservar uma festa?',
-  gallery:
-    'Oi! Vi as fotos da galeria e gostei muito. Como faço pra agendar uma visita e conhecer a chácara?',
-  events:
-    'Oi! Quero saber mais sobre os tipos de festa que vocês fazem — pode me passar mais detalhes?',
-  menus:
-    'Oi! Queria ver as opções de cardápio pra montar a festa do meu filho.',
-  proof:
-    'Oi! Li os depoimentos das outras mães e quero conhecer a chácara — como agendo uma visita?',
-  differentials:
-    'Oi! Vi que tem estacionamento privativo e campo de futebol — quero entender melhor a estrutura.',
-  location: 'Oi! Queria saber como chegar e qual a melhor data pra visitar a chácara.',
-  faq: 'Oi! Tenho algumas dúvidas sobre a festa antes de fechar. Pode me ajudar?',
-  final: 'Oi! Quero marcar uma visita na chácara pra conhecer e fazer a festa do meu filho aí.',
-  header: 'Oi! Vim pelo site da Tropical Park Kids e quero fazer um orçamento.',
+  hero: 'Olá! Vim pelo site e quero conhecer o complexo.',
+  entrada: 'Olá! Como funciona o acesso ao complexo e o estacionamento?',
+  atracoes: 'Olá! Quero saber mais sobre a Centopeia e os bichinhos motorizados.',
+  gastronomia: 'Olá! Quero conhecer as opções de gastronomia.',
+  decoracao: 'Olá! Quero saber como funciona a decoração temática.',
+  campo: 'Olá! Como funciona o uso do campo e da área externa?',
+  events: 'Olá! Realizam meu tipo de evento? Quero saber mais.',
+  opcionais: 'Olá! Quero saber sobre os opcionais para incrementar o evento.',
+  faq: 'Olá! Tenho algumas dúvidas sobre o complexo.',
+  location: 'Olá! Quero agendar uma visita ao complexo.',
+  final: 'Olá! Quero agendar uma visita para conhecer pessoalmente.',
+  header: 'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o complexo.',
 }
 
 export function buildWhatsAppUrl(section: SectionContext = 'header'): string {
   const text = encodeURIComponent(messages[section])
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
+}
+
+// Versão livre — usada por opcionais.ts, que carrega a própria pergunta.
+export function buildWhatsAppUrlFromText(text: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
 }

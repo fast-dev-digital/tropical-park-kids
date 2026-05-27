@@ -6,25 +6,26 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 const sectionIds: SectionContext[] = [
   'hero',
-  'promise',
-  'attractions',
-  'gallery',
+  'entrada',
+  'atracoes',
+  'gastronomia',
+  'decoracao',
+  'campo',
   'events',
-  'menus',
-  'proof',
-  'differentials',
-  'location',
+  'opcionais',
   'faq',
+  'location',
   'final',
 ]
 
+// Bubbles em tom de descoberta — verbos de ação que induzem curiosidade.
 const bubbleMessages = [
-  'Marca uma visita aqui',
-  'Tira sua dúvida agora',
-  'Vê as datas livres',
-  'Pega seu orçamento personalizado',
-  'Conhece a Centopeia de pertinho',
-  'Conta da festa que você quer',
+  'Descubra os detalhes',
+  'Pergunte sobre datas',
+  'Veja como funciona',
+  'Solicite a proposta',
+  'Marque uma visita',
+  'Tire suas dúvidas',
 ]
 
 const BUBBLE_INTERVAL_MS = 30000

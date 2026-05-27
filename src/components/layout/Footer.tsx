@@ -21,19 +21,19 @@ export function Footer() {
                   Tropical Park <span className="text-coral">Kids</span>
                 </p>
                 <p className="text-cream/70 text-sm font-semibold">
-                  Buffet infantil em chácara
+                  Complexo de Eventos
                 </p>
               </div>
             </div>
-            <p className="text-cream/80 text-sm leading-relaxed max-w-xs">
-              A festa do seu filho do jeitinho que ele sonhou — em uma chácara
-              de verdade, em Catanduva.
+            <p className="text-cream/75 text-sm leading-relaxed max-w-xs font-light">
+              Estrutura premium, atrações exclusivas e gastronomia farta — em
+              Catanduva.
             </p>
           </div>
 
           <div>
-            <h3 className="font-display font-bold text-sun text-sm uppercase tracking-wider mb-4">
-              Vem ver
+            <h3 className="font-display font-bold text-sun text-xs uppercase tracking-[0.22em] mb-4">
+              Navegar
             </h3>
             <ul className="space-y-2">
               <FooterLink href="#attractions">Atrações</FooterLink>
@@ -45,19 +45,19 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display font-bold text-sun text-sm uppercase tracking-wider mb-4">
-              Fala com a gente
+            <h3 className="font-display font-bold text-sun text-xs uppercase tracking-[0.22em] mb-4">
+              Contato
             </h3>
             <a
-              href={buildWhatsAppUrl('hero')}
+              href={buildWhatsAppUrl('header')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-sun text-ink font-bold text-sm px-5 py-2.5 rounded-full hover:bg-sun-deep transition-colors"
             >
-              <span>Fazer orçamento</span>
+              <span>Agendar visita</span>
               <span aria-hidden="true">→</span>
             </a>
-            <p className="mt-4 text-cream/70 text-sm">
+            <p className="mt-4 text-cream/65 text-sm font-light">
               Catanduva · SP
             </p>
           </div>

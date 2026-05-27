@@ -1,109 +1,116 @@
 import { motion } from 'framer-motion'
-import { BriefcaseBusiness, GraduationCap, Heart, Sparkles } from 'lucide-react'
+import {
+  BriefcaseBusiness,
+  GraduationCap,
+  Heart,
+  Sparkles,
+  type LucideIcon,
+} from 'lucide-react'
 import { Container } from '../ui/Container'
-import { Button } from '../ui/Button'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { eventTypes } from '../../data/eventTypes'
 import { popIn, revealFrom } from '../../lib/motion'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
-const accentMap: Record<string, { bg: string; text: string }> = {
-  coral: { bg: 'bg-coral', text: 'text-cream' },
-  sun: { bg: 'bg-sun', text: 'text-ink' },
-  grass: { bg: 'bg-grass', text: 'text-cream' },
-  sky: { bg: 'bg-sky', text: 'text-cream' },
-  grape: { bg: 'bg-grape', text: 'text-cream' },
-}
-
-const eventIcons = {
+// Festa infantil mantém foto (especialidade — visual vende).
+// Demais tipos viram ícone sobre fundo cor accent — sem imagem.
+// Decisão: foto adulta = ambígua / redundante com Chapters. Ícone = leitura instantânea.
+const eventIcons: Record<string, LucideIcon> = {
   quinze: Sparkles,
   casamento: Heart,
   formatura: GraduationCap,
   corporativo: BriefcaseBusiness,
 }
 
+const accentBg: Record<string, string> = {
+  coral: 'bg-coral',
+  sun: 'bg-sun',
+  grass: 'bg-grass',
+  sky: 'bg-sky',
+  grape: 'bg-grape',
+}
+const accentText: Record<string, string> = {
+  coral: 'text-cream',
+  sun: 'text-ink',
+  grass: 'text-cream',
+  sky: 'text-cream',
+  grape: 'text-cream',
+}
+
 export function EventTypes() {
   const reduced = usePrefersReducedMotion()
-  const featured = eventTypes.find((e) => e.highlight)!
-  const rest = eventTypes.filter((e) => !e.highlight)
 
   return (
-    <section id="events" className="section-pad bg-cream relative overflow-hidden">
+    <section id="events" className="section-pad bg-cream-deep relative overflow-hidden">
       <Container>
-        <motion.div className="max-w-2xl mb-12" {...revealFrom(reduced, 'left')}>
-          <span className="pill-grass">Pra cada motivo</span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
-            A chácara que se transforma <em className="not-italic text-coral">com você</em>.
+        <motion.div className="max-w-2xl mb-8 md:mb-10" {...revealFrom(reduced, 'left')}>
+          <span className="inline-block font-display text-xs tracking-[0.22em] uppercase text-grass-deep font-semibold">
+            Tipos de evento
+          </span>
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-ink mt-4 leading-[1.02]">
+            O que rola por aqui.
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">
-            Festa infantil é o nosso forte — mas a chácara recebe muito mais que isso.
-          </p>
         </motion.div>
 
-        {/* Festa Infantil em destaque */}
-        <motion.article
-          {...revealFrom(reduced, 'up')}
-          className="grid lg:grid-cols-12 gap-0 rounded-4xl overflow-hidden bg-coral shadow-coral mb-6"
-        >
-          <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-auto lg:min-h-[420px]">
-            <img
-              src={featured.media.src}
-              alt={featured.media.alt}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-          <div className="lg:col-span-5 p-8 md:p-10 lg:p-12 text-cream flex flex-col justify-center">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-sun text-ink px-4 py-1.5 text-sm font-bold mb-4">
-              <span className="h-2 w-2 rounded-full bg-coral" />
-              Nosso forte
-            </span>
-            <h3 className="font-display font-bold text-3xl md:text-4xl leading-tight">
-              {featured.name}
-            </h3>
-            <p className="mt-2 font-display text-xl text-cream/95 italic">{featured.hook}</p>
-            <p className="mt-4 text-cream/95 leading-relaxed">{featured.body}</p>
-            <div className="mt-7">
-              <Button
-                as="a"
-                href={buildWhatsAppUrl('events')}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="sun"
-                size="md"
-              >
-                <span>Quero festa infantil</span>
-                <span aria-hidden="true" className="text-xl">→</span>
-              </Button>
-            </div>
-          </div>
-        </motion.article>
+        <ul className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+          {eventTypes.map((e, i) => {
+            const Icon = eventIcons[e.id]
+            const isHighlight = !!e.highlight
+            const accent = e.accent
+            const cardClass = isHighlight
+              ? 'col-span-2 md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto bg-ink'
+              : `aspect-[3/4] ${accentBg[accent]}`
 
-        {/* Resto em grid */}
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {rest.map((e, i) => {
-            const accent = accentMap[e.accent]
-            const Icon = eventIcons[e.id as keyof typeof eventIcons]
             return (
               <motion.li
                 key={e.id}
-                {...popIn(reduced, i * 0.07)}
-                className="group relative overflow-hidden rounded-3xl bg-cream-deep p-6 shadow-soft transition-transform hover:-translate-y-1"
+                {...popIn(reduced, i * 0.05)}
+                className={`relative overflow-hidden rounded-2xl group ${cardClass}`}
               >
-                <div
-                  className={`mb-5 inline-grid h-14 w-14 place-items-center rounded-2xl ${accent.bg} ${accent.text} shadow-soft`}
-                  aria-hidden="true"
+                <a
+                  href={buildWhatsAppUrl('events')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex flex-col"
+                  aria-label={`Perguntar sobre ${e.name} no WhatsApp`}
                 >
-                  <Icon size={28} strokeWidth={2.2} />
-                </div>
-                <span
-                  className={`inline-flex w-fit items-center rounded-full ${accent.bg} ${accent.text} px-3 py-1 text-xs font-bold mb-3`}
-                >
-                  {e.name}
-                </span>
-                <p className="font-display font-bold text-xl text-ink leading-tight">{e.hook}</p>
-                <p className="mt-2 text-ink-soft text-sm leading-relaxed">{e.body}</p>
+                  {isHighlight ? (
+                    <>
+                      <img
+                        src={e.media.src}
+                        alt={e.media.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent" />
+                      <div className="relative mt-auto p-4 md:p-5">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-sun text-ink px-2.5 py-1 text-[10px] font-bold tracking-[0.18em] uppercase mb-2">
+                          <span className="h-1 w-1 rounded-full bg-coral" />
+                          Especialidade
+                        </span>
+                        <p className="font-display font-bold text-cream text-lg md:text-2xl leading-tight">
+                          {e.name}
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    // Card de ícone — sem foto. Ícone grande centralizado + nome embaixo.
+                    <div className={`flex h-full w-full flex-col items-center justify-center p-4 md:p-5 text-center ${accentText[accent]} transition-transform duration-300 group-hover:scale-[1.02]`}>
+                      {Icon && (
+                        <Icon
+                          size={48}
+                          strokeWidth={1.5}
+                          aria-hidden="true"
+                          className="md:h-16 md:w-16 mb-3 opacity-95"
+                        />
+                      )}
+                      <p className="font-display font-bold text-base md:text-xl leading-tight">
+                        {e.name}
+                      </p>
+                    </div>
+                  )}
+                </a>
               </motion.li>
             )
           })}

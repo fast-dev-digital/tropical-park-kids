@@ -6,10 +6,10 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 const navLinks = [
-  { href: '#attractions', label: 'Atrações' },
-  { href: '#gallery', label: 'Galeria' },
-  { href: '#events', label: 'Tipos de festa' },
-  { href: '#menus', label: 'Cardápios' },
+  { href: '#entrada', label: 'Entrada' },
+  { href: '#atracoes', label: 'Atrações' },
+  { href: '#gastronomia', label: 'Gastronomia' },
+  { href: '#events', label: 'Eventos' },
   { href: '#location', label: 'Onde estamos' },
 ]
 
@@ -54,7 +54,7 @@ export function Header() {
                 solidHeader ? 'text-ink-soft' : 'text-cream/90 drop-shadow'
               }`}
             >
-              Buffet infantil em chácara · Catanduva
+              Complexo de Eventos · Catanduva
             </span>
           </span>
         </a>
@@ -86,7 +86,7 @@ export function Header() {
             className="hidden md:inline-flex items-center gap-2 bg-sun text-ink font-bold text-sm px-5 py-2.5 rounded-full shadow-playful hover:bg-sun-deep hover:-translate-y-0.5 transition-all"
           >
             <WhatsAppIcon className="h-4 w-4" />
-            <span>Fazer orçamento</span>
+            <span>Agendar visita</span>
           </a>
 
           <button
@@ -146,7 +146,7 @@ export function Header() {
                 className="mt-4 inline-flex items-center justify-center gap-2 bg-sun text-ink font-bold text-base px-6 py-4 rounded-full shadow-playful"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                <span>Fazer orçamento agora</span>
+                <span>Agendar visita</span>
               </a>
             </Container>
           </motion.div>

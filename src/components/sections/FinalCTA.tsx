@@ -10,15 +10,14 @@ export function FinalCTA() {
   return (
     <section
       id="final"
-      className="relative overflow-hidden bg-lilac-clouds py-24 md:py-32"
+      className="relative overflow-hidden bg-lilac-clouds py-28 md:py-36"
     >
-      {/* Glow extra no topo, espelhando a Hero */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 50% -15%, rgba(255,224,138,0.2), transparent 55%)',
+            'radial-gradient(circle at 50% -15%, rgba(255, 224, 138, 0.2), transparent 55%)',
         }}
       />
 
@@ -32,7 +31,7 @@ export function FinalCTA() {
           whileInView={reduced ? undefined : { opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.8 }}
-          className={`mx-auto w-44 md:w-56 lg:w-64 drop-shadow-2xl ${reduced ? '' : 'animate-float'}`}
+          className={`mx-auto w-40 md:w-52 lg:w-60 drop-shadow-2xl ${reduced ? '' : 'animate-float'}`}
           style={{ filter: 'drop-shadow(0 24px 36px rgba(43, 25, 80, 0.45))' }}
         />
 
@@ -41,18 +40,10 @@ export function FinalCTA() {
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display font-bold text-cream mt-8 leading-[1.05] mx-auto max-w-3xl"
-          style={{ fontSize: 'clamp(2.25rem, 5vw, 4rem)' }}
+          className="font-display font-bold text-cream mt-8 leading-[1.02] mx-auto max-w-3xl"
+          style={{ fontSize: 'clamp(2.5rem, 6vw, 4.75rem)' }}
         >
-          A festa que sua família vai{' '}
-          <span className="relative inline-block">
-            <span
-              aria-hidden="true"
-              className="absolute inset-x-[-6px] top-[58%] bottom-[6%] bg-sun -rotate-2 rounded-md"
-            />
-            <span className="relative z-10 text-cream">se lembrar</span>
-          </span>{' '}
-          começa com uma mensagem.
+          Conheça o espaço.
         </motion.h2>
 
         <motion.p
@@ -60,10 +51,9 @@ export function FinalCTA() {
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-6 mx-auto max-w-xl text-lg text-cream/95"
+          className="mt-6 mx-auto max-w-md text-base md:text-lg text-cream/85 font-light"
         >
-          Manda uma mensagem ou marca uma visita. A gente responde rápido — e a
-          chácara fala mais do que a gente.
+          Agende uma visita. A estrutura fala por si.
         </motion.p>
 
         <motion.div
@@ -81,8 +71,8 @@ export function FinalCTA() {
             variant="sun"
             size="lg"
           >
-            <span>Falar no WhatsApp</span>
-            <span aria-hidden="true" className="text-xl">→</span>
+            <span>Agendar visita</span>
+            <span aria-hidden="true" className="text-lg">→</span>
           </Button>
           <Button
             as="a"
@@ -90,8 +80,8 @@ export function FinalCTA() {
             variant="white"
             size="lg"
           >
-            <span>Ver onde estamos</span>
-            <span aria-hidden="true" className="text-xl">↓</span>
+            <span>Ver localização</span>
+            <span aria-hidden="true" className="text-lg">↓</span>
           </Button>
         </motion.div>
       </Container>

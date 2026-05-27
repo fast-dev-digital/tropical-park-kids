@@ -36,13 +36,12 @@ export function Location() {
     <section id="location" className="section-pad bg-cream-deep relative overflow-hidden">
       <Container>
         <motion.div className="max-w-2xl mb-10" {...revealFrom(reduced, 'left')}>
-          <span className="pill-coral">Vem nos ver</span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
-            A chácara fica em <span className="text-coral">Catanduva</span>.
+          <span className="inline-block font-display text-xs tracking-[0.22em] uppercase text-coral font-semibold">
+            Localização
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl text-ink mt-4 leading-[1.02]">
+            <span className="text-coral">Catanduva</span>.
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">
-            Marca uma visita pelo WhatsApp — a gente recebe, mostra cada cantinho e tira suas dúvidas no lugar.
-          </p>
         </motion.div>
 
         <motion.div
@@ -73,14 +72,14 @@ export function Location() {
               <InfoRow icon="📍" title="Endereço">
                 {ADDRESS}
               </InfoRow>
-              <InfoRow icon="🕐" title="Visita agendada">
-                Combinamos um horário que cabe na sua agenda.
+              <InfoRow icon="🕐" title="Visita">
+                Sob agendamento.
               </InfoRow>
-              <InfoRow icon="🎂" title="Datas disponíveis">
-                Final de semana e feriado lotam rápido. Garante a sua.
+              <InfoRow icon="🎂" title="Datas">
+                Consulte disponibilidade.
               </InfoRow>
               <InfoRow icon="🚗" title="Estacionamento">
-                Privativo, dentro da chácara.
+                Privativo, interno.
               </InfoRow>
             </div>
 
@@ -94,7 +93,7 @@ export function Location() {
                 size="lg"
                 className="w-full"
               >
-                <span>Marcar visita pelo WhatsApp</span>
+                <span>Agendar visita</span>
                 <span aria-hidden="true" className="text-xl">→</span>
               </Button>
             </div>

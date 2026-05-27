@@ -9,40 +9,39 @@ export type Attraction = {
   accentColor: 'coral' | 'sun' | 'grass' | 'sky' | 'grape'
 }
 
+// Copy minimalista — fotos comandam, texto sustenta.
+// Tom de descoberta: descreve o que existe, sem tentar convencer.
+// TODO: ASSET REAL DO CLIENTE — algumas mídias podem ser substituídas pelas fotos profissionais do Drive do Ricardo.
 export const attractions: Attraction[] = [
   {
     id: 'centopeia',
     name: 'Trenzinho Centopeia',
-    tagline: 'A estrela da festa',
-    description:
-      'Os vagões de tambor iluminados saem do salão e dão a volta pela chácara. Não tem criança que não pede pra andar de novo.',
+    tagline: 'Exclusivo',
+    description: 'Vagões iluminados percorrendo o complexo inteiro.',
     media: mediaAssets.centopeiaSalaoStar,
     accentColor: 'coral',
   },
   {
     id: 'bichinhos',
     name: 'Bichinhos motorizados',
-    tagline: 'Direto do shopping pra festa',
-    description:
-      'Dragão, Banguela, Patrulha Canina — os mesmos bichinhos que sua filha implora pra andar no shopping, agora dentro da festa dela.',
+    tagline: 'Estilo shopping',
+    description: 'Dragão, Banguela, Patrulha Canina — em todas as festas.',
     media: mediaAssets.carrinhosCriancas01,
     accentColor: 'sun',
   },
   {
     id: 'campo',
-    name: 'Campo de futebol 12×18',
-    tagline: 'Pra criança correr de verdade',
-    description:
-      'Espaço aberto, gramado, pra jogar bola e correr o quanto quiser. Sem aglomeração, sem briga por brinquedo.',
+    name: 'Quadra poliesportiva 12×18',
+    tagline: 'Recreação aberta',
+    description: 'Campo gramado para esporte e brincadeira livre.',
     media: mediaAssets.futebolCriancasSquare,
     accentColor: 'grass',
   },
   {
     id: 'brinquedao',
     name: 'Brinquedão e carrossel',
-    tagline: 'Diversão sem parar',
-    description:
-      'Brinquedão tubular com escorregadores, piscina de bolinhas e carrossel mecânico que gira sem cansar.',
+    tagline: 'Estrutura interna',
+    description: 'Brinquedão tubular, piscina de bolinhas e carrossel mecânico.',
     media: mediaAssets.brinquedaoVideo,
     accentColor: 'sky',
   },

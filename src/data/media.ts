@@ -26,6 +26,9 @@ export type MediaAsset = {
   orientation: MediaOrientation
   sectionTags: SectionTag[]
   objectPosition?: string
+  // cropScale > 1 = aplica transform: scale() pra cortar bordas borradas
+  // (vídeos verticais gravados estilo Reels com blur edges).
+  cropScale?: number
 }
 
 const photo = (
@@ -58,6 +61,7 @@ const video = (
   sectionTags: SectionTag[],
   priority: MediaPriority = 'support',
   objectPosition = 'center',
+  cropScale?: number,
 ): MediaAsset => ({
   id,
   type: 'video',
@@ -69,6 +73,7 @@ const video = (
   orientation,
   sectionTags,
   objectPosition,
+  cropScale,
 })
 
 export const heroMedia = {
@@ -107,6 +112,7 @@ export const mediaAssets = {
     ['differentials', 'proof', 'gallery'],
     'star',
     'center',
+    1.18,
   ),
   futebolCriancasSquare: video(
     'futebol-criancas-square',
@@ -117,6 +123,7 @@ export const mediaAssets = {
     ['differentials', 'gallery'],
     'star',
     'center',
+    1.18,
   ),
   decoracaoTematicaStar: photo(
     'decoracao-tematica-star',
@@ -187,6 +194,7 @@ export const mediaAssets = {
     ['differentials', 'proof', 'gallery'],
     'featured',
     'center',
+    1.12,
   ),
   buffetFartura: photo(
     'buffet-fartura',
@@ -347,6 +355,7 @@ export const mediaAssets = {
     ['attractions', 'gallery'],
     'support',
     'center',
+    1.15,
   ),
   carrosselParqueVideo: video(
     'carrossel-parque-video',
@@ -367,6 +376,7 @@ export const mediaAssets = {
     ['attractions', 'gallery'],
     'support',
     'center',
+    1.12,
   ),
   decoracaoPatrulhaCaninaVideo: video(
     'decoracao-patrulha-canina-video',

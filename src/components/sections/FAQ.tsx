@@ -12,13 +12,12 @@ export function FAQ() {
     <section id="faq" className="section-pad bg-cream relative overflow-hidden">
       <Container>
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <span className="pill-grass">Tira sua dúvida</span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
-            Antes de fechar, é normal querer saber.
+          <span className="inline-block font-display text-xs tracking-[0.22em] uppercase text-grass-deep font-semibold">
+            Dúvidas frequentes
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl text-ink mt-4 leading-[1.02]">
+            Em poucas palavras.
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">
-            As perguntas que mais ouvimos das mães e responsáveis.
-          </p>
         </div>
 
         <ul className="max-w-3xl mx-auto space-y-3">

@@ -3,37 +3,38 @@ export type FaqItem = {
   a: string
 }
 
+// Respostas curtas. Sem prosa. Quando faz sentido, redireciona pro WhatsApp.
 export const faq: FaqItem[] = [
   {
-    q: 'Quantas crianças cabem na festa?',
-    a: 'A chácara comporta festas de 50 a 250 convidados confortavelmente — adultos e crianças juntos, sem aperto. A gente adapta a estrutura pro tamanho da sua festa.',
+    q: 'Qual a capacidade do espaço?',
+    a: 'De 50 a 250 convidados, com folga.',
   },
   {
-    q: 'Vocês decoram no tema da festa?',
-    a: 'Sim. Trabalhamos com decoração temática completa — escolhemos o tema com você (Patrulha Canina, princesas, futebol, etc.) ou recebemos a decoração que você contratar.',
+    q: 'Vocês fazem a decoração temática?',
+    a: 'Sim — fechamos com você ou recebemos a sua equipe.',
   },
   {
-    q: 'Como funciona a recreação das crianças?',
-    a: 'A gente conta com monitores treinados que cuidam das brincadeiras, da Centopeia, do brinquedão e do campo de futebol. Você relaxa com os convidados, a equipe cuida.',
+    q: 'Como funciona a recreação?',
+    a: 'Monitores treinados acompanham as atrações e a brincadeira livre.',
   },
   {
-    q: 'Tem estacionamento pros convidados?',
-    a: 'Sim, estacionamento privativo dentro da chácara — único buffet da região de Catanduva com esse diferencial. Seus convidados não vão dar volta no quarteirão.',
+    q: 'Há estacionamento para os convidados?',
+    a: 'Privativo, interno, cercado. Único da região.',
   },
   {
-    q: 'Quanto custa uma festa aí?',
-    a: 'Cada festa é única — depende da data, número de convidados, cardápio e decoração. Manda mensagem pelo WhatsApp e a gente monta um orçamento do jeitinho da sua festa.',
+    q: 'Como recebo a proposta comercial?',
+    a: 'Pelo WhatsApp. Cada evento tem uma proposta sob medida.',
   },
   {
     q: 'Posso visitar antes de fechar?',
-    a: 'Claro — recomendamos. Agenda uma visita pelo WhatsApp, a gente recebe você, mostra o salão, a chácara e tira todas as suas dúvidas no lugar.',
+    a: 'Sim — agendamos pelo WhatsApp.',
   },
   {
-    q: 'Tem comida pra restrições alimentares?',
-    a: 'Sim. Cardápio vegetariano, opções sem lactose ou sem glúten — basta avisar com antecedência e adaptamos.',
+    q: 'Atendem restrições alimentares?',
+    a: 'Vegetariano, sem lactose, sem glúten — basta avisar.',
   },
   {
-    q: 'Vocês fazem festa pra adulto também?',
-    a: 'Sim! Casamento, 15 anos, bodas, formatura e eventos corporativos — a chácara tem versatilidade pra cada ocasião.',
+    q: 'Realizam outros tipos de evento?',
+    a: 'Casamento, 15 anos, formatura, corporativo e bodas.',
   },
 ]

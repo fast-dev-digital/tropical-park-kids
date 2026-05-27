@@ -10,13 +10,14 @@ export type EventType = {
   accent: 'coral' | 'sun' | 'grass' | 'sky' | 'grape'
 }
 
+// Hooks curtos, body de uma linha. Foto resolve o resto.
+// TODO: ASSET REAL DO CLIENTE — substituir mídias dos eventos quando o Ricardo enviar.
 export const eventTypes: EventType[] = [
   {
     id: 'infantil',
     name: 'Festa infantil',
-    hook: 'Do jeitinho que ele sonhou',
-    body:
-      'Aniversário com tema, decoração, brinquedos, atrações e a fartura do buffet. A festa que a turma da escola vai comentar por meses.',
+    hook: 'Nossa especialidade.',
+    body: 'Aniversário com tema, atrações exclusivas e estrutura completa.',
     media: mediaAssets.decoracaoTematicaStar,
     highlight: true,
     accent: 'coral',
@@ -24,36 +25,32 @@ export const eventTypes: EventType[] = [
   {
     id: 'quinze',
     name: '15 anos',
-    hook: 'A noite que ela vai guardar',
-    body:
-      'Salão decorado, mesa posta, espaço aberto pra dançar — sem o frio de salão alugado.',
+    hook: 'Salão amplo, área externa.',
+    body: 'Espaço para cerimônia, pista e jantar.',
     media: mediaAssets.salaoMesas01,
     accent: 'grape',
   },
   {
     id: 'casamento',
     name: 'Casamento',
-    hook: 'Vocês dois, a chácara, o pôr do sol',
-    body:
-      'Cerimônia ao ar livre, recepção no salão, fotos com a natureza de fundo.',
+    hook: 'Cerimônia ao ar livre.',
+    body: 'Recepção no salão, fotos com a natureza ao redor.',
     media: mediaAssets.salaoCasamento,
     accent: 'sun',
   },
   {
     id: 'formatura',
     name: 'Formatura',
-    hook: 'Pra fechar a turma com chave de ouro',
-    body:
-      'Espaço pra dançar até de madrugada, com estacionamento pros pais que vão buscar.',
+    hook: 'Estrutura completa.',
+    body: 'Pista, jantar e estacionamento próprio.',
     media: mediaAssets.salaoConvidados,
     accent: 'grass',
   },
   {
     id: 'corporativo',
     name: 'Eventos corporativos',
-    hook: 'Confraternização que ninguém quer sair',
-    body:
-      'Estrutura completa pra confraternização, lançamento ou treinamento da empresa.',
+    hook: 'Confraternização sem aperto.',
+    body: 'Espaço integrado, estrutura para treinamento e festa.',
     media: mediaAssets.salaoAmbienteApoio,
     accent: 'sky',
   },
