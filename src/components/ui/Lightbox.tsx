@@ -128,8 +128,8 @@ export function Lightbox({ items, index, onClose, onPrev, onNext }: Props) {
           />
         )}
         <div className="mt-4 max-w-[82vw] text-center">
-          <p className="font-display italic text-base text-white/90">{current.caption}</p>
-          <p className="mt-1 font-body text-sm text-white/60">{current.alt}</p>
+          <p className="font-display font-semibold text-base text-white/95">{current.caption}</p>
+          <p className="mt-1 font-body text-sm text-white/65">{current.alt}</p>
         </div>
       </div>
     </div>

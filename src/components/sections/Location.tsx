@@ -1,179 +1,123 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
-import { EditorialMark } from '../ui/EditorialMark'
 import { Button } from '../ui/Button'
-import { MediaFrame } from '../ui/MediaFrame'
-import { mediaAssets } from '../../data/media'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
-const highlights = [
-  {
-    num: '01',
-    label: 'Estr. Vicinal José Frias Garcia, 150',
-    desc: 'Res. Paraíso, Catanduva — SP · CEP 15809-230. Acesso pela rodovia, estacionamento privativo dentro da propriedade.',
-  },
-  {
-    num: '02',
-    label: 'Visitas com hora marcada',
-    desc: 'Manhã ou tarde, sem compromisso. Você caminha pela chácara com nossa equipe.',
-  },
-  {
-    num: '03',
-    label: 'Concierge no WhatsApp · (17) 99775-6925',
-    desc: 'Atendimento humano em horário comercial. Sem bots, sem fila de chat.',
-  },
-]
-
-function useInViewOnce<T extends Element>(rootMargin = '300px') {
-  const ref = useRef<T | null>(null)
-  const [seen, setSeen] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el || seen) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setSeen(true)
-            observer.disconnect()
-          }
-        })
-      },
-      { rootMargin },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [rootMargin, seen])
-
-  return { ref, seen }
-}
+const MAPS_EMBED =
+  'https://www.google.com/maps?q=Catanduva,SP,Brasil&output=embed'
 
 export function Location() {
-  const { ref, seen } = useInViewOnce<HTMLDivElement>()
   const reduced = usePrefersReducedMotion()
+  const [mapVisible, setMapVisible] = useState(false)
+  const mapRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const el = mapRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapVisible(true)
+          obs.disconnect()
+        }
+      },
+      { rootMargin: '200px' },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   return (
-    <section
-      id="location"
-      className="section-padding bg-parchment-deep relative"
-    >
+    <section id="location" className="section-pad bg-cream-deep relative overflow-hidden">
       <Container>
-        <EditorialMark
-          number="09"
-          kicker="Visitar a chácara"
-          title={
-            <>
-              A melhor forma de decidir{' '}
-              <em
-                className="italic"
-                style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-              >
-                é caminhar
-              </em>{' '}
-              pelo terreno.
-            </>
-          }
-          lede="A foto não consegue contar o tamanho do gramado nem a sombra das árvores. Marque uma visita guiada — em meio dia você sai com decisão tomada."
-        />
+        <div className="max-w-2xl mb-10">
+          <span className="pill-coral">Vem nos ver</span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
+            A chácara fica em <span className="text-coral">Catanduva</span>.
+          </h2>
+          <p className="mt-4 text-lg text-ink-soft">
+            Marca uma visita pelo WhatsApp — a gente recebe, mostra cada cantinho e tira suas dúvidas no lugar.
+          </p>
+        </div>
 
-        <div className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <motion.div
-            ref={ref}
-            initial={reduced ? false : { opacity: 0, y: 24 }}
-            whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 relative aspect-[4/3] lg:aspect-[5/4] bg-forest/10 overflow-hidden"
-          >
-            {seen ? (
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 18 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+          className="grid lg:grid-cols-12 gap-5 md:gap-6"
+        >
+          <div ref={mapRef} className="lg:col-span-7 rounded-3xl overflow-hidden bg-ink/5 aspect-[4/3] lg:aspect-auto lg:min-h-[400px]">
+            {mapVisible ? (
               <iframe
-                title="Localização da Tropical Park Kids — Estr. Vicinal José Frias Garcia, 150, Catanduva/SP"
-                src="https://www.google.com/maps?q=Estrada+Vicinal+Jose+Frias+Garcia+150+Residencial+Paraiso+Catanduva+SP+15809-230&output=embed"
+                src={MAPS_EMBED}
+                title="Localização da Tropical Park Kids em Catanduva"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full border-0 filter saturate-[0.85]"
-                allowFullScreen
+                className="h-full w-full border-0"
               />
             ) : (
-              <div
-                className="absolute inset-0 flex items-center justify-center text-forest/30"
-                aria-hidden="true"
-              >
-                <span
-                  className="font-mono text-[10px] uppercase tracking-[0.22em]"
-                  style={{ fontFeatureSettings: '"tnum"' }}
-                >
-                  Carregando mapa
-                </span>
+              <div className="h-full w-full grid place-items-center text-ink-soft">
+                <span className="text-sm">Carregando o mapa...</span>
               </div>
             )}
-          </motion.div>
+          </div>
 
-          <div className="lg:col-span-5 lg:pl-4">
-            <ol>
-              {highlights.map((h, i) => (
-                <motion.li
-                  key={h.num}
-                  initial={reduced ? false : { opacity: 0, y: 16 }}
-                  whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="grid grid-cols-12 gap-3 items-baseline border-t border-ink/15 py-7 last:border-b last:border-ink/15"
-                >
-                  <span
-                    className="col-span-2 font-mono text-number uppercase text-ember"
-                    style={{ fontFeatureSettings: '"tnum"' }}
-                  >
-                    {h.num}
-                  </span>
-                  <div className="col-span-10">
-                    <h3
-                      className="font-display font-light text-xl md:text-2xl leading-[1.15] tracking-[-0.012em] text-forest"
-                      style={{ fontVariationSettings: '"opsz" 48, "SOFT" 30' }}
-                    >
-                      {h.label}
-                    </h3>
-                    <p className="mt-2 text-ink-soft leading-relaxed">
-                      {h.desc}
-                    </p>
-                  </div>
-                </motion.li>
-              ))}
-            </ol>
+          <div className="lg:col-span-5 bg-cream rounded-3xl p-6 md:p-8 shadow-soft flex flex-col">
+            <div className="flex-1 space-y-5">
+              <InfoRow icon="📍" title="Endereço">
+                Catanduva · SP
+              </InfoRow>
+              <InfoRow icon="🕐" title="Visita agendada">
+                Combinamos um horário que cabe na sua agenda.
+              </InfoRow>
+              <InfoRow icon="🎂" title="Datas disponíveis">
+                Final de semana e feriado lotam rápido. Garante a sua.
+              </InfoRow>
+              <InfoRow icon="🚗" title="Estacionamento">
+                Privativo, dentro da chácara.
+              </InfoRow>
+            </div>
 
-            <motion.div
-              initial={reduced ? false : { opacity: 0, y: 16 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              <MediaFrame
-                asset={mediaAssets.entradaSalao}
-                showCaption={false}
-                className="mt-8 aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5]"
-              />
-            </motion.div>
-
-            <div className="mt-10">
+            <div className="mt-7">
               <Button
                 as="a"
                 href={buildWhatsAppUrl('location')}
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="solid"
+                variant="sun"
                 size="lg"
-                className="w-full sm:w-auto"
+                className="w-full"
               >
-                <span>Agendar minha visita</span>
-                <span aria-hidden="true">→</span>
+                <span>Marcar visita pelo WhatsApp</span>
+                <span aria-hidden="true" className="text-xl">→</span>
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
+  )
+}
+
+function InfoRow({
+  icon,
+  title,
+  children,
+}: {
+  icon: string
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="text-2xl shrink-0" aria-hidden="true">{icon}</span>
+      <div>
+        <p className="font-display font-bold text-ink text-base">{title}</p>
+        <p className="text-ink-soft text-sm leading-relaxed">{children}</p>
+      </div>
+    </div>
   )
 }

@@ -2,38 +2,37 @@ export const WHATSAPP_NUMBER = '5517997756925'
 
 export type SectionContext =
   | 'hero'
+  | 'promise'
   | 'attractions'
-  | 'differentials'
-  | 'structure'
+  | 'gallery'
   | 'events'
   | 'menus'
-  | 'trust'
   | 'proof'
-  | 'faq'
+  | 'differentials'
   | 'location'
+  | 'faq'
+  | 'final'
   | 'header'
 
 const messages: Record<SectionContext, string> = {
-  hero: 'Olá! Vim pelo site da Tropical Park Kids e gostaria de conhecer a experiência da chácara.',
+  hero: 'Oi! Vim pelo site e quero saber como fazer a festa do meu filho aí na Tropical Park.',
+  promise: 'Oi! Vim pelo site da Tropical Park e quero entender como funciona — pode me ajudar?',
   attractions:
-    'Olá! Vi a Centopeia e os bichinhos do shopping no site — quero levar essa experiência para o meu evento.',
-  differentials:
-    'Olá! Quero entender melhor o estacionamento privativo e a estrutura aberta da chácara.',
-  structure:
-    'Olá! Vi as fotos da chácara no site e gostaria de agendar uma visita presencial.',
+    'Oi! Vi a Centopeia e os bichinhos no site — meu filho vai amar. Como faço pra reservar uma festa?',
+  gallery:
+    'Oi! Vi as fotos da galeria e gostei muito. Como faço pra agendar uma visita e conhecer a chácara?',
   events:
-    'Olá! Tenho interesse em realizar um evento na Tropical Park Kids. Pode me passar mais detalhes?',
+    'Oi! Quero saber mais sobre os tipos de festa que vocês fazem — pode me passar mais detalhes?',
   menus:
-    'Olá! Gostaria de receber o detalhamento dos cardápios disponíveis para a minha data.',
-  trust:
-    'Olá! Quero conversar sobre a disponibilidade de agenda e como funciona a reserva.',
+    'Oi! Queria ver as opções de cardápio pra montar a festa do meu filho.',
   proof:
-    'Olá! Gostaria de sentir melhor a estrutura da chácara em uma visita guiada.',
-  faq: 'Olá! Tenho perguntas específicas antes de fechar e gostaria de falar com o Concierge.',
-  location:
-    'Olá! Gostaria de informações sobre como chegar e disponibilidade de agenda da chácara.',
-  header:
-    'Olá! Gostaria de falar com o Concierge Digital da Tropical Park Kids.',
+    'Oi! Li os depoimentos das outras mães e quero conhecer a chácara — como agendo uma visita?',
+  differentials:
+    'Oi! Vi que tem estacionamento privativo e campo de futebol — quero entender melhor a estrutura.',
+  location: 'Oi! Queria saber como chegar e qual a melhor data pra visitar a chácara.',
+  faq: 'Oi! Tenho algumas dúvidas sobre a festa antes de fechar. Pode me ajudar?',
+  final: 'Oi! Quero marcar uma visita na chácara pra conhecer e fazer a festa do meu filho aí.',
+  header: 'Oi! Vim pelo site da Tropical Park Kids e quero fazer um orçamento.',
 }
 
 export function buildWhatsAppUrl(section: SectionContext = 'header'): string {

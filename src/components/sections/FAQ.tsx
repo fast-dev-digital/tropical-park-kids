@@ -1,129 +1,66 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '../ui/Container'
-import { EditorialMark } from '../ui/EditorialMark'
-import { Button } from '../ui/Button'
-import { faq } from '../../data/faq'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { faq } from '../../data/faq'
 
 export function FAQ() {
-  const [openId, setOpenId] = useState<string | null>(null)
   const reduced = usePrefersReducedMotion()
-
-  const toggle = (id: string) =>
-    setOpenId((prev) => (prev === id ? null : id))
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="section-padding bg-parchment relative">
+    <section id="faq" className="section-pad bg-cream relative overflow-hidden">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <EditorialMark
-            number="08"
-            kicker="Antes de fechar"
-            className="lg:col-span-7"
-            title={
-              <>
-                O que famílias e noivos{' '}
-                <em
-                  className="italic"
-                  style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-                >
-                  perguntam
-                </em>{' '}
-                primeiro.
-              </>
-            }
-            lede="Respondemos com clareza para que sua decisão seja baseada em experiência, não em dúvida."
-          />
-
-          <aside className="lg:col-span-4 lg:col-start-9 lg:pt-4">
-            <p
-              className="font-display italic text-ink-soft text-lg leading-relaxed"
-              style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-            >
-              Não vamos falar de preço aqui — disso a gente conversa pelo
-              WhatsApp, com a sua data e o número de convidados na mesa.
-            </p>
-          </aside>
+        <div className="max-w-2xl mx-auto text-center mb-12">
+          <span className="pill-grass">Tira sua dúvida</span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
+            Antes de fechar, é normal querer saber.
+          </h2>
+          <p className="mt-4 text-lg text-ink-soft">
+            As perguntas que mais ouvimos das mães e responsáveis.
+          </p>
         </div>
 
-        <ul className="mt-20 md:mt-28 max-w-narrow mx-auto">
+        <ul className="max-w-3xl mx-auto space-y-3">
           {faq.map((item, i) => {
-            const isOpen = openId === item.id
-            const num = String(i + 1).padStart(2, '0')
+            const isOpen = openIndex === i
             return (
               <li
-                key={item.id}
-                className="border-t border-ink/15 last:border-b last:border-ink/15"
+                key={item.q}
+                className={`bg-cream-deep rounded-2xl overflow-hidden transition-colors ${
+                  isOpen ? 'ring-2 ring-coral' : ''
+                }`}
               >
                 <button
                   type="button"
-                  onClick={() => toggle(item.id)}
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  aria-controls={`faq-panel-${item.id}`}
-                  className="w-full grid grid-cols-12 gap-4 items-baseline py-7 md:py-8 text-left transition-colors hover:text-forest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-parchment focus-visible:ring-forest"
+                  aria-controls={`faq-${i}-panel`}
+                  className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left font-display font-bold text-ink text-base md:text-lg hover:bg-cream-dark/40 transition-colors"
                 >
+                  <span>{item.q}</span>
                   <span
-                    className="col-span-2 md:col-span-1 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted self-start pt-2"
-                    style={{ fontFeatureSettings: '"tnum"' }}
-                  >
-                    {num}
-                  </span>
-                  <span
-                    className="col-span-9 md:col-span-10 font-display font-light text-xl md:text-2xl leading-[1.2] tracking-[-0.012em] text-ink"
-                    style={{ fontVariationSettings: '"opsz" 48, "SOFT" 30' }}
-                  >
-                    {item.question}
-                  </span>
-                  <span
-                    className={`col-span-1 self-start pt-2 font-mono text-2xl leading-none text-forest transition-transform duration-300 ${
-                      isOpen ? 'rotate-45' : ''
-                    }`}
                     aria-hidden="true"
+                    className={`shrink-0 inline-grid place-items-center h-8 w-8 rounded-full text-xl font-bold transition-all ${
+                      isOpen ? 'bg-coral text-cream rotate-45' : 'bg-cream text-ink'
+                    }`}
                   >
                     +
                   </span>
                 </button>
-
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      id={`faq-panel-${item.id}`}
+                      id={`faq-${i}-panel`}
                       key="panel"
                       initial={reduced ? false : { height: 0, opacity: 0 }}
-                      animate={
-                        reduced ? undefined : { height: 'auto', opacity: 1 }
-                      }
+                      animate={reduced ? undefined : { height: 'auto', opacity: 1 }}
                       exit={reduced ? undefined : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.2, 0.65, 0.3, 1] }}
+                      transition={{ duration: 0.28, ease: [0.2, 0.65, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="grid grid-cols-12 gap-4 pb-8 md:pb-10">
-                        <div className="col-span-2 md:col-span-1" aria-hidden="true" />
-                        <div className="col-span-10 md:col-span-10 max-w-prose">
-                          <p className="text-ink-soft text-base md:text-lg leading-relaxed">
-                            {item.answer}
-                          </p>
-                          {item.bullets && item.bullets.length > 0 && (
-                            <ul className="mt-4 space-y-2">
-                              {item.bullets.map((b) => (
-                                <li
-                                  key={b}
-                                  className="flex items-baseline gap-3 text-ink-soft text-base md:text-[17px] leading-snug"
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="font-mono text-ink-faint text-[11px] mt-1"
-                                  >
-                                    —
-                                  </span>
-                                  <span>{b}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-ink-soft leading-relaxed">
+                        {item.a}
                       </div>
                     </motion.div>
                   )}
@@ -132,31 +69,6 @@ export function FAQ() {
             )
           })}
         </ul>
-
-        <div className="mt-20 text-center max-w-narrow mx-auto">
-          <p
-            className="font-display italic text-forest text-2xl md:text-3xl leading-snug"
-            style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-          >
-            Ficou alguma dúvida?
-          </p>
-          <p className="mt-3 text-ink-soft">
-            Mande uma mensagem. Respondemos pessoalmente, em horário comercial.
-          </p>
-          <div className="mt-8">
-            <Button
-              as="a"
-              href={buildWhatsAppUrl('faq')}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="solid"
-              size="lg"
-            >
-              <span>Falar com o concierge</span>
-              <span aria-hidden="true">→</span>
-            </Button>
-          </div>
-        </div>
       </Container>
     </section>
   )

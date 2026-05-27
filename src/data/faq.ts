@@ -1,76 +1,39 @@
-export type FAQItem = {
-  id: string
-  question: string
-  answer: string
-  bullets?: string[]
+export type FaqItem = {
+  q: string
+  a: string
 }
 
-export const faq: FAQItem[] = [
+export const faq: FaqItem[] = [
   {
-    id: 'data-fechada',
-    question: 'Vocês trabalham com agenda exclusiva no dia do evento?',
-    answer:
-      'Sim. Um único evento por data, sem divisão de estrutura.',
-    bullets: [
-      'Chácara inteira reservada para a sua celebração',
-      'Equipe dedicada do início ao fim',
-      'Estacionamento exclusivo do evento',
-    ],
+    q: 'Quantas crianças cabem na festa?',
+    a: 'A chácara comporta festas de 50 a 250 convidados confortavelmente — adultos e crianças juntos, sem aperto. A gente adapta a estrutura pro tamanho da sua festa.',
   },
   {
-    id: 'visita',
-    question: 'Posso visitar a chácara antes de decidir?',
-    answer:
-      'Recomendamos — agendamos visitas guiadas sem compromisso.',
-    bullets: [
-      'Sentir a atmosfera do espaço',
-      'Conhecer a equipe pessoalmente',
-      'Validar a proposta para o evento que você imagina',
-    ],
+    q: 'Vocês decoram no tema da festa?',
+    a: 'Sim. Trabalhamos com decoração temática completa — escolhemos o tema com você (Patrulha Canina, princesas, futebol, etc.) ou recebemos a decoração que você contratar.',
   },
   {
-    id: 'cardapio',
-    question: 'O cardápio pode ser personalizado para o meu evento?',
-    answer:
-      'Sim. Os cinco cardápios são ponto de partida, não jaula.',
-    bullets: [
-      'Seleção de pratos ajustada ao perfil dos convidados',
-      'Restrições alimentares atendidas',
-      'Mesas temáticas e estações especiais',
-    ],
+    q: 'Como funciona a recreação das crianças?',
+    a: 'A gente conta com monitores treinados que cuidam das brincadeiras, da Centopeia, do brinquedão e do campo de futebol. Você relaxa com os convidados, a equipe cuida.',
   },
   {
-    id: 'adulto',
-    question: 'A chácara comporta cerimônia adulta (casamento, 15 anos, corporativo)?',
-    answer:
-      'Sim. O espaço opera em duas camadas — você escolhe o tom.',
-    bullets: [
-      'Cerimônia e recepção adulta sofisticadas',
-      'Infraestrutura completa para festa infantil',
-      'Cenário montado conforme a ocasião',
-    ],
+    q: 'Tem estacionamento pros convidados?',
+    a: 'Sim, estacionamento privativo dentro da chácara — único buffet da região de Catanduva com esse diferencial. Seus convidados não vão dar volta no quarteirão.',
   },
   {
-    id: 'reserva',
-    question: 'Como funciona a reserva da data?',
-    answer:
-      'Confirmada por contrato após o aceite da proposta personalizada.',
-    bullets: [
-      'Checar disponibilidade da data pelo WhatsApp',
-      'Receber orçamento detalhado',
-      'Confirmar a reserva por contrato',
-    ],
+    q: 'Quanto custa uma festa aí?',
+    a: 'Cada festa é única — depende da data, número de convidados, cardápio e decoração. Manda mensagem pelo WhatsApp e a gente monta um orçamento do jeitinho da sua festa.',
   },
   {
-    id: 'incluso',
-    question: 'O que está incluído na proposta?',
-    answer:
-      'Estrutura, equipe, montagem e atrações — alinhadas ao seu evento.',
-    bullets: [
-      'Área coberta, gramado, quadra e estacionamento privativo',
-      'Equipe de cozinha e salão',
-      'Montagem e suporte de produção',
-      'Atrações exclusivas conforme pacote escolhido',
-    ],
+    q: 'Posso visitar antes de fechar?',
+    a: 'Claro — recomendamos. Agenda uma visita pelo WhatsApp, a gente recebe você, mostra o salão, a chácara e tira todas as suas dúvidas no lugar.',
+  },
+  {
+    q: 'Tem comida pra restrições alimentares?',
+    a: 'Sim. Cardápio vegetariano, opções sem lactose ou sem glúten — basta avisar com antecedência e adaptamos.',
+  },
+  {
+    q: 'Vocês fazem festa pra adulto também?',
+    a: 'Sim! Casamento, 15 anos, bodas, formatura e eventos corporativos — a chácara tem versatilidade pra cada ocasião.',
   },
 ]

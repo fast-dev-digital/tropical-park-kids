@@ -1,36 +1,30 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 
-type Variant = 'solid' | 'outline' | 'link' | 'inverse'
+type Variant = 'sun' | 'coral' | 'ghost' | 'white'
 type Size = 'sm' | 'md' | 'lg'
 
 const base =
-  'inline-flex items-center gap-3 font-body font-medium tracking-wide transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-parchment focus-visible:ring-forest disabled:opacity-50 disabled:cursor-not-allowed'
+  'inline-flex items-center justify-center gap-2 font-body font-bold rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sun/50 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.97]'
 
 const variants: Record<Variant, string> = {
-  // Sólido escuro — forest com texto pergaminho. CTA principal sem brilho extra.
-  solid:
-    'bg-forest text-parchment hover:bg-forest-deep border border-forest hover:border-forest-deep',
-  // Outline editorial — fina borda forest, texto forest.
-  outline:
-    'border border-forest text-forest hover:bg-forest hover:text-parchment',
-  // Inverse — para uso em fundos escuros (Hero, Location).
-  inverse:
-    'border border-parchment/70 text-parchment hover:bg-parchment hover:text-forest',
-  // Link com seta — para CTAs secundários e in-text.
-  link:
-    'text-forest border-b border-forest/40 hover:border-forest pb-1',
+  // Primário — amarelo sol, texto grafite. Sombra colorida que aquece.
+  sun:
+    'bg-sun text-ink shadow-playful hover:bg-sun-deep hover:shadow-coral hover:-translate-y-0.5',
+  // Secundário — coral, texto creme.
+  coral:
+    'bg-coral text-cream shadow-coral hover:bg-coral-deep hover:-translate-y-0.5',
+  // Terciário — sem fundo, borda fina, hover preenche.
+  ghost:
+    'bg-transparent text-ink border-2 border-ink/15 hover:border-ink/40 hover:bg-cream-deep',
+  // Inverso — para uso sobre fundos escuros/fotos. Branco com texto grafite.
+  white:
+    'bg-cream text-ink shadow-soft hover:bg-white hover:-translate-y-0.5',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'text-[12px] uppercase tracking-[0.18em] px-5 py-2.5',
-  md: 'text-[13px] uppercase tracking-[0.18em] px-7 py-3.5',
-  lg: 'text-[13px] uppercase tracking-[0.22em] px-9 py-4',
-}
-
-const linkSizes: Record<Size, string> = {
-  sm: 'text-[12px] uppercase tracking-[0.18em]',
-  md: 'text-[13px] uppercase tracking-[0.18em]',
-  lg: 'text-sm uppercase tracking-[0.22em]',
+  sm: 'text-sm px-5 py-2.5',
+  md: 'text-base px-6 py-3',
+  lg: 'text-lg px-8 py-4',
 }
 
 type CommonProps = {
@@ -45,15 +39,14 @@ type AnchorProps = CommonProps & AnchorHTMLAttributes<HTMLAnchorElement> & { as:
 
 export function Button(props: ButtonProps | AnchorProps) {
   const {
-    variant = 'solid',
+    variant = 'sun',
     size = 'md',
     className = '',
     children,
     ...rest
   } = props as CommonProps & { as?: 'a' | 'button' }
 
-  const sizeClass = variant === 'link' ? linkSizes[size] : sizes[size]
-  const classes = `${base} ${variants[variant]} ${sizeClass} ${className}`
+  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`
 
   if ((props as AnchorProps).as === 'a') {
     const { as: _as, ...anchorRest } = rest as AnchorHTMLAttributes<HTMLAnchorElement> & { as?: 'a' }

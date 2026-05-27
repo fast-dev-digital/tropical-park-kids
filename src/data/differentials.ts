@@ -1,51 +1,51 @@
-import { ParkingSquare, Trophy, TreePine, UtensilsCrossed } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-import { mediaAssets, type MediaAsset } from './media'
-
 export type Differential = {
   id: string
+  icon: string
   title: string
   description: string
-  icon: LucideIcon
-  accent: 'green' | 'gold' | 'royal' | 'coral'
-  media?: MediaAsset
 }
 
 export const differentials: Differential[] = [
   {
     id: 'estacionamento',
-    title: 'Estacionamento privativo dentro da chácara',
+    icon: '🚗',
+    title: 'Estacionamento privativo',
     description:
-      'Único buffet da região com estacionamento dentro da propriedade — os convidados descem na porta do salão.',
-    icon: ParkingSquare,
-    accent: 'green',
-    media: mediaAssets.entradaSalao,
+      'Único buffet da região dentro de uma chácara com estacionamento próprio cercado. Seus convidados não vão dar volta no quarteirão.',
   },
   {
-    id: 'quadra',
-    title: 'O maior campo de futebol da região — 12x18m',
+    id: 'chacara',
+    icon: '🌳',
+    title: 'Chácara aberta, com natureza',
     description:
-      'Campo imenso, fora de série, que salão de festa fechado nenhum chega perto — recreação, pelada e dinâmicas em grupo.',
-    icon: Trophy,
-    accent: 'royal',
-    media: mediaAssets.futebolCriancasSquare,
+      'Não é galpão fechado. É chácara de verdade — área externa, ar livre, espaço pra criança respirar e correr.',
   },
   {
-    id: 'chacara-aberta',
-    title: 'Chácara aberta, integrada à natureza',
+    id: 'campo',
+    icon: '⚽',
+    title: 'Campo de futebol 12×18',
     description:
-      'Não é só um salão de festa. Área coberta, gramado, árvores grandes e céu aberto — os convidados percebem antes de sentar.',
-    icon: TreePine,
-    accent: 'gold',
-    media: mediaAssets.centopeiaChacara,
+      'Quadra poliesportiva pra recreação e brincadeira coletiva. Festa de menino vira partidão.',
   },
   {
     id: 'fartura',
-    title: 'Serviço com fartura, sem racionamento',
+    icon: '🍰',
+    title: 'Buffet com fartura',
     description:
-      'A cozinha reabastece enquanto houver gente servindo — ninguém volta ao buffet e encontra travessa vazia.',
-    icon: UtensilsCrossed,
-    accent: 'coral',
-    media: mediaAssets.buffetFartura,
+      'A gente serve até o fim. Ninguém sai com fome, ninguém recebe reclamação de comida que acabou.',
+  },
+  {
+    id: 'seguranca',
+    icon: '🛡️',
+    title: 'Equipe que cuida',
+    description:
+      'Monitores treinados, brinquedos com manutenção em dia, ambiente fechado e seguro pra criança soltar.',
+  },
+  {
+    id: 'flexibilidade',
+    icon: '🎀',
+    title: 'Festa do jeitinho que você sonhou',
+    description:
+      'Tema, decoração, lembrancinha — a gente adapta pro que a aniversariante (e você) imaginou.',
   },
 ]

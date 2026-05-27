@@ -7,93 +7,99 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Paleta editorial-botânica.
-        // brand-* mantidos por compatibilidade com a spec, mas usados com restrição.
-        brand: {
-          green: '#0F743A',
-          'green-deep': '#0a4d27',
-          'green-dark': '#0a5128',
-          gold: '#FBB017',
-          'gold-dark': '#d4930a',
-          royal: '#2A549E',
-          'royal-dark': '#1e3d75',
+        // Paleta v2 logo-driven — letras 3D balão (vermelho/amarelo/verde/azul) sobre fundo lilás.
+        // Regra: 1 cor de destaque por seção, máximo 2 acentos visíveis ao mesmo tempo.
+        cream: {
+          DEFAULT: '#FFF8EC',
+          deep: '#FCEFD0',
+          dark: '#F4E2B6',
         },
-        // Pergaminho e tons orgânicos — substituem o branco puro como base editorial.
-        parchment: {
-          DEFAULT: '#F5EFE3',
-          deep: '#EBE2CE',
-          dark: '#D9CDB0',
+        sun: {
+          DEFAULT: '#FBC02D',
+          deep: '#E0A810',
+          soft: '#FFE08A',
         },
-        // Verde floresta — usado como tinta institucional, não como botão.
-        forest: {
-          DEFAULT: '#1F3A2B',
-          deep: '#142519',
-          ink: '#0F1F14',
+        coral: {
+          DEFAULT: '#E94B3C',
+          deep: '#C73828',
+          soft: '#FBC4BE',
         },
-        // Tons de tinta quentes em vez de slate frio.
+        grass: {
+          DEFAULT: '#5BB04B',
+          deep: '#3F8830',
+          soft: '#C1E5B9',
+        },
+        sky: {
+          DEFAULT: '#3DB2E6',
+          deep: '#1E8AB8',
+          soft: '#BDE4F4',
+        },
+        grape: {
+          DEFAULT: '#7B4DC8',
+          deep: '#5A33A0',
+          soft: '#D7C7F1',
+        },
         ink: {
-          DEFAULT: '#1A1F1A',
-          soft: '#2F3A30',
-          muted: '#5B665D',
-          faint: '#8A9388',
-        },
-        // Acento dourado, reservado para momento único.
-        ember: {
-          DEFAULT: '#B47A2E',
-          deep: '#8C5C1F',
-        },
-        playful: {
-          coral: '#C44536',
-          sky: '#5BC0EB',
-          lime: '#9BC53D',
-          magenta: '#C73E9E',
+          DEFAULT: '#2B2533',
+          soft: '#5A5266',
+          mute: '#9089A0',
         },
       },
       fontFamily: {
-        // Fraunces (variable serif) protagonista, com itálico para captions.
-        display: ['"Fraunces"', 'Georgia', 'serif'],
-        serif: ['"Fraunces"', 'Georgia', 'serif'],
-        // DM Sans para corpo e UI — quente, neutro, não-Inter.
-        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        // Mono editorial para numeração de seções e details.
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-      },
-      fontSize: {
-        // Escalas editoriais com leading apertado.
-        kicker: ['0.7rem', { lineHeight: '1', letterSpacing: '0.22em' }],
-        number: ['0.75rem', { lineHeight: '1', letterSpacing: '0.18em' }],
-      },
-      letterSpacing: {
-        editorial: '0.22em',
+        display: ['"Fredoka"', 'system-ui', 'sans-serif'],
+        body: ['"Nunito"', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        editorial: '76rem',
+        content: '76rem',
         prose: '38rem',
-        narrow: '52rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+      },
+      boxShadow: {
+        playful: '0 14px 40px -12px rgba(251,192,45,0.35)',
+        coral: '0 14px 40px -12px rgba(233,75,60,0.30)',
+        soft: '0 8px 24px -10px rgba(43,37,51,0.18)',
       },
       animation: {
-        'fade-up': 'fadeUp 0.9s cubic-bezier(0.2,0.65,0.3,1) forwards',
-        marquee: 'marquee 38s linear infinite',
+        'fade-up': 'fadeUp 0.7s cubic-bezier(0.2,0.65,0.3,1) forwards',
+        'wiggle': 'wiggle 2.4s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'pop': 'pop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards',
       },
       keyframes: {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(14px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-1.5deg)' },
+          '50%': { transform: 'rotate(1.5deg)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        pop: {
+          '0%': { opacity: '0', transform: 'scale(0.85)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
       backgroundImage: {
-        'hero-overlay':
-          'linear-gradient(180deg, rgba(15,31,20,0.35) 0%, rgba(15,31,20,0.55) 55%, rgba(15,31,20,0.85) 100%)',
-        'grain':
-          "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.13  0 0 0 0 0.10  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E\")",
-      },
-      boxShadow: {
-        editorial: '0 30px 60px -25px rgba(15,31,20,0.35)',
-        plate: '0 1px 0 0 rgba(26,31,26,0.08)',
+        // Fundo lilás nublado — inspirado em public/background logo.png. Replica o
+        // ambiente cromático da logo: várias camadas de gradient roxo/violeta com
+        // nuvens brancas suaves e um leve glow amarelo no canto.
+        'lilac-clouds':
+          'radial-gradient(ellipse 70% 50% at 28% 22%, rgba(255,255,255,0.28), transparent 62%),' +
+          'radial-gradient(ellipse 55% 40% at 78% 70%, rgba(255,255,255,0.18), transparent 60%),' +
+          'radial-gradient(circle at 88% 18%, rgba(255,224,138,0.22), transparent 55%),' +
+          'radial-gradient(circle at 8% 85%, rgba(90,51,160,0.55), transparent 60%),' +
+          'linear-gradient(165deg, #5E3DA6 0%, #7D4CD0 38%, #9166D9 68%, #B891E6 100%)',
+        'sun-gradient':
+          'linear-gradient(135deg, #FBC02D 0%, #FFE08A 100%)',
+        'coral-gradient':
+          'linear-gradient(135deg, #E94B3C 0%, #FBC4BE 100%)',
       },
     },
   },

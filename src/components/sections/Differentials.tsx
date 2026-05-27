@@ -1,100 +1,54 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
-import { EditorialMark } from '../ui/EditorialMark'
-import { MediaFrame } from '../ui/MediaFrame'
-import { differentials } from '../../data/differentials'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { differentials } from '../../data/differentials'
+
+const cardColors = [
+  'bg-coral text-cream',
+  'bg-grass text-cream',
+  'bg-sky text-cream',
+  'bg-sun text-ink',
+  'bg-grape text-cream',
+  'bg-ink text-cream',
+]
 
 export function Differentials() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section
-      id="differentials"
-      className="section-padding bg-forest text-parchment relative overflow-hidden"
-    >
-      <div
-        className="absolute inset-0 bg-grain opacity-[0.12] mix-blend-overlay pointer-events-none"
-        aria-hidden="true"
-      />
-
+    <section id="differentials" className="section-pad bg-cream relative overflow-hidden">
       <Container>
-        <EditorialMark
-          number="02"
-          kicker="Diferenciais únicos"
-          tone="light"
-          title={
-            <>
-              Quatro vantagens que{' '}
-              <em
-                className="italic"
-                style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-              >
-                nenhum salão de festa
-              </em>{' '}
-              do interior entrega.
-            </>
-          }
-          lede="Não se trata de gosto. São quatro vantagens estruturais — concretas, mensuráveis — que mudam a experiência do seu convidado do estacionamento ao último brinde."
-        />
-
-        <ol className="mt-20 md:mt-28">
-          {differentials.map((d, i) => {
-            const num = String(i + 1).padStart(2, '0')
-            return (
-              <motion.li
-                key={d.id}
-                initial={reduced ? false : { opacity: 0, y: 24 }}
-                whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="group grid grid-cols-12 gap-6 md:gap-10 items-baseline border-t border-parchment/15 py-8 md:py-12 last:border-b last:border-parchment/15 transition-colors hover:bg-parchment/[0.04]"
-              >
-                <span
-                  className="col-span-2 md:col-span-1 font-mono text-number uppercase text-parchment/55 self-start pt-2"
-                  style={{ fontFeatureSettings: '"tnum"' }}
-                >
-                  {num}
-                </span>
-                <h3
-                  className="col-span-10 md:col-span-5 font-display font-light text-parchment text-3xl md:text-[2.5rem] leading-[1.05] tracking-[-0.018em]"
-                  style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
-                >
-                  {d.title}
-                </h3>
-                <p className="col-span-12 md:col-span-4 text-parchment/80 leading-relaxed text-base md:text-[17px]">
-                  {d.description}
-                </p>
-                {d.media && (
-                  <div className="col-span-12 md:col-span-2 self-center">
-                    <MediaFrame
-                      asset={d.media}
-                      autoPlay={d.media.type === 'video'}
-                      showCaption={false}
-                      className="aspect-[16/9] md:aspect-square"
-                    />
-                  </div>
-                )}
-              </motion.li>
-            )
-          })}
-        </ol>
-
-        <div className="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10 items-center">
-          <p
-            className="col-span-12 md:col-span-7 font-display italic text-parchment text-2xl md:text-3xl leading-snug"
-            style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-          >
-            Tudo isso num único endereço. Numa única chácara. Numa única data — a sua.
+        <div className="max-w-2xl mb-12">
+          <span className="pill-sky">Por dentro da chácara</span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
+            O que faz a Tropical Park <span className="text-coral">diferente</span>.
+          </h2>
+          <p className="mt-4 text-lg text-ink-soft">
+            Não é "mais um buffet". A gente é a única chácara da região de Catanduva
+            pensada de ponta a ponta pra festa de criança rolar redondo.
           </p>
-          <a
-            href="#structure"
-            className="col-span-12 md:col-span-5 md:justify-self-end inline-flex items-center gap-3 text-parchment/90 hover:text-parchment text-[13px] uppercase tracking-[0.22em] border-b border-parchment/40 hover:border-parchment pb-1 transition-colors"
-          >
-            <span>Ver a chácara</span>
-            <span aria-hidden="true">→</span>
-          </a>
         </div>
+
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          {differentials.map((d, i) => (
+            <motion.li
+              key={d.id}
+              initial={reduced ? false : { opacity: 0, y: 20 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.55, delay: reduced ? 0 : i * 0.07 }}
+              className={`${cardColors[i % cardColors.length]} rounded-3xl p-6 md:p-7 hover:-translate-y-1 transition-transform`}
+            >
+              <div className="text-4xl mb-3" aria-hidden="true">{d.icon}</div>
+              <h3 className="font-display font-bold text-xl md:text-2xl leading-tight">
+                {d.title}
+              </h3>
+              <p className="mt-2 text-sm md:text-base leading-relaxed opacity-95">
+                {d.description}
+              </p>
+            </motion.li>
+          ))}
+        </ul>
       </Container>
     </section>
   )

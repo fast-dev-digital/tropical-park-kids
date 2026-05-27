@@ -3,56 +3,73 @@ import { mediaAssets, type MediaAsset } from './media'
 export type Menu = {
   id: string
   name: string
-  tagline: string
-  description: string
+  pitch: string
   highlights: string[]
-  media?: MediaAsset
+  media: MediaAsset
 }
 
 export const menus: Menu[] = [
   {
-    id: 'coquetel-premium',
-    name: 'Coquetel Premium',
-    tagline: 'Recepção sofisticada em formato volante',
-    description:
-      'Estações gourmet, finger foods autorais e sobremesas em miniatura, servidos em ritmo elegante.',
-    highlights: ['Estações temáticas', 'Finger foods autorais', 'Sobremesas signature'],
-    media: mediaAssets.menuCoquetelTabua,
-  },
-  {
-    id: 'jantar-franco-americano',
-    name: 'Jantar Franco-Americano',
-    tagline: 'Serviço empratado com inspiração internacional',
-    description:
-      'Entrada, prato principal empratado e mesa de sobremesas — francesa clássica com sotaque contemporâneo.',
-    highlights: ['Serviço empratado', 'Entrada e prato principal', 'Mesa de sobremesas'],
-    media: mediaAssets.menuJantarRigatoni,
-  },
-  {
-    id: 'churrasco-gourmet',
-    name: 'Churrasco Gourmet',
-    tagline: 'Cortes nobres assados na hora',
-    description:
-      'Cortes nobres assados por chef especializado, com guarnições selecionadas e mesa de saladas.',
-    highlights: ['Cortes nobres', 'Chef ao vivo', 'Guarnições gourmet'],
-    media: mediaAssets.buffetFartura,
-  },
-  {
-    id: 'menu-kids',
-    name: 'Menu Kids Festa',
-    tagline: 'Cardápio infantil e mesa de doces',
-    description:
-      'Salgadinhos clássicos, mini hambúrgueres, batatas, mesa de doces finos e bem-casados.',
-    highlights: ['Salgados de festa', 'Estação de mini burgers', 'Mesa de doces finos'],
+    id: 'kids',
+    name: 'Festa Kids',
+    pitch: 'O cardápio que a criança adora e a mãe aprova.',
+    highlights: [
+      'Salgadinhos fritos e assados',
+      'Mesa de doces caprichada',
+      'Refrigerante e sucos à vontade',
+      'Bolo decorado no tema',
+    ],
     media: mediaAssets.menuKids,
   },
   {
-    id: 'menu-corporativo',
-    name: 'Menu Corporativo Executivo',
-    tagline: 'Almoços e coffee breaks profissionais',
-    description:
-      'Coffee breaks completos, almoço executivo e brunchs para confraternizações e treinamentos.',
-    highlights: ['Coffee break completo', 'Almoço executivo', 'Atendimento discreto'],
+    id: 'coquetel',
+    name: 'Coquetel',
+    pitch: 'Pra receber em pé, sem perder a sofisticação do paladar.',
+    highlights: [
+      'Tábuas de antepastos',
+      'Mini-porções quentes',
+      'Drinks autorais',
+      'Estação de canapés',
+    ],
+    media: mediaAssets.menuCoquetelTabua,
+  },
+  {
+    id: 'jantar',
+    name: 'Jantar',
+    pitch: 'Mesa posta, prato servido, conversa boa.',
+    highlights: [
+      'Entrada quente e fria',
+      'Prato principal à escolha',
+      'Acompanhamentos quentes',
+      'Sobremesa empratada',
+    ],
+    media: mediaAssets.menuJantarRigatoni,
+  },
+  {
+    id: 'churrasco',
+    name: 'Churrasco',
+    pitch: 'A festa da chácara que combina com tudo.',
+    highlights: [
+      'Carnes nobres no carvão',
+      'Saladas frescas',
+      'Acompanhamentos quentes',
+      'Mesa de frios',
+    ],
+    media: mediaAssets.menuChurrascoSalada,
+  },
+  {
+    id: 'corporativo',
+    name: 'Corporativo',
+    pitch: 'Almoço ou jantar que reúne o time inteiro.',
+    highlights: [
+      'Buffet completo',
+      'Saladas gourmet',
+      'Pratos quentes variados',
+      'Sobremesas e cafés',
+    ],
     media: mediaAssets.menuCorporativoSalada,
   },
 ]
+
+export const MENUS_DISCLAIMER =
+  'Cada festa é única. Conta pra gente a data e quantas crianças você espera — a gente monta o orçamento do jeitinho da sua festa.'

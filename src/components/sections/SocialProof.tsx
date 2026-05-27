@@ -1,60 +1,80 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
-import { EditorialMark } from '../ui/EditorialMark'
-import { socialProofItems } from '../../data/socialProof'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { testimonials, stats } from '../../data/socialProof'
 
 export function SocialProof() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section id="proof" className="section-padding bg-forest text-parchment relative overflow-hidden">
-      <div className="absolute inset-0 bg-grain opacity-[0.12] mix-blend-overlay pointer-events-none" aria-hidden="true" />
-      <Container>
-        <EditorialMark
-          number="07"
-          kicker="Confiança"
-          tone="light"
-          title={
-            <>
-              Antes de escolher, a família precisa{' '}
-              <em className="italic" style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}>
-                sentir
-              </em>{' '}
-              o lugar.
-            </>
-          }
-          lede="A confiança aqui se apoia no que pode ser visto: percurso, equipe, atrações, cozinha e estrutura funcionando como uma experiência única."
-        />
+    <section id="proof" className="section-pad bg-grape relative overflow-hidden">
+      {/* Camada de iluminação suave */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 50% at 30% 20%, rgba(255,255,255,0.18), transparent 65%), ' +
+            'radial-gradient(circle at 88% 80%, rgba(255,224,138,0.16), transparent 55%)',
+        }}
+      />
 
-        <ol className="mt-20 md:mt-28">
-          {socialProofItems.map((item, i) => (
+      <Container className="relative z-10">
+        <div className="max-w-2xl mb-12">
+          <span className="inline-flex items-center gap-2 rounded-full bg-sun text-ink px-4 py-1.5 text-sm font-bold">
+            Mães contam
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-cream mt-4 leading-[1.05]">
+            500+ festas. Centenas de mães felizes.
+          </h2>
+          <p className="mt-4 text-lg text-cream/90">
+            Cada festa que sai daqui vira história. Aqui vão algumas que as mães autorizaram a gente compartilhar.
+          </p>
+        </div>
+
+        {/* Stats em fileira */}
+        <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {stats.map((s, i) => (
             <motion.li
-              key={item.id}
-              initial={reduced ? false : { opacity: 0, y: 18 }}
+              key={s.label}
+              initial={reduced ? false : { opacity: 0, y: 12 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.2, 0.65, 0.3, 1] }}
-              className="grid grid-cols-12 gap-6 md:gap-10 border-t border-parchment/15 py-8 md:py-10 last:border-b last:border-parchment/15"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: reduced ? 0 : i * 0.06 }}
+              className="bg-cream/12 backdrop-blur-sm border border-cream/20 rounded-2xl p-5 text-center"
             >
-              <span
-                className="col-span-2 md:col-span-1 font-mono text-number uppercase text-parchment/55"
-                style={{ fontFeatureSettings: '"tnum"' }}
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3
-                className="col-span-10 md:col-span-4 font-display font-light text-parchment text-2xl md:text-3xl leading-[1.08]"
-                style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
-              >
-                {item.label}
-              </h3>
-              <p className="col-span-12 md:col-span-7 text-parchment/80 text-base md:text-lg leading-relaxed">
-                {item.text}
+              <p className="font-display font-bold text-3xl md:text-4xl text-sun">{s.value}</p>
+              <p className="mt-1 text-cream/85 text-sm font-semibold uppercase tracking-wide">
+                {s.label}
               </p>
             </motion.li>
           ))}
-        </ol>
+        </ul>
+
+        {/* Depoimentos */}
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => (
+            <motion.li
+              key={t.id}
+              initial={reduced ? false : { opacity: 0, y: 18 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.55, delay: reduced ? 0 : i * 0.08 }}
+              className="bg-cream rounded-3xl p-6 md:p-7 shadow-soft"
+            >
+              <div className="flex gap-1 mb-3" aria-label="5 estrelas">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <span key={j} aria-hidden="true" className="text-sun text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-ink leading-relaxed">"{t.quote}"</p>
+              <div className="mt-5 pt-5 border-t border-ink/10">
+                <p className="font-display font-bold text-ink">{t.name}</p>
+                <p className="text-ink-soft text-sm">{t.role}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
       </Container>
     </section>
   )

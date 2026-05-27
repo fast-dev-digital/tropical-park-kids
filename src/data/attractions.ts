@@ -1,64 +1,49 @@
-import { Train, Sparkles } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { mediaAssets, type MediaAsset } from './media'
 
 export type Attraction = {
   id: string
-  badge: string
-  title: string
+  name: string
   tagline: string
   description: string
-  highlights: string[]
   media: MediaAsset
-  supportMedia: MediaAsset[]
-  visualNote: string
-  icon: LucideIcon
-  accent: 'gold' | 'coral'
+  accentColor: 'coral' | 'sun' | 'grass' | 'sky' | 'grape'
 }
 
 export const attractions: Attraction[] = [
   {
-    id: 'trenzinho-centopeia',
-    badge: 'Exclusivo na região',
-    title: 'Trenzinho do Mundo dos Animais e das Aves',
-    tagline: 'Passeio guiado pela fazendinha da chácara',
+    id: 'centopeia',
+    name: 'Trenzinho Centopeia',
+    tagline: 'A estrela da festa',
     description:
-      'O trenzinho para a festa e leva as crianças até a fazendinha — onde dar comida ao cavalo na mão só acontece aqui.',
-    highlights: [
-      'Passeio guiado do salão à fazendinha',
-      'Gansos, patos, porquinhos, coelhos, carneiros',
-      'Alimentar o cavalo na mão',
-    ],
+      'Os vagões de tambor iluminados saem do salão e dão a volta pela chácara. Não tem criança que não pede pra andar de novo.',
     media: mediaAssets.centopeiaSalaoStar,
-    supportMedia: [
-      mediaAssets.centopeiaChacara,
-      mediaAssets.centopeiaQuadraNoite,
-      mediaAssets.salaoInfantil,
-    ],
-    visualNote: 'Registro real do trenzinho a caminho da fazendinha',
-    icon: Train,
-    accent: 'gold',
+    accentColor: 'coral',
   },
   {
-    id: 'carrossel-parque',
-    badge: 'Inédito na região',
-    title: 'Carrossel de parque de diversões',
-    tagline: 'Estrutura mecânica clássica dentro do salão',
+    id: 'bichinhos',
+    name: 'Bichinhos motorizados',
+    tagline: 'Direto do shopping pra festa',
     description:
-      'Carrossel mecânico de verdade dentro do salão — a mesma atração que as crianças procuram no parque, montada na festa.',
-    highlights: [
-      'Estrutura mecânica modelo de parque',
-      'Cavalinhos e mini-bugguinhos',
-      'Monitor dedicado',
-    ],
-    media: mediaAssets.carrosselParqueVideo,
-    supportMedia: [
-      mediaAssets.salaoBrinquedaoStar,
-      mediaAssets.carrinhosPista,
-      mediaAssets.carrinhosCriancas01,
-    ],
-    visualNote: 'Atração mecânica em uso durante a festa',
-    icon: Sparkles,
-    accent: 'coral',
+      'Dragão, Banguela, Patrulha Canina — os mesmos bichinhos que sua filha implora pra andar no shopping, agora dentro da festa dela.',
+    media: mediaAssets.carrinhosCriancas01,
+    accentColor: 'sun',
+  },
+  {
+    id: 'campo',
+    name: 'Campo de futebol 12×18',
+    tagline: 'Pra criança correr de verdade',
+    description:
+      'Espaço aberto, gramado, pra jogar bola e correr o quanto quiser. Sem aglomeração, sem briga por brinquedo.',
+    media: mediaAssets.futebolCriancasVideo,
+    accentColor: 'grass',
+  },
+  {
+    id: 'brinquedao',
+    name: 'Brinquedão e carrossel',
+    tagline: 'Diversão sem parar',
+    description:
+      'Brinquedão tubular com escorregadores, piscina de bolinhas e carrossel mecânico que gira sem cansar.',
+    media: mediaAssets.brinquedaoVideo,
+    accentColor: 'sky',
   },
 ]

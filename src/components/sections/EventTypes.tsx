@@ -1,117 +1,115 @@
 import { motion } from 'framer-motion'
 import { Container } from '../ui/Container'
-import { EditorialMark } from '../ui/EditorialMark'
-import { MediaFrame } from '../ui/MediaFrame'
-import { eventTypes } from '../../data/eventTypes'
-import { eventTypeMedia } from '../../data/media'
+import { Button } from '../ui/Button'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { eventTypes } from '../../data/eventTypes'
+
+const accentMap: Record<string, { bg: string; text: string }> = {
+  coral: { bg: 'bg-coral', text: 'text-cream' },
+  sun: { bg: 'bg-sun', text: 'text-ink' },
+  grass: { bg: 'bg-grass', text: 'text-cream' },
+  sky: { bg: 'bg-sky', text: 'text-cream' },
+  grape: { bg: 'bg-grape', text: 'text-cream' },
+}
 
 export function EventTypes() {
   const reduced = usePrefersReducedMotion()
+  const featured = eventTypes.find((e) => e.highlight)!
+  const rest = eventTypes.filter((e) => !e.highlight)
 
   return (
-    <section id="events" className="section-padding bg-parchment relative">
+    <section id="events" className="section-pad bg-cream relative overflow-hidden">
       <Container>
-        <EditorialMark
-          number="04"
-          kicker="Tipos de evento"
-          title={
-            <>
-              Para cada celebração,{' '}
-              <em
-                className="italic"
-                style={{ fontVariationSettings: '"opsz" 144, "SOFT" 70' }}
-              >
-                a mesma exigência
-              </em>
-              .
-            </>
-          }
-          lede="A chácara recebe da brincadeira infantil à cerimônia adulta — com a equipe ajustando o tom sem mudar o padrão."
-        />
+        <div className="max-w-2xl mb-12">
+          <span className="pill-grass">Pra cada motivo</span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-ink mt-4 leading-[1.05]">
+            A chácara que se transforma <em className="not-italic text-coral">com você</em>.
+          </h2>
+          <p className="mt-4 text-lg text-ink-soft">
+            Festa infantil é o nosso forte — mas a chácara recebe muito mais que isso.
+          </p>
+        </div>
 
-        <ol className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-2">
-          {eventTypes.map((evt, i) => {
-            const num = String(i + 1).padStart(2, '0')
-            const isFirstRow = i < 2
-            const isFirstCol = i % 2 === 0
-            const media = eventTypeMedia[evt.id as keyof typeof eventTypeMedia]
+        {/* Festa Infantil em destaque */}
+        <motion.article
+          initial={reduced ? false : { opacity: 0, y: 24 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+          className="grid lg:grid-cols-12 gap-0 rounded-4xl overflow-hidden bg-coral shadow-coral mb-6"
+        >
+          <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-auto lg:min-h-[420px]">
+            <img
+              src={featured.media.src}
+              alt={featured.media.alt}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+          <div className="lg:col-span-5 p-8 md:p-10 lg:p-12 text-cream flex flex-col justify-center">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-sun text-ink px-4 py-1.5 text-sm font-bold mb-4">
+              <span className="h-2 w-2 rounded-full bg-coral" />
+              Nosso forte
+            </span>
+            <h3 className="font-display font-bold text-3xl md:text-4xl leading-tight">
+              {featured.name}
+            </h3>
+            <p className="mt-2 font-display text-xl text-cream/95 italic">{featured.hook}</p>
+            <p className="mt-4 text-cream/95 leading-relaxed">{featured.body}</p>
+            <div className="mt-7">
+              <Button
+                as="a"
+                href={buildWhatsAppUrl('events')}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="sun"
+                size="md"
+              >
+                <span>Quero festa infantil</span>
+                <span aria-hidden="true" className="text-xl">→</span>
+              </Button>
+            </div>
+          </div>
+        </motion.article>
+
+        {/* Resto em grid */}
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          {rest.map((e, i) => {
+            const accent = accentMap[e.accent]
             return (
               <motion.li
-                key={evt.id}
-                initial={reduced ? false : { opacity: 0, y: 24 }}
+                key={e.id}
+                initial={reduced ? false : { opacity: 0, y: 18 }}
                 whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.7, delay: i * 0.08 }}
-                className={`
-                  relative p-8 md:p-12 lg:p-14
-                  ${isFirstRow ? 'border-t border-ink/15' : ''}
-                  border-b border-ink/15
-                  ${isFirstCol ? 'md:border-r md:border-ink/15' : ''}
-                `}
+                transition={{ duration: 0.5, delay: reduced ? 0 : i * 0.06 }}
+                className="group relative overflow-hidden rounded-3xl bg-ink shadow-soft"
               >
-                <div className="flex items-baseline gap-4">
-                  <span
-                    className="font-mono text-number uppercase text-ember"
-                    style={{ fontFeatureSettings: '"tnum"' }}
-                  >
-                    {num}
-                  </span>
-                  <span className="kicker text-ink-muted">
-                    {evt.id === 'casamento'
-                      ? 'Cerimônia & recepção'
-                      : evt.id === 'infantil'
-                        ? 'Festa & recreação'
-                        : evt.id === 'adulto'
-                          ? 'Celebração adulta'
-                          : 'Encontro corporativo'}
-                  </span>
-                </div>
-                <h3
-                  className="mt-6 font-display font-light text-forest text-4xl md:text-5xl leading-[1.02] tracking-[-0.018em]"
-                  style={{ fontVariationSettings: '"opsz" 144, "SOFT" 30' }}
-                >
-                  {evt.title}
-                </h3>
-                <p className="mt-5 text-ink-soft text-lg leading-relaxed max-w-prose">
-                  {evt.description}
-                </p>
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {evt.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted border-b border-ink/20 pb-1"
-                    >
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                {media && (
-                  <MediaFrame
-                    asset={media}
-                    priority={media.priority === 'star'}
-                    showCaption={false}
-                    className="mt-10 aspect-[4/5] md:aspect-[16/10]"
+                <div className="aspect-[5/4] overflow-hidden">
+                  <img
+                    src={e.media.src}
+                    alt={e.media.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                )}
-                {evt.supportMedia && evt.supportMedia.length > 0 && (
-                  <div className="mt-3 flex gap-2 md:gap-3">
-                    {evt.supportMedia.map((asset) => (
-                      <div key={asset.id} className="flex-1 min-w-0">
-                        <MediaFrame
-                          asset={asset}
-                          autoPlay={asset.type === 'video'}
-                          showCaption={false}
-                          className="aspect-square"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+                </div>
+                <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                  <span
+                    className={`inline-flex w-fit items-center rounded-full ${accent.bg} ${accent.text} px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-2`}
+                  >
+                    {e.name}
+                  </span>
+                  <p className="font-display font-bold text-xl text-cream leading-tight">{e.hook}</p>
+                  <p className="mt-1 text-cream/85 text-sm">{e.body}</p>
+                </div>
               </motion.li>
             )
           })}
-        </ol>
+        </ul>
       </Container>
     </section>
   )
