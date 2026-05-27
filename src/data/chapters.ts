@@ -32,8 +32,10 @@ export const chapters: Chapter[] = [
     // Mobile prioriza vídeo da entrada decorada (mais movimento que a foto do hall).
     heroMobile: mediaAssets.entradaDecoradaVideo,
     support: [
-      mediaAssets.decoracaoEntradaStar,
-      mediaAssets.salaoBrinquedaoStar,
+      mediaAssets.decoracaoFazendinhaAzul,
+      mediaAssets.entradaFazendinha,
+      mediaAssets.decoracaoFazendinhaDoces,
+      mediaAssets.salaoInfantil,
     ],
     whisper: 'Estacionamento privativo, interno.',
     accent: 'sky',
