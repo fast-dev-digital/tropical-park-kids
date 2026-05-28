@@ -91,7 +91,7 @@ export function Hero() {
               <span aria-hidden="true" className="text-base md:text-lg">→</span>
             </Button>
             <a
-              href="#attractions"
+              href="#atracoes"
               className="inline-flex items-center gap-2 text-cream/90 hover:text-sun font-display font-medium text-xs md:text-sm tracking-[0.12em] uppercase px-1 md:px-2 py-2 transition-colors"
             >
               <span>Conhecer espaço</span>

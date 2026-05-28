@@ -36,10 +36,10 @@ export function Footer() {
               Navegar
             </h3>
             <ul className="space-y-2">
-              <FooterLink href="#attractions">Atrações</FooterLink>
-              <FooterLink href="#gallery">Galeria</FooterLink>
+              <FooterLink href="#atracoes">Atrações</FooterLink>
+              <FooterLink href="#gastronomia">Gastronomia</FooterLink>
               <FooterLink href="#events">Tipos de festa</FooterLink>
-              <FooterLink href="#menus">Cardápios</FooterLink>
+              <FooterLink href="#opcionais">Opcionais</FooterLink>
               <FooterLink href="#location">Onde estamos</FooterLink>
             </ul>
           </div>
