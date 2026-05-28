@@ -3,8 +3,8 @@ import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
-import heroDesktop from '../../assets/DESKTOP-hero-final-tropical-park.png'
-import heroMobile from '../../assets/MOBILE-hero-final-tropical-park.png'
+import heroDesktop from '../../assets/DESKTOP-hero-final-tropical-park.webp'
+import heroMobile from '../../assets/MOBILE-hero-final-tropical-park.webp'
 
 export function Hero() {
   const reduced = usePrefersReducedMotion()

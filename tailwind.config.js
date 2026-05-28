@@ -87,9 +87,9 @@ export default {
         },
       },
       backgroundImage: {
-        // Fundo lilás nublado — inspirado em public/background logo.png. Replica o
-        // ambiente cromático da logo: várias camadas de gradient roxo/violeta com
-        // nuvens brancas suaves e um leve glow amarelo no canto.
+        // Fundo lilás nublado — replica o ambiente cromático da logo:
+        // várias camadas de gradient roxo/violeta com nuvens brancas suaves
+        // e um leve glow amarelo no canto.
         'lilac-clouds':
           'radial-gradient(ellipse 70% 50% at 28% 22%, rgba(255,255,255,0.28), transparent 62%),' +
           'radial-gradient(ellipse 55% 40% at 78% 70%, rgba(255,255,255,0.18), transparent 60%),' +
