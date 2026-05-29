@@ -17,29 +17,16 @@ export type SectionContext =
   | 'final'
   | 'header'
 
-// Mensagens em tom de descoberta — gatilho de curiosidade, não urgência.
-// Cada uma deve gerar uma pergunta que só o WhatsApp resolve.
-const messages: Record<SectionContext, string> = {
-  hero: 'Olá! Vim pelo site e quero conhecer o espaço!',
-  entrada: 'Olá! Como funciona o acesso ao complexo e o estacionamento?',
-  atracoes: 'Olá! Quero saber mais sobre a Centopeia e os bichinhos motorizados.',
-  gastronomia: 'Olá! Quero conhecer as opções de gastronomia.',
-  decoracao: 'Olá! Quero saber como funciona a decoração temática.',
-  campo: 'Olá! Como funciona o uso do campo e da área externa?',
-  events: 'Olá! Realizam meu tipo de evento? Quero saber mais.',
-  opcionais: 'Olá! Quero saber sobre os opcionais para incrementar o evento.',
-  faq: 'Olá! Tenho algumas dúvidas sobre o complexo.',
-  location: 'Olá! Quero agendar uma visita ao complexo.',
-  final: 'Olá! Quero agendar uma visita para conhecer pessoalmente.',
-  header: 'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o espaço!',
-}
+// Mensagem única para todos os pontos que levam ao WhatsApp.
+const DEFAULT_WHATSAPP_MESSAGE =
+  'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o espaço!'
 
-export function buildWhatsAppUrl(section: SectionContext = 'header'): string {
-  const text = encodeURIComponent(messages[section])
+export function buildWhatsAppUrl(_section: SectionContext = 'header'): string {
+  const text = encodeURIComponent(DEFAULT_WHATSAPP_MESSAGE)
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
 }
 
-// Versão livre — usada por opcionais.ts, que carrega a própria pergunta.
-export function buildWhatsAppUrlFromText(text: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+// Mantém compatibilidade com chamadas que antes passavam uma pergunta específica.
+export function buildWhatsAppUrlFromText(_text: string): string {
+  return buildWhatsAppUrl('header')
 }

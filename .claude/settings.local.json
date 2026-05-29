@@ -12,7 +12,11 @@
       "Bash(mkdir -p .claude 2>&1; ls .claude 2>&1)",
       "mcp__Claude_Preview__preview_start",
       "Bash(mv \"DESKTOP-hero-final-tropical-park -webp.webp\" \"DESKTOP-hero-final-tropical-park.webp\")",
-      "Bash(mv \"MOBILE-hero-final-tropical-park -webp.webp\" \"MOBILE-hero-final-tropical-park.webp\")"
+      "Bash(mv \"MOBILE-hero-final-tropical-park -webp.webp\" \"MOBILE-hero-final-tropical-park.webp\")",
+      "Bash(curl -s https://tropical-park-kids.web.app/)",
+      "Bash(curl -sI https://tropical-park-kids.web.app/favicon-32.png)",
+      "Bash(curl -sI https://tropical-park-kids.web.app/og/tropical-park-og.webp)",
+      "Bash(curl -sI https://tropical-park-kids.web.app/logo-tropical.png)"
     ]
   }
 }
