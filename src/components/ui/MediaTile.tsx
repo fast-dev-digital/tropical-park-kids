@@ -1,33 +1,65 @@
 import type { MediaAsset } from '../../data/media'
 
+const cropAspect: Record<MediaAsset['orientation'], string> = {
+  portrait: 'aspect-[3/4]',
+  square: 'aspect-square',
+  landscape: 'aspect-[4/3]',
+}
+
 // Tile genérico de mídia — autoplay para vídeos (respeitando reduced motion),
 // lazy para imagens. Clique abre o lightbox via `onOpen`.
 // Compartilhado entre a esteira de capítulos (Chapters) e a página de Galeria.
+//
+// Modos de renderização:
+//   - large:   herói (aspect responsivo, caption no topo)
+//   - natural: proporção nativa (w-full h-auto) — usado no masonry da Galeria,
+//              empacota sem buracos. Mídias com `cropScale` (bordas borradas
+//              estilo Reels) caem num box de aspect fixo + object-cover + scale.
+//   - default: preenche o pai (absolute inset-0), exige container com aspect.
 export function MediaTile({
   media,
   reduced,
   onOpen,
   large = false,
+  natural = false,
 }: {
   media: MediaAsset
   reduced: boolean
   onOpen: (media: MediaAsset) => void
   large?: boolean
+  natural?: boolean
 }) {
   // TODO: ASSET REAL — mídias com `priority: 'star'` devem virar vídeo curto em movimento
   // assim que o Ricardo enviar os arquivos do Drive (Centopeia e bichinhos motorizados).
-  const aspectClass = large
+  const naturalCrop = natural && !!media.cropScale
+  const naturalFlow = natural && !media.cropScale
+
+  const largeAspect = large
     ? media.orientation === 'portrait'
       ? 'aspect-[3/4] md:aspect-[16/10]'
       : media.orientation === 'square'
         ? 'aspect-square md:aspect-[16/10]'
         : 'aspect-[4/3] md:aspect-[16/9]'
-    : 'h-full w-full absolute inset-0'
+    : ''
 
   // cropScale corta bordas borradas (vídeos verticais estilo Reels).
   const scaleStyle = media.cropScale
     ? { transform: `scale(${media.cropScale})`, transformOrigin: 'center center' }
     : null
+
+  // Classe da mídia conforme o modo.
+  const mediaClass = large
+    ? `block w-full ${largeAspect} object-cover`
+    : naturalFlow
+      ? 'block w-full h-auto object-cover'
+      : 'absolute inset-0 h-full w-full object-cover' // default + naturalCrop
+
+  // Classe do botão wrapper conforme o modo.
+  const buttonLayout = large || naturalFlow
+    ? 'block w-full'
+    : naturalCrop
+      ? `block w-full ${cropAspect[media.orientation]}`
+      : 'block h-full w-full'
 
   const caption = (
     <span
@@ -57,7 +89,7 @@ export function MediaTile({
         preload={large ? 'metadata' : 'none'}
         aria-label={media.alt}
         style={{ objectPosition: media.objectPosition ?? 'center', ...scaleStyle }}
-        className={`${large ? `block w-full ${aspectClass} object-cover` : `${aspectClass} object-cover`}`}
+        className={mediaClass}
       />
     )
     : (
@@ -67,7 +99,7 @@ export function MediaTile({
       loading="lazy"
       decoding="async"
       style={{ objectPosition: media.objectPosition ?? 'center', ...scaleStyle }}
-      className={`${large ? `block w-full ${aspectClass} object-cover` : `${aspectClass} object-cover`}`}
+      className={mediaClass}
     />
   )
 
@@ -75,7 +107,7 @@ export function MediaTile({
     <button
       type="button"
       onClick={() => onOpen(media)}
-      className="group relative block h-full w-full cursor-zoom-in overflow-hidden text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-sun/80"
+      className={`group relative ${buttonLayout} cursor-zoom-in overflow-hidden text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-sun/80`}
       aria-label={`Abrir mídia: ${media.caption}`}
     >
       {mediaElement}

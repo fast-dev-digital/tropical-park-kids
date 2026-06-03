@@ -64,9 +64,20 @@ export function Footer({ linkBase = '' }: Props) {
               <span>Agendar visita</span>
               <span aria-hidden="true">→</span>
             </a>
-            <p className="mt-4 text-cream/65 text-sm font-light">
-              Catanduva · SP
-            </p>
+            <address className="mt-5 not-italic space-y-2">
+              <p className="text-cream/65 text-sm font-light leading-snug">
+                Estr. Vicinal José Frias Garcia (CTV 461), 150<br />
+                Res. Paraíso · Catanduva – SP<br />
+                CEP 15809-230
+              </p>
+              <a
+                href="tel:+5517997756925"
+                className="inline-flex items-center gap-1.5 text-cream/85 hover:text-sun text-sm font-semibold transition-colors"
+              >
+                <span aria-hidden="true">📞</span>
+                (17) 99775-6925
+              </a>
+            </address>
           </div>
         </div>
 

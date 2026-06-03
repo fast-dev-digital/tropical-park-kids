@@ -20,18 +20,13 @@ import { buildWhatsAppUrl } from '../lib/whatsapp'
 // filtráveis por categoria. Documento próprio (multipage do Vite), por isso
 // Header/Footer recebem linkBase="/" para que as âncoras voltem à home.
 
-const aspectByOrientation: Record<MediaAsset['orientation'], string> = {
-  portrait: 'aspect-[3/4]',
-  landscape: 'aspect-[4/3]',
-  square: 'aspect-square',
-}
-
 export function GalleryPage() {
   const reduced = usePrefersReducedMotion()
   const [active, setActive] = useState<GalleryFilter>('destaques')
   const [selectedMedia, setSelectedMedia] = useState<MediaAsset | null>(null)
 
   const media = useMemo(() => mediaForFilter(active), [active])
+  const [hero, ...rest] = media
 
   return (
     <>
@@ -85,7 +80,8 @@ export function GalleryPage() {
           </Container>
         </div>
 
-        {/* Grade de mídias */}
+        {/* Grade de mídias — herói em destaque + masonry justificado.
+            Masonry (CSS columns) empacota pela altura real, sem buracos brancos. */}
         <section className="bg-cream py-8 md:py-12">
           <Container>
             {media.length === 0 ? (
@@ -93,17 +89,34 @@ export function GalleryPage() {
                 Nenhuma mídia nesta categoria ainda.
               </p>
             ) : (
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                {media.map((m, i) => (
-                  <motion.li
-                    key={m.id}
-                    {...popIn(reduced, Math.min(i * 0.03, 0.3))}
-                    className={`relative overflow-hidden rounded-2xl bg-ink/5 ${aspectByOrientation[m.orientation]}`}
-                  >
-                    <MediaTile media={m} reduced={reduced} onOpen={setSelectedMedia} />
-                  </motion.li>
-                ))}
-              </ul>
+              <>
+                {/* Herói — primeira mídia do filtro, grande, impacto imediato */}
+                <motion.div
+                  key={`hero-${hero.id}`}
+                  {...popIn(reduced)}
+                  className="relative mb-3 md:mb-4 overflow-hidden rounded-3xl bg-ink/5 shadow-soft"
+                >
+                  <MediaTile media={hero} large reduced={reduced} onOpen={setSelectedMedia} />
+                </motion.div>
+
+                {/* Masonry — proporção nativa, sem crop (exceto vídeos cropScale) */}
+                {rest.length > 0 && (
+                  <ul className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
+                    {rest.map((m) => (
+                      <motion.li
+                        key={m.id}
+                        initial={reduced ? false : { opacity: 0 }}
+                        whileInView={reduced ? undefined : { opacity: 1 }}
+                        viewport={{ once: true, margin: '-40px' }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        className="mb-3 md:mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-ink/5 shadow-soft"
+                      >
+                        <MediaTile media={m} natural reduced={reduced} onOpen={setSelectedMedia} />
+                      </motion.li>
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
           </Container>
         </section>

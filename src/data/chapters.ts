@@ -37,7 +37,7 @@ export const chapters: Chapter[] = [
       mediaAssets.decoracaoFazendinhaDoces,
       mediaAssets.salaoInfantil,
     ],
-    whisper: 'Estacionamento privativo, interno.',
+    whisper: 'O MELHOR DA REGIÃO!',
     accent: 'sky',
   },
   {
