@@ -15,6 +15,7 @@ export type SectionContext =
   | 'faq'
   | 'location'
   | 'final'
+  | 'galeria'
   | 'header'
 
 // Mensagens em tom de descoberta — gatilho de curiosidade, não urgência.
@@ -31,6 +32,7 @@ const messages: Record<SectionContext, string> = {
   faq: 'Olá! Tenho algumas dúvidas sobre o complexo.',
   location: 'Olá! Quero agendar uma visita ao complexo.',
   final: 'Olá! Quero agendar uma visita para conhecer pessoalmente.',
+  galeria: 'Olá! Vi a galeria de fotos e quero saber mais sobre o espaço.',
   header: 'Olá! Vim pelo site da Tropical Park Kids e quero conhecer o espaço!',
 }
 

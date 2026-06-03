@@ -1,7 +1,13 @@
 import { Container } from '../ui/Container'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
-export function Footer() {
+// `linkBase` resolve as âncoras de seção fora da LP (ver Header). Vazio na LP,
+// '/' na galeria — para que '#location' vire '/#location' e volte à home.
+type Props = { linkBase?: string }
+
+export function Footer({ linkBase = '' }: Props) {
+  const resolveHref = (href: string) =>
+    href.startsWith('#') ? `${linkBase}${href}` : href
   return (
     <footer className="bg-ink text-cream pt-16 pb-8" id="footer">
       <Container>
@@ -36,11 +42,12 @@ export function Footer() {
               Navegar
             </h3>
             <ul className="space-y-2">
-              <FooterLink href="#atracoes">Atrações</FooterLink>
-              <FooterLink href="#gastronomia">Gastronomia</FooterLink>
-              <FooterLink href="#events">Tipos de festa</FooterLink>
-              <FooterLink href="#opcionais">Opcionais</FooterLink>
-              <FooterLink href="#location">Onde estamos</FooterLink>
+              <FooterLink href={resolveHref('#atracoes')}>Atrações</FooterLink>
+              <FooterLink href={resolveHref('#gastronomia')}>Gastronomia</FooterLink>
+              <FooterLink href={resolveHref('#events')}>Tipos de festa</FooterLink>
+              <FooterLink href={resolveHref('#opcionais')}>Opcionais</FooterLink>
+              <FooterLink href="/galeria">Galeria</FooterLink>
+              <FooterLink href={resolveHref('#location')}>Onde estamos</FooterLink>
             </ul>
           </div>
 

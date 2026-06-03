@@ -539,6 +539,68 @@ export const galleryFilters: { id: GalleryFilter; label: string }[] = [
   { id: 'quadra', label: 'Quadra' },
 ]
 
+// Categorização explícita das mídias da galeria por filtro. Mantida à parte das
+// `sectionTags` (que servem à esteira da LP) para que o Ricardo possa curar a
+// galeria sem mexer no resto. `destaques` é derivado por prioridade em
+// `mediaForFilter`, então não precisa ser listado aqui.
+// Buckets:
+//   centopeia  → trenzinho Centopeia
+//   chacara    → espaços e estruturas do complexo (salão, entrada, brinquedão,
+//                carrossel, carrinhos motorizados, ambientes)
+//   buffet     → gastronomia (mesa posta, buffet em serviço, pratos)
+//   decoracao  → cenografia temática, lembrancinhas, entradas decoradas
+//   quadra     → quadra poliesportiva e campo
+export const galleryCategoryMap: Record<string, GalleryFilter[]> = {
+  'centopeia-salao-star': ['centopeia'],
+  'futebol-criancas-video': ['quadra'],
+  'decoracao-tematica-star': ['decoracao'],
+  'decoracao-entrada-star': ['decoracao'],
+  'decoracao-fazendinha-azul': ['decoracao'],
+  'entrada-fazendinha': ['decoracao'],
+  'decoracao-fazendinha-doces': ['decoracao'],
+  'mesa-posta-star': ['buffet'],
+  'salao-brinquedao-star': ['chacara'],
+  'centopeia-chacara': ['centopeia', 'chacara'],
+  'centopeia-quadra-noite': ['centopeia', 'quadra'],
+  'buffet-fartura': ['buffet'],
+  'buffet-servico': ['buffet'],
+  'mesa-posta-video': ['buffet'],
+  'entrada-salao': ['chacara'],
+  'salao-casamento': ['chacara'],
+  'salao-mesas-01': ['chacara'],
+  'salao-mesas-02': ['chacara'],
+  'salao-infantil': ['decoracao'],
+  'salao-convidados': ['chacara'],
+  'decoracao-tematica': ['decoracao'],
+  'carrossel-parque-video': ['chacara'],
+  'carrinhos-salao-video': ['chacara'],
+  'carrinhos-criancas-01': ['chacara'],
+  'carrinhos-criancas-02': ['chacara'],
+  'carrinhos-pista': ['chacara'],
+  'brinquedao-video': ['chacara'],
+  'decoracao-patrulha-canina-video': ['decoracao'],
+  'decoracao-tematica-video': ['decoracao'],
+  'entrada-decorada-video': ['decoracao'],
+  'lembrancinhas-decoracao-video': ['decoracao'],
+  'salao-ambiente-apoio': ['chacara'],
+  'menu-coquetel-tabua': ['buffet'],
+  'menu-jantar-rigatoni': ['buffet'],
+  'menu-churrasco-salada': ['buffet'],
+  'menu-corporativo-salada': ['buffet'],
+  'menu-kids': ['buffet'],
+}
+
+// Retorna as mídias da galeria pertencentes a um filtro, preservando a ordem de
+// `galleryMedia`. `destaques` agrupa as mídias de maior prioridade editorial.
+export function mediaForFilter(filter: GalleryFilter): MediaAsset[] {
+  if (filter === 'destaques') {
+    return galleryMedia.filter(
+      (m) => m.priority === 'star' || m.priority === 'featured',
+    )
+  }
+  return galleryMedia.filter((m) => galleryCategoryMap[m.id]?.includes(filter))
+}
+
 export const eventTypeMedia = {
   casamento: mediaAssets.salaoCasamento,
   infantil: mediaAssets.decoracaoTematicaStar,

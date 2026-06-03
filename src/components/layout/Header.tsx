@@ -10,14 +10,22 @@ const navLinks = [
   { href: '#atracoes', label: 'Atrações' },
   { href: '#gastronomia', label: 'Gastronomia' },
   { href: '#events', label: 'Eventos' },
+  { href: '/galeria', label: 'Galeria' },
   { href: '#location', label: 'Onde estamos' },
 ]
 
-export function Header() {
+// `linkBase` resolve as âncoras de seção quando o Header é usado fora da LP.
+// Na LP fica vazio (`#atracoes`); na galeria recebe '/' (`/#atracoes`), levando
+// de volta à home. Links absolutos (ex.: '/galeria') passam intactos.
+type Props = { linkBase?: string }
+
+export function Header({ linkBase = '' }: Props) {
   const scrolled = useScrollPosition(40)
   const [open, setOpen] = useState(false)
   const reduced = usePrefersReducedMotion()
   const solidHeader = scrolled || open
+  const resolveHref = (href: string) =>
+    href.startsWith('#') ? `${linkBase}${href}` : href
 
   return (
     <header
@@ -29,7 +37,7 @@ export function Header() {
     >
       <Container className="flex items-center justify-between py-3 md:py-4">
         <a
-          href="#hero"
+          href={resolveHref('#hero')}
           className="flex items-center gap-3 group"
           aria-label="Tropical Park Kids — início"
         >
@@ -66,7 +74,7 @@ export function Header() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={resolveHref(link.href)}
               className={`px-3 py-2 rounded-full text-sm font-bold transition-colors ${
                 solidHeader
                   ? 'text-ink-soft hover:text-coral hover:bg-coral/8'
@@ -127,7 +135,7 @@ export function Header() {
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   onClick={() => setOpen(false)}
                   initial={reduced ? false : { opacity: 0, x: -8 }}
                   animate={reduced ? undefined : { opacity: 1, x: 0 }}
